@@ -1,6 +1,7 @@
 param(
     [string]$DistRoot = "",
-    [string]$PythonBootstrap = ""
+    [string]$PythonBootstrap = "",
+    [switch]$SkipSourcePublish
 )
 
 $ErrorActionPreference = "Stop"
@@ -58,3 +59,7 @@ $python = "$venv\Scripts\python.exe"
 if ($LASTEXITCODE -ne 0) { throw "PyInstaller failed with exit code $LASTEXITCODE" }
 Copy-Item -LiteralPath "$project\README.md" -Destination "$output\README.md" -Force
 Write-Host "Built update: $output\UG MOD HUB.exe"
+if (-not $SkipSourcePublish) {
+    & "$project\publish_source.ps1" -CommitMessage "Publish UG MOD HUB $version update"
+    if ($LASTEXITCODE -ne 0) { throw "Automatic source publication failed." }
+}

@@ -31,3 +31,11 @@ Note: code signing verifies publisher identity and file integrity. Microsoft
 SmartScreen reputation may still take time to build for a new certificate or
 new release.
 
+## Automatic source publication
+
+`build_update.ps1` publishes the sanitized source to the public GitHub
+repository after a successful local update build. Publication runs the test
+suite first, creates a versioned commit and pushes `main`. Local mod payloads,
+IMG archives, secrets, build folders and EXE files are excluded.
+
+For a diagnostic build that must stay local, pass `-SkipSourcePublish`.
