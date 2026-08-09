@@ -1,0 +1,59 @@
+name: Sign release with SignPath
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  build-and-sign:
+    if: vars.SIGNPATH_ENABLED == 'true'
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies and test
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt -r requirements-build.txt
+          python -m unittest discover -s tests -v
+
+      - name: Build unsigned release
+        shell: pwsh
+        run: .\build.ps1 -ReleaseMode -DistRoot "$env:GITHUB_WORKSPACE\ci-dist"
+
+      - name: Upload unsigned artifact
+        id: upload-unsigned-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ug-mod-hub-signing-input
+          path: ci-dist/
+          if-no-files-found: error
+
+      - name: Submit SignPath signing request
+        uses: signpath/github-action-submit-signing-request@v2
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          github-artifact-id: ${{ steps.upload-unsigned-artifact.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: signed-release
+
+      - name: Upload signed release
+        uses: actions/upload-artifact@v4
+        with:
+          name: ug-mod-hub-signed
+          path: signed-release/
+          if-no-files-found: error

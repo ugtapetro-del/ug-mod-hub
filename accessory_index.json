@@ -1,0 +1,1300 @@
+{
+  "accessories": [
+    {
+      "id": 615,
+      "key": "easter_egg",
+      "name": "Пасхальне яйце",
+      "slot": "head",
+      "dff": "egg1",
+      "txd": "egg1"
+    },
+    {
+      "id": 637,
+      "key": "tie_red",
+      "name": "Червона краватка",
+      "slot": "neck",
+      "dff": "m_acs53",
+      "txd": "akses"
+    },
+    {
+      "id": 638,
+      "key": "scream",
+      "name": "Маска крику",
+      "slot": "face",
+      "dff": "m_acs50",
+      "txd": "akses"
+    },
+    {
+      "id": 639,
+      "key": "tie_gr",
+      "name": "Сіра краватка",
+      "slot": "neck",
+      "dff": "m_acs54",
+      "txd": "akses"
+    },
+    {
+      "id": 640,
+      "key": "scuba",
+      "name": "Балони",
+      "slot": "back",
+      "dff": "m_acs51",
+      "txd": "akses"
+    },
+    {
+      "id": 741,
+      "key": "tie_y",
+      "name": "Жовта краватка",
+      "slot": "neck",
+      "dff": "m_acs55",
+      "txd": "akses"
+    },
+    {
+      "id": 742,
+      "key": "wings",
+      "name": "Білі крила",
+      "slot": "back",
+      "dff": "m_acs56",
+      "txd": "akses"
+    },
+    {
+      "id": 743,
+      "key": "wings_2",
+      "name": "Чорні крила",
+      "slot": "back",
+      "dff": "m_acs57",
+      "txd": "akses"
+    },
+    {
+      "id": 753,
+      "key": "wreath",
+      "name": "Вінок з ромашок",
+      "slot": "head",
+      "dff": "m_acs58",
+      "txd": "akses"
+    },
+    {
+      "id": 760,
+      "key": "m3_acse32",
+      "name": "Військова каска",
+      "slot": "head",
+      "dff": "aprl_a01",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 761,
+      "key": "m3_acse33",
+      "name": "Військова каска",
+      "slot": "head",
+      "dff": "aprl_a02",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 762,
+      "key": "m3_acse34",
+      "name": "Кулеметна стрічка",
+      "slot": "belt",
+      "dff": "aprl_a03",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 763,
+      "key": "m3_acse23",
+      "name": "Армійський підсумок",
+      "slot": "belt",
+      "dff": "aprl_a04",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 764,
+      "key": "m3_acse24",
+      "name": "Балаклава спеціальна",
+      "slot": "head",
+      "dff": "aprl_a05",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 765,
+      "key": "m3_acse25",
+      "name": "Шолом апокаліпсис",
+      "slot": "head",
+      "dff": "aprl_a06",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 766,
+      "key": "m3_acse26",
+      "name": "Кібер окуляри",
+      "slot": "face",
+      "dff": "aprl_a07",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 767,
+      "key": "m3_acse27",
+      "name": "Маска PayDay",
+      "slot": "face",
+      "dff": "aprl_a08",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 768,
+      "key": "m3_acse28",
+      "name": "Маска Вирішальна ніч",
+      "slot": "face",
+      "dff": "aprl_a09",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 769,
+      "key": "m3_acse29",
+      "name": "Шолом Хижак",
+      "slot": "head",
+      "dff": "aprl_a10",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 770,
+      "key": "m3_acse30",
+      "name": "Окуляри Гогли",
+      "slot": "face",
+      "dff": "aprl_a11",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 771,
+      "key": "m3_acse31",
+      "name": "Маска череп",
+      "slot": "face",
+      "dff": "aprl_a12",
+      "txd": "aprl_aks"
+    },
+    {
+      "id": 774,
+      "key": "backpack_magic",
+      "name": "Стильовий рюкзак",
+      "slot": "back",
+      "dff": "june_a03",
+      "txd": "june_aks"
+    },
+    {
+      "id": 775,
+      "key": "gold_chein",
+      "name": "Золотий ланцюг",
+      "slot": "neck",
+      "dff": "june_a04",
+      "txd": "june_aks"
+    },
+    {
+      "id": 777,
+      "key": "Leopard_hat",
+      "name": "Леопардовий капелюх",
+      "slot": "head",
+      "dff": "june_a06",
+      "txd": "june_aks"
+    },
+    {
+      "id": 778,
+      "key": "rosebud_hat",
+      "name": "Розподільча шляпа",
+      "slot": "head",
+      "dff": "june_a07",
+      "txd": "june_aks"
+    },
+    {
+      "id": 780,
+      "key": "protective_hat",
+      "name": "Захисний капелюх",
+      "slot": "head",
+      "dff": "june_a09",
+      "txd": "june_aks"
+    },
+    {
+      "id": 782,
+      "key": "dart_weider",
+      "name": "Штурмовик ABC",
+      "slot": "face",
+      "dff": "june_a11",
+      "txd": "june_aks"
+    },
+    {
+      "id": 784,
+      "key": "fire_sholom",
+      "name": "Пожежний шолом",
+      "slot": "head",
+      "dff": "june_a13",
+      "txd": "june_aks"
+    },
+    {
+      "id": 785,
+      "key": "Glasses9",
+      "name": "Рожеві окуляри",
+      "slot": "face",
+      "dff": "june_a14",
+      "txd": "june_aks"
+    },
+    {
+      "id": 786,
+      "key": "bike_glass",
+      "name": "Окуляри для байка",
+      "slot": "face",
+      "dff": "june_a15",
+      "txd": "june_aks"
+    },
+    {
+      "id": 789,
+      "key": "wings_hallowen",
+      "name": "Палаючі крила",
+      "slot": "back",
+      "dff": "june_a18",
+      "txd": "june_aks"
+    },
+    {
+      "id": 790,
+      "key": "nimbus",
+      "name": "Німбус 2000",
+      "slot": "back",
+      "dff": "june_a19",
+      "txd": "june_aks"
+    },
+    {
+      "id": 800,
+      "key": "zebra",
+      "name": "Голова зебри",
+      "slot": "head",
+      "dff": "aug_a01",
+      "txd": "aug_aks"
+    },
+    {
+      "id": 801,
+      "key": "sweed_glass",
+      "name": "Рожеві окуляри",
+      "slot": "face",
+      "dff": "aug_a02",
+      "txd": "aug_aks"
+    },
+    {
+      "id": 802,
+      "key": "Brutal_monkey",
+      "name": "Брутальна мавпа",
+      "slot": "face",
+      "dff": "aug_a03",
+      "txd": "aug_aks"
+    },
+    {
+      "id": 803,
+      "key": "Airsoft_mask",
+      "name": "Страйкбольна маска",
+      "slot": "face",
+      "dff": "aug_a04",
+      "txd": "aug_aks"
+    },
+    {
+      "id": 805,
+      "key": "crown_hat",
+      "name": "Королівська корона",
+      "slot": "head",
+      "dff": "aug_a06",
+      "txd": "aug_aks"
+    },
+    {
+      "id": 806,
+      "key": "demon_watermelon",
+      "name": "Гарбуз демона",
+      "slot": "head",
+      "dff": "aug_a07",
+      "txd": "octob_aks"
+    },
+    {
+      "id": 807,
+      "key": "barbarian_helm",
+      "name": "Шолом варвара",
+      "slot": "head",
+      "dff": "aug_a08",
+      "txd": "octob_aks"
+    },
+    {
+      "id": 808,
+      "key": "wolf_mask",
+      "name": "Вовча маска",
+      "slot": "head",
+      "dff": "aug_a09",
+      "txd": "octob_aks"
+    },
+    {
+      "id": 810,
+      "key": "roof_moon",
+      "name": "Рога",
+      "slot": "head",
+      "dff": "aug_a11",
+      "txd": "octob_aks"
+    },
+    {
+      "id": 814,
+      "key": "armor_dead",
+      "name": "Бронежилет смерті",
+      "slot": "belt",
+      "dff": "aug_a15",
+      "txd": "dec_aks"
+    },
+    {
+      "id": 815,
+      "key": "Headphones",
+      "name": "Навушники",
+      "slot": "head",
+      "dff": "aug_a16",
+      "txd": "dec_aks"
+    },
+    {
+      "id": 818,
+      "key": "hqd",
+      "name": "HQD",
+      "slot": "face",
+      "dff": "aug_a18",
+      "txd": "dec_aks"
+    },
+    {
+      "id": 819,
+      "key": "boom_box",
+      "name": "Бумбокс",
+      "slot": "boombox",
+      "dff": "aug_a19",
+      "txd": "dec_aks"
+    },
+    {
+      "id": 821,
+      "key": "sigara",
+      "name": "Цигарка",
+      "slot": "face",
+      "dff": "aug_a21",
+      "txd": "dec_aks"
+    },
+    {
+      "id": 822,
+      "key": "school_glass",
+      "name": "Окуляри коралові",
+      "slot": "face",
+      "dff": "aug_a22",
+      "txd": "dec_aks"
+    },
+    {
+      "id": 823,
+      "key": "bandana",
+      "name": "Бандана",
+      "slot": "head",
+      "dff": "aug_a23",
+      "txd": "dec_aks"
+    },
+    {
+      "id": 824,
+      "key": "gun_holster",
+      "name": "Кабура",
+      "slot": "belt",
+      "dff": "aug_a24",
+      "txd": "dec_aks"
+    },
+    {
+      "id": 831,
+      "key": "baff_ultra",
+      "name": "Баф",
+      "slot": "face",
+      "dff": "aug_a29",
+      "txd": "aks_feb"
+    },
+    {
+      "id": 832,
+      "key": "cradle",
+      "name": "Люлька",
+      "slot": "face",
+      "dff": "aug_a30",
+      "txd": "aks_feb"
+    },
+    {
+      "id": 834,
+      "key": "purple_glass",
+      "name": "Окуляри коралові",
+      "slot": "face",
+      "dff": "aug_a32",
+      "txd": "aks_feb"
+    },
+    {
+      "id": 835,
+      "key": "cap7",
+      "name": "Капелюх",
+      "slot": "head",
+      "dff": "aug_a33",
+      "txd": "aks_feb"
+    },
+    {
+      "id": 836,
+      "key": "BackPack_2",
+      "name": "Рюкзак",
+      "slot": "backpack",
+      "dff": "aug_a34",
+      "txd": "aks_feb"
+    },
+    {
+      "id": 837,
+      "key": "Belt_dollar",
+      "name": "Ремінь долар",
+      "slot": "belt",
+      "dff": "aug_a35",
+      "txd": "aks_feb"
+    },
+    {
+      "id": 838,
+      "key": "Cowboy_holster",
+      "name": "Ковбойська кобура",
+      "slot": "belt",
+      "dff": "aug_a36",
+      "txd": "aks_feb"
+    },
+    {
+      "id": 853,
+      "key": "helm_pirate",
+      "name": "Капелюх пірата",
+      "slot": "head",
+      "dff": "aug_a37",
+      "txd": "aks_feb"
+    },
+    {
+      "id": 911,
+      "key": "beard_santa",
+      "name": "Борода Мороза",
+      "slot": "face",
+      "dff": "m2_acse32",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 912,
+      "key": "new_year_hat",
+      "name": "Новорічна шапка",
+      "slot": "head",
+      "dff": "m2_acse33",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 935,
+      "key": "m3_acse01",
+      "name": "Сомбреро",
+      "slot": "head",
+      "dff": "m3_acse01",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 939,
+      "key": "deer_mask",
+      "name": "Маска 'Під Оленя'",
+      "slot": "head",
+      "dff": "m2_acse34",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 942,
+      "key": "new_year_scarf",
+      "name": "Новорічний шарф",
+      "slot": "neck",
+      "dff": "m2_acse35",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 944,
+      "key": "m3_acse02",
+      "name": "Наплічник золотий",
+      "slot": "back",
+      "dff": "m3_acse02",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 948,
+      "key": "station",
+      "name": "Радіостанція",
+      "slot": "back",
+      "dff": "m_acs52",
+      "txd": "akses"
+    },
+    {
+      "id": 955,
+      "key": "backpack",
+      "name": "Рюкзак",
+      "slot": "back",
+      "dff": "m_acs01",
+      "txd": "akses"
+    },
+    {
+      "id": 956,
+      "key": "baff",
+      "name": "Маскувальна хустка",
+      "slot": "face",
+      "dff": "m_acs02",
+      "txd": "akses"
+    },
+    {
+      "id": 964,
+      "key": "m3_acse03",
+      "name": "Хустка з черепом",
+      "slot": "face",
+      "dff": "m3_acse03",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 1233,
+      "key": "helmet_black",
+      "name": "Шолом чорний",
+      "slot": "head",
+      "dff": "m2_asce18",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1265,
+      "key": "helmet_avg",
+      "name": "Шолом AVG",
+      "slot": "head",
+      "dff": "m2_asce16",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1328,
+      "key": "gitara_stalker",
+      "name": "Гітара",
+      "slot": "back",
+      "dff": "ugta_acsgir1",
+      "txd": "ugta_acsgir1"
+    },
+    {
+      "id": 1337,
+      "key": "diamond_bag",
+      "name": "Сумка з діамантом",
+      "slot": "belt",
+      "dff": "m2_acse37",
+      "txd": "m2_acses2"
+    },
+    {
+      "id": 1339,
+      "key": "wood_black_glasses",
+      "name": "Окуляри Wood Black",
+      "slot": "face",
+      "dff": "m2_acse39",
+      "txd": "m2_acses2"
+    },
+    {
+      "id": 1343,
+      "key": "m2_asce22",
+      "name": "Маска Watch",
+      "slot": "face",
+      "dff": "m2_asce22",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1344,
+      "key": "scarf_deserted_w",
+      "name": "Білий пустельний\\nшарф",
+      "slot": "neck",
+      "dff": "m2_asce23",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1347,
+      "key": "hell_wings",
+      "name": "Пекельні крила",
+      "slot": "back",
+      "dff": "m2_asce27",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1348,
+      "key": "m3_acse04",
+      "name": "Рюкзак\\nLouis Vuitton",
+      "slot": "back",
+      "dff": "m3_acse04",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 1349,
+      "key": "pumpkin",
+      "name": "Маска 'Гарбуз'",
+      "slot": "face",
+      "dff": "m2_asce26",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1362,
+      "key": "m3_acse05",
+      "name": "Маска лікаря",
+      "slot": "face",
+      "dff": "m3_acse05",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 1365,
+      "key": "panam_hat",
+      "name": "Капелюх Panam Hat",
+      "slot": "head",
+      "dff": "m2_acse36",
+      "txd": "m2_acses2"
+    },
+    {
+      "id": 1369,
+      "key": "m2_asce21",
+      "name": "Мечі",
+      "slot": "belt",
+      "dff": "m2_asce21",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1372,
+      "key": "scythe",
+      "name": "Коса смерті",
+      "slot": "back",
+      "dff": "m2_asce24",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1409,
+      "key": "m2_asce20",
+      "name": "Меч",
+      "slot": "belt",
+      "dff": "m2_asce20",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1415,
+      "key": "m2_asce19",
+      "name": "Маска череп",
+      "slot": "face",
+      "dff": "m2_asce19",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1429,
+      "key": "nightmare",
+      "name": "Маска 'Кошмар'",
+      "slot": "face",
+      "dff": "m2_asce25",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1431,
+      "key": "m3_acse06",
+      "name": "Шкіряний кашкет",
+      "slot": "head",
+      "dff": "m3_acse06",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 1436,
+      "key": "m2_asce17",
+      "name": "Шолом з рогами",
+      "slot": "head",
+      "dff": "m2_asce17",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1441,
+      "key": "m2_asce01",
+      "name": "Коричневий шкіряний\\nрюкзак",
+      "slot": "back",
+      "dff": "m2_asce01",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1449,
+      "key": "m2_asce02",
+      "name": "Чорний шкіряний\\nрюкзак",
+      "slot": "back",
+      "dff": "m2_asce02",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1450,
+      "key": "m2_asce03",
+      "name": "Помаранчевий шкіряний\\nрюкзак",
+      "slot": "back",
+      "dff": "m2_asce03",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1462,
+      "key": "mask_mick",
+      "name": "Маска Міка Томпсона",
+      "slot": "face",
+      "dff": "m2_asce10",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1549,
+      "key": "mask_scorp",
+      "name": "Зелений пустельний",
+      "slot": "face",
+      "dff": "m2_asce15",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1558,
+      "key": "scarf_deserted_y",
+      "name": "Жовтий пустельний\\nшарф",
+      "slot": "neck",
+      "dff": "m2_asce14",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1572,
+      "key": "scarf_deserted_r",
+      "name": "Червоний пустельний\\nшарф",
+      "slot": "neck",
+      "dff": "m2_asce13",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1574,
+      "key": "cylinder_hat",
+      "name": "Циліндр",
+      "slot": "head",
+      "dff": "m2_asce04",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1685,
+      "key": "m3_acse07",
+      "name": "Срібний ланцюг",
+      "slot": "neck",
+      "dff": "m3_acse07",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 1723,
+      "key": "swords_deadhead",
+      "name": "Мечі “Череп”",
+      "slot": "belt",
+      "dff": "ugta_acs_71",
+      "txd": "ugta_acs"
+    },
+    {
+      "id": 1733,
+      "key": "scarf_deserted_g",
+      "name": "Зелений пустельний\\nшарф",
+      "slot": "neck",
+      "dff": "m2_asce05",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1773,
+      "key": "m2_asce06",
+      "name": "Німецький шолом",
+      "slot": "head",
+      "dff": "m2_asce06",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1775,
+      "key": "banana",
+      "name": "Потайна кишеня Томмі",
+      "slot": "belt",
+      "dff": "m_acs03",
+      "txd": "akses"
+    },
+    {
+      "id": 1776,
+      "key": "bananaN",
+      "name": "Потайна кишеня Найкі",
+      "slot": "belt",
+      "dff": "m_acs04",
+      "txd": "akses"
+    },
+    {
+      "id": 1777,
+      "key": "m2_asce07",
+      "name": "Жиганка",
+      "slot": "head",
+      "dff": "m2_asce07",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 1861,
+      "key": "backpack_pink_is",
+      "name": "Рюкзак \"Рожеві крила\"",
+      "slot": "backpack",
+      "dff": "ugta_acs_142",
+      "txd": "ugta_acs2"
+    },
+    {
+      "id": 1901,
+      "key": "manual_scooter",
+      "name": "Ручний самокат",
+      "slot": "back",
+      "dff": "ugta_acss_samocat",
+      "txd": "ugta_acss_samocat"
+    },
+    {
+      "id": 1977,
+      "key": "bananaS",
+      "name": "Потайна кишеня Суприм",
+      "slot": "belt",
+      "dff": "m_acs05",
+      "txd": "akses"
+    },
+    {
+      "id": 2038,
+      "key": "m3_acse08",
+      "name": "Золотий ланцюг",
+      "slot": "neck",
+      "dff": "m3_acse08",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2039,
+      "key": "m3_acse09",
+      "name": "Маска Бейна",
+      "slot": "face",
+      "dff": "m3_acse09",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2040,
+      "key": "m3_acse10",
+      "name": "Маска Джейсона",
+      "slot": "face",
+      "dff": "m3_acse10",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2041,
+      "key": "m3_acse11",
+      "name": "Наплічник чорний",
+      "slot": "back",
+      "dff": "m3_acse11",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2042,
+      "key": "m2_asce12",
+      "name": "Supreme",
+      "slot": "back",
+      "dff": "m3_acse12",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2043,
+      "key": "m3_acse13",
+      "name": "Сумка\\nLouis Vuitton",
+      "slot": "belt",
+      "dff": "m3_acse13",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2062,
+      "key": "m2_asce08",
+      "name": "Кобура",
+      "slot": "belt",
+      "dff": "m2_asce08",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 2212,
+      "key": "butterfly1",
+      "name": "Метелик сірий",
+      "slot": "neck",
+      "dff": "m_acs06",
+      "txd": "akses"
+    },
+    {
+      "id": 2213,
+      "key": "butterfly2",
+      "name": "Зелений метелик",
+      "slot": "neck",
+      "dff": "m_acs07",
+      "txd": "akses"
+    },
+    {
+      "id": 2214,
+      "key": "butterfly3",
+      "name": "Червоний метелик",
+      "slot": "neck",
+      "dff": "m_acs08",
+      "txd": "akses"
+    },
+    {
+      "id": 2215,
+      "key": "cap1",
+      "name": "Військовий капелюх",
+      "slot": "head",
+      "dff": "m_acs10",
+      "txd": "akses"
+    },
+    {
+      "id": 2216,
+      "key": "cap2",
+      "name": "Капелюх",
+      "slot": "head",
+      "dff": "m_acs11",
+      "txd": "akses"
+    },
+    {
+      "id": 2217,
+      "key": "cap3",
+      "name": "Жіночий капелюх",
+      "slot": "head",
+      "dff": "m_acs12",
+      "txd": "akses"
+    },
+    {
+      "id": 2218,
+      "key": "cap4",
+      "name": "Капелюх лепрекону",
+      "slot": "head",
+      "dff": "m_acs13",
+      "txd": "akses"
+    },
+    {
+      "id": 2219,
+      "key": "cap5",
+      "name": "Капелюх відьми",
+      "slot": "head",
+      "dff": "m_acs14",
+      "txd": "akses"
+    },
+    {
+      "id": 2221,
+      "key": "chain",
+      "name": "Хрест на ланцюгу",
+      "slot": "neck",
+      "dff": "m_acs16",
+      "txd": "akses"
+    },
+    {
+      "id": 2223,
+      "key": "chainp1",
+      "name": "Потрійний ланцюг",
+      "slot": "belt",
+      "dff": "m_acs18",
+      "txd": "akses"
+    },
+    {
+      "id": 2342,
+      "key": "coffer",
+      "name": "Футляр гітари",
+      "slot": "back",
+      "dff": "m_acs19",
+      "txd": "akses"
+    },
+    {
+      "id": 2353,
+      "key": "glasses1",
+      "name": "Окуляри",
+      "slot": "face",
+      "dff": "m_acs21",
+      "txd": "akses"
+    },
+    {
+      "id": 2354,
+      "key": "glasses2",
+      "name": "Окуляри чорні",
+      "slot": "face",
+      "dff": "m_acs22",
+      "txd": "akses"
+    },
+    {
+      "id": 2355,
+      "key": "glasses3",
+      "name": "Тактичні окуляри",
+      "slot": "face",
+      "dff": "m_acs23",
+      "txd": "akses"
+    },
+    {
+      "id": 2358,
+      "key": "m3_acse15",
+      "name": "Ковбойський капелюх\\nкоричневий",
+      "slot": "head",
+      "dff": "m3_acse15",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2359,
+      "key": "m3_acse16",
+      "name": "Шипастий нашийник",
+      "slot": "neck",
+      "dff": "m3_acse16",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2420,
+      "key": "guitar1",
+      "name": "Чорна гітара",
+      "slot": "back",
+      "dff": "m_acs24",
+      "txd": "akses"
+    },
+    {
+      "id": 2425,
+      "key": "guitar2",
+      "name": "Золота електрогітара",
+      "slot": "back",
+      "dff": "m_acs25",
+      "txd": "akses"
+    },
+    {
+      "id": 2427,
+      "key": "guitar3",
+      "name": "Рок-гітара",
+      "slot": "back",
+      "dff": "m_acs26",
+      "txd": "akses"
+    },
+    {
+      "id": 2429,
+      "key": "handbag",
+      "name": "Жіноча сумка (бежева)",
+      "slot": "belt",
+      "dff": "m_acs27",
+      "txd": "akses"
+    },
+    {
+      "id": 2438,
+      "key": "handbag_blue",
+      "name": "Жіноча сумка (блакитна)",
+      "slot": "belt",
+      "dff": "m_acs28",
+      "txd": "akses"
+    },
+    {
+      "id": 2453,
+      "key": "eye",
+      "name": "Пов'язка на око",
+      "slot": "face",
+      "dff": "m_acs20",
+      "txd": "akses"
+    },
+    {
+      "id": 2464,
+      "key": "m3_acse17",
+      "name": "Кашкет Red Bull",
+      "slot": "head",
+      "dff": "m3_acse17",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2465,
+      "key": "m3_acse18",
+      "name": "Кашкет Шумахера",
+      "slot": "head",
+      "dff": "m3_acse18",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2468,
+      "key": "m3_acse20",
+      "name": "Шолом Petronas",
+      "slot": "head",
+      "dff": "m3_acse20",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2476,
+      "key": "m3_acse14",
+      "name": "Ковбойський капелюх",
+      "slot": "head",
+      "dff": "m3_acse14",
+      "txd": "m3_acse"
+    },
+    {
+      "id": 2647,
+      "key": "cap",
+      "name": "Кашкет UFC",
+      "slot": "head",
+      "dff": "m_acs09",
+      "txd": "akses"
+    },
+    {
+      "id": 2670,
+      "key": "m2_asce11",
+      "name": "Молот Тора",
+      "slot": "neck",
+      "dff": "m2_asce11",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 2671,
+      "key": "m2_asce012",
+      "name": "Трикутник",
+      "slot": "head",
+      "dff": "m2_asce12",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 2672,
+      "key": "pendant_1",
+      "name": "Кулон",
+      "slot": "neck",
+      "dff": "m2_asce09",
+      "txd": "m2_acses"
+    },
+    {
+      "id": 2683,
+      "key": "handbag_gr",
+      "name": "Жіноча сумка (зелена)",
+      "slot": "belt",
+      "dff": "m_acs29",
+      "txd": "akses"
+    },
+    {
+      "id": 2702,
+      "key": "handbag_gr_bl",
+      "name": "Жіноча сумка (чорна)",
+      "slot": "belt",
+      "dff": "m_acs30",
+      "txd": "akses"
+    },
+    {
+      "id": 2703,
+      "key": "handbag_grey",
+      "name": "Жіноча сумка (сіра)",
+      "slot": "belt",
+      "dff": "m_acs31",
+      "txd": "akses"
+    },
+    {
+      "id": 2766,
+      "key": "helmet",
+      "name": "Каска під пиво",
+      "slot": "head",
+      "dff": "m_acs33",
+      "txd": "akses"
+    },
+    {
+      "id": 2767,
+      "key": "handbag_red",
+      "name": "Жіноча сумка (червона)",
+      "slot": "belt",
+      "dff": "m_acs32",
+      "txd": "akses"
+    },
+    {
+      "id": 2769,
+      "key": "helmet_p",
+      "name": "Каска КБ",
+      "slot": "head",
+      "dff": "m_acs34",
+      "txd": "akses"
+    },
+    {
+      "id": 2814,
+      "key": "horse",
+      "name": "Маска коня",
+      "slot": "head",
+      "dff": "m_acs35",
+      "txd": "akses"
+    },
+    {
+      "id": 2821,
+      "key": "katana",
+      "name": "Катана",
+      "slot": "back",
+      "dff": "m_acs36",
+      "txd": "akses"
+    },
+    {
+      "id": 2823,
+      "key": "mask2",
+      "name": "Протигаз",
+      "slot": "face",
+      "dff": "m_acs37",
+      "txd": "akses"
+    },
+    {
+      "id": 2837,
+      "key": "mask_saw",
+      "name": "Маска клоуна",
+      "slot": "face",
+      "dff": "m_acs38",
+      "txd": "akses"
+    },
+    {
+      "id": 2839,
+      "key": "mask_v",
+      "name": "Маска Гая Фокса",
+      "slot": "face",
+      "dff": "m_acs39",
+      "txd": "akses"
+    },
+    {
+      "id": 2856,
+      "key": "mask_grey",
+      "name": "Чорний респіратор",
+      "slot": "face",
+      "dff": "m_acs40",
+      "txd": "akses"
+    },
+    {
+      "id": 2857,
+      "key": "mask_red",
+      "name": "Респіратор червоний",
+      "slot": "face",
+      "dff": "m_acs42",
+      "txd": "akses"
+    },
+    {
+      "id": 2858,
+      "key": "mask_gold",
+      "name": "Золота маска",
+      "slot": "face",
+      "dff": "m_acs43",
+      "txd": "akses"
+    },
+    {
+      "id": 2859,
+      "key": "mask_3",
+      "name": "Червона маска",
+      "slot": "face",
+      "dff": "m_acs44",
+      "txd": "akses"
+    },
+    {
+      "id": 2860,
+      "key": "scarf",
+      "name": "Червоний шарф",
+      "slot": "neck",
+      "dff": "m_acs45",
+      "txd": "akses"
+    },
+    {
+      "id": 2861,
+      "key": "mask_blue",
+      "name": "Респіратор блакитний",
+      "slot": "face",
+      "dff": "m_acs41",
+      "txd": "akses"
+    },
+    {
+      "id": 2866,
+      "key": "scarf_b",
+      "name": "Зелений шарф",
+      "slot": "neck",
+      "dff": "m_acs46",
+      "txd": "akses"
+    },
+    {
+      "id": 2867,
+      "key": "scarf_bl",
+      "name": "Блакитний шарф",
+      "slot": "neck",
+      "dff": "m_acs47",
+      "txd": "akses"
+    },
+    {
+      "id": 2880,
+      "key": "scarf_g",
+      "name": "Зелений шарф",
+      "slot": "neck",
+      "dff": "m_acs48",
+      "txd": "akses"
+    },
+    {
+      "id": 2881,
+      "key": "scarf_y",
+      "name": "Жовтий шарф",
+      "slot": "neck",
+      "dff": "m_acs49",
+      "txd": "akses"
+    }
+  ]
+}

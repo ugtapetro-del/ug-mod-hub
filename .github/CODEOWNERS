@@ -1,0 +1,11 @@
+# Add the GitHub account that controls public releases before applying to
+# SignPath Foundation, for example:
+# /.github/workflows/ @your-github-name
+# /CODE_SIGNING_POLICY.md @your-github-name
+# /SECURITY.md @your-github-name
+# /requirements.txt @your-github-name
+# /requirements-build.txt @your-github-name
+# /build.ps1 @your-github-name
+# /build_update.ps1 @your-github-name
+# /core.py @your-github-name
+# /fastman_img.py @your-github-name

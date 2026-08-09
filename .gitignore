@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Build outputs
+build/
+dist/
+release_audio/
+*.spec
+.build-tools/
+
+# Local payloads and large game archives
+mods/
+img_templates/
+*.img
+*.zip
+*.rar
+*.7z
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+keys.json
+config.php
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

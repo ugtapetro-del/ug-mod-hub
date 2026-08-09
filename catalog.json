@@ -1,0 +1,104 @@
+{
+  "app_name": "UG MOD HUB",
+  "version": "0.1.3",
+  "mods": [
+    {
+      "id": "blood_hit",
+      "title": "Кров + звук влучання",
+      "category": "Кров + звук влучання",
+      "description": "Кров і підтвердження влучання. Швидке повторне встановлення перед кожним входом.",
+      "destination": "game/mods/deathmatch/resources/ugta_game_business/Files",
+      "accent": "#e64f74",
+      "repeat_before_launch": true,
+      "hash_guard": true
+    },
+    {
+      "id": "sky",
+      "title": "Небо",
+      "category": "Небо",
+      "description": "Заміна текстур неба й атмосфери гри.",
+      "destination": "game/bin/data",
+      "accent": "#6e8cff"
+    },
+    {
+      "id": "effects",
+      "title": "Ефекти зброї №1",
+      "category": "Ефекти",
+      "description": "Набір ефектів зброї: effects.fxp та effectsPC.txd.",
+      "destination": "game/bin/models",
+      "accent": "#a56cff"
+    },
+    {
+      "id": "animations",
+      "title": "Анімації",
+      "category": "Анімації",
+      "description": "Пакет користувацьких анімацій персонажа.",
+      "destination": "game/bin/anim",
+      "accent": "#2fd3a7"
+    },
+    {
+      "id": "gun_sounds",
+      "title": "Звуки 5RP",
+      "category": "Звуки пострілів",
+      "description": "Повний аудіопак SFX і streams у стилі GTA 5 RP.",
+      "destination": "game/bin/audio",
+      "accent": "#ff9f43"
+    },
+    {
+      "id": "crosshair_3",
+      "title": "Приціл №3",
+      "category": "Приціл",
+      "description": "Компактний змагальний приціл. Встановлюється перед входом.",
+      "destination": "game/mods/deathmatch/resources",
+      "accent": "#00c8b4",
+      "repeat_before_launch": true,
+      "exclusive_group": "crosshair",
+      "hash_guard": true
+    },
+    {
+      "id": "crosshair_4",
+      "title": "Приціл №4",
+      "category": "Приціл",
+      "description": "Альтернативний приціл для DM-режиму.",
+      "destination": "game/mods/deathmatch/resources",
+      "accent": "#18d28f",
+      "repeat_before_launch": true,
+      "exclusive_group": "crosshair",
+      "hash_guard": true
+    },
+    {
+      "id": "hud",
+      "title": "Minimal HUD",
+      "category": "HUD",
+      "description": "Чистий мінімалістичний інтерфейс. Копіювати в меню авторизації.",
+      "destination": "game/mods/deathmatch/resources",
+      "accent": "#f0c45a",
+      "repeat_before_launch": true,
+      "hash_guard": true
+    },
+    {
+      "id": "optimization_no_grass",
+      "title": "Без трави",
+      "category": "Оптимізація",
+      "description": "Вимикає рослинний покрив для зменшення навантаження на слабкі відеокарти.",
+      "destination": "game/bin/data",
+      "accent": "#34d399"
+    },
+    {
+      "id": "optimization_low_effects",
+      "title": "Спрощені ефекти",
+      "category": "Оптимізація",
+      "description": "Вимикає radiosity та зменшує кількість фонових машин у стримінгу.",
+      "destination": "game/bin",
+      "accent": "#38bdf8"
+    },
+    {
+      "id": "optimization_low_map",
+      "title": "Низька деталізація карти",
+      "category": "Оптимізація",
+      "description": "Вмикає штатний gta_low.dat для меншої деталізації об’єктів карти.",
+      "destination": "game/bin/data",
+      "accent": "#f59e0b"
+    }
+  ]
+}

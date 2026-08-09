@@ -1,0 +1,2747 @@
+{
+  "version": 1,
+  "skins": [
+    {
+      "id": 1,
+      "name": "Небезпечний месник",
+      "dff": "TRUTH",
+      "txd": "TRUTH"
+    },
+    {
+      "id": 2,
+      "name": "Небезпечна месниця",
+      "dff": "MACCER",
+      "txd": "MACCER"
+    },
+    {
+      "id": 7,
+      "name": "Голова банди",
+      "dff": "male01",
+      "txd": "male01"
+    },
+    {
+      "id": 9,
+      "name": "Рожева Хвиля",
+      "dff": "BFORI",
+      "txd": "BFORI"
+    },
+    {
+      "id": 10,
+      "name": "Постаріла класика",
+      "dff": "BFOST",
+      "txd": "BFOST"
+    },
+    {
+      "id": 11,
+      "name": "Красуня",
+      "dff": "VBFYCRP",
+      "txd": "VBFYCRP"
+    },
+    {
+      "id": 12,
+      "name": "Козачка",
+      "dff": "BFYRI",
+      "txd": "BFYRI"
+    },
+    {
+      "id": 13,
+      "name": "Анафема",
+      "dff": "BFYST",
+      "txd": "BFYST"
+    },
+    {
+      "id": 14,
+      "name": "Кавказець",
+      "dff": "BMORI",
+      "txd": "bmori"
+    },
+    {
+      "id": 15,
+      "name": "Діловий Авторитет",
+      "dff": "BMOST",
+      "txd": "bmost"
+    },
+    {
+      "id": 16,
+      "name": "Лисий бандит",
+      "dff": "BMYAP",
+      "txd": "BMYAP"
+    },
+    {
+      "id": 17,
+      "name": "Андрій Шевченко",
+      "dff": "BMYBU",
+      "txd": "BMYBU"
+    },
+    {
+      "id": 18,
+      "name": "Тракторист",
+      "dff": "BMYBE",
+      "txd": "BMYBE"
+    },
+    {
+      "id": 19,
+      "name": "Вуличний Турист",
+      "dff": "BMYDJ",
+      "txd": "BMYDJ"
+    },
+    {
+      "id": 20,
+      "name": "Петро Порошенко",
+      "dff": "BMYRI",
+      "txd": "BMYRI"
+    },
+    {
+      "id": 21,
+      "name": "Байкер",
+      "dff": "BMYCR",
+      "txd": "BMYCR"
+    },
+    {
+      "id": 22,
+      "name": "Козак",
+      "dff": "BMYST",
+      "txd": "BMYST"
+    },
+    {
+      "id": 23,
+      "name": "Мандрівник",
+      "dff": "WMYBMX",
+      "txd": "WMYBMX"
+    },
+    {
+      "id": 24,
+      "name": "СБУ",
+      "dff": "WBDYG1",
+      "txd": "WBDYG1"
+    },
+    {
+      "id": 25,
+      "name": "Важливий государ",
+      "dff": "WBDYG2",
+      "txd": "WBDYG2"
+    },
+    {
+      "id": 26,
+      "name": "Лейтенант СБУ",
+      "dff": "WMYBP",
+      "txd": "WMYBP"
+    },
+    {
+      "id": 27,
+      "name": "Даніель",
+      "dff": "WMYCON",
+      "txd": "WMYCON"
+    },
+    {
+      "id": 28,
+      "name": "Лейтенант СБУ",
+      "dff": "BMYDRUG",
+      "txd": "BMYdrug"
+    },
+    {
+      "id": 29,
+      "name": "Капітан СБУ",
+      "dff": "WMYDRUG",
+      "txd": "WMYdrug"
+    },
+    {
+      "id": 30,
+      "name": "Солідний пан",
+      "dff": "HMYDRUG",
+      "txd": "HMYdrug"
+    },
+    {
+      "id": 31,
+      "name": "Модниця",
+      "dff": "DWFOLC",
+      "txd": "dwfolc"
+    },
+    {
+      "id": 32,
+      "name": "Блондинка",
+      "dff": "DWMOLC1",
+      "txd": "dwmolc1"
+    },
+    {
+      "id": 33,
+      "name": "Витривалий чоловік",
+      "dff": "protez",
+      "txd": "protez"
+    },
+    {
+      "id": 34,
+      "name": "Чокнутий страйкболіст",
+      "dff": "DWMYLC1",
+      "txd": "dwmylc1"
+    },
+    {
+      "id": 35,
+      "name": "Сержант СБУ",
+      "dff": "HMOGAR",
+      "txd": "HMOgar"
+    },
+    {
+      "id": 36,
+      "name": "Генерал СБУ",
+      "dff": "WMYGOL1",
+      "txd": "WMYgol1"
+    },
+    {
+      "id": 37,
+      "name": "Коломойський",
+      "dff": "WMYGOL2",
+      "txd": "WMYgol2"
+    },
+    {
+      "id": 38,
+      "name": "Суровий хіпстер",
+      "dff": "HFORI",
+      "txd": "hfori"
+    },
+    {
+      "id": 39,
+      "name": "Курортниця",
+      "dff": "HFOST",
+      "txd": "hfost"
+    },
+    {
+      "id": 40,
+      "name": "Дбайливий студент",
+      "dff": "HFYRI",
+      "txd": "HFYRI"
+    },
+    {
+      "id": 41,
+      "name": "Капітан СБУ",
+      "dff": "HFYST",
+      "txd": "HFYST"
+    },
+    {
+      "id": 42,
+      "name": "Дмитро Комаров",
+      "dff": "SUZIE",
+      "txd": "SUZIE"
+    },
+    {
+      "id": 43,
+      "name": "Віртуозний бандит",
+      "dff": "HMORI",
+      "txd": "HMORI"
+    },
+    {
+      "id": 44,
+      "name": "Фермер",
+      "dff": "HMOST",
+      "txd": "HMOST"
+    },
+    {
+      "id": 45,
+      "name": "Черепоголовий",
+      "dff": "HMYBE",
+      "txd": "HMYBE"
+    },
+    {
+      "id": 46,
+      "name": "Тоні Монтано",
+      "dff": "HMYRI",
+      "txd": "HMYRI"
+    },
+    {
+      "id": 47,
+      "name": "Скінхед",
+      "dff": "HMYCR",
+      "txd": "HMYCR"
+    },
+    {
+      "id": 48,
+      "name": "Багатій",
+      "dff": "HMYST",
+      "txd": "HMYST"
+    },
+    {
+      "id": 49,
+      "name": "Модник",
+      "dff": "OMOKUNG",
+      "txd": "OMOkung"
+    },
+    {
+      "id": 50,
+      "name": "Кошовий",
+      "dff": "WMYMECH",
+      "txd": "WMYMECH"
+    },
+    {
+      "id": 51,
+      "name": "Сонячна",
+      "dff": "BMYMOUN",
+      "txd": "BMYMOUN"
+    },
+    {
+      "id": 52,
+      "name": "Бандитка",
+      "dff": "WMYMOUN",
+      "txd": "WMYMOUN"
+    },
+    {
+      "id": 53,
+      "name": "Солдат ЗСУ",
+      "dff": "OFORI",
+      "txd": "OFORI"
+    },
+    {
+      "id": 54,
+      "name": "Бабай",
+      "dff": "OFOST",
+      "txd": "OFOST"
+    },
+    {
+      "id": 55,
+      "name": "Полковник СБУ",
+      "dff": "OFYRI",
+      "txd": "OFYRI"
+    },
+    {
+      "id": 56,
+      "name": "Темна муза",
+      "dff": "OFYST",
+      "txd": "OFYST"
+    },
+    {
+      "id": 57,
+      "name": "Новорічний хлопець",
+      "dff": "OMORI",
+      "txd": "OMORI"
+    },
+    {
+      "id": 58,
+      "name": "Патріот",
+      "dff": "OMOST",
+      "txd": "OMOST"
+    },
+    {
+      "id": 59,
+      "name": "Нічний гість",
+      "dff": "OMYRI",
+      "txd": "OMYRI"
+    },
+    {
+      "id": 60,
+      "name": "Вбивця",
+      "dff": "OMYST",
+      "txd": "OMYST"
+    },
+    {
+      "id": 61,
+      "name": "Без баб",
+      "dff": "WMYPLT",
+      "txd": "WMYPLT"
+    },
+    {
+      "id": 62,
+      "name": "Молодий бізнесмен",
+      "dff": "WMOPJ",
+      "txd": "WMOpj"
+    },
+    {
+      "id": 63,
+      "name": "Дівчина під прикриттям",
+      "dff": "BFYPRO",
+      "txd": "BFYPRO"
+    },
+    {
+      "id": 64,
+      "name": "Рейн",
+      "dff": "HFYPRO",
+      "txd": "HFYPRO"
+    },
+    {
+      "id": 65,
+      "name": "Пляжний король",
+      "dff": "VWMYAP",
+      "txd": "VWMYAP"
+    },
+    {
+      "id": 66,
+      "name": "Гордон",
+      "dff": "BMYPOL1",
+      "txd": "BMYpol1"
+    },
+    {
+      "id": 67,
+      "name": "Дедпул",
+      "dff": "BMYPOL2",
+      "txd": "BMYpol2"
+    },
+    {
+      "id": 68,
+      "name": "Бібер",
+      "dff": "WMOPREA",
+      "txd": "WMOprea"
+    },
+    {
+      "id": 69,
+      "name": "Харлі Квін",
+      "dff": "SBFYST",
+      "txd": "sbfyst"
+    },
+    {
+      "id": 70,
+      "name": "Досвідчений бандит",
+      "dff": "WMOSCI",
+      "txd": "WMOsci"
+    },
+    {
+      "id": 71,
+      "name": "Маскхалат",
+      "dff": "WMYSGRD",
+      "txd": "WMYSGRD"
+    },
+    {
+      "id": 72,
+      "name": "Боєць-на-дуді-гравець",
+      "dff": "SWMYHP1",
+      "txd": "SWMYhp1"
+    },
+    {
+      "id": 73,
+      "name": "Молодиця",
+      "dff": "SWMYHP2",
+      "txd": "SWMYhp2"
+    },
+    {
+      "id": 75,
+      "name": "Капітан ЗСУ",
+      "dff": "SWFOPRO",
+      "txd": "sWFOpro"
+    },
+    {
+      "id": 76,
+      "name": "Пафосний бандит",
+      "dff": "WFYSTEW",
+      "txd": "WFYSTEW"
+    },
+    {
+      "id": 77,
+      "name": "Ніндзя бандит",
+      "dff": "SWMOTR1",
+      "txd": "sWMOtr1"
+    },
+    {
+      "id": 78,
+      "name": "Брутальний бандит",
+      "dff": "WMOTR1",
+      "txd": "WMOTR1"
+    },
+    {
+      "id": 79,
+      "name": "Старлорд",
+      "dff": "BMOTR1",
+      "txd": "BMOTR1"
+    },
+    {
+      "id": 80,
+      "name": "Новорічна дівчина",
+      "dff": "VBMYBOX",
+      "txd": "VBMYbox"
+    },
+    {
+      "id": 81,
+      "name": "Клановець",
+      "dff": "VWMYBOX",
+      "txd": "VWMYbox"
+    },
+    {
+      "id": 82,
+      "name": "Сніговик",
+      "dff": "VHMYELV",
+      "txd": "VHMYELV"
+    },
+    {
+      "id": 83,
+      "name": "Еволюціонер",
+      "dff": "VBMYELV",
+      "txd": "VBMYELV"
+    },
+    {
+      "id": 84,
+      "name": "Воїн",
+      "dff": "VIMYELV",
+      "txd": "VIMYELV"
+    },
+    {
+      "id": 85,
+      "name": "Італієць",
+      "dff": "VWFYPRO",
+      "txd": "VWFYPRO"
+    },
+    {
+      "id": 86,
+      "name": "Машиністка",
+      "dff": "VHFYST",
+      "txd": "VHFYST"
+    },
+    {
+      "id": 87,
+      "name": "Спецпідрозділ",
+      "dff": "VWFYST1",
+      "txd": "VWFYST1"
+    },
+    {
+      "id": 88,
+      "name": "Ведмідь",
+      "dff": "WFORI",
+      "txd": "WFORI"
+    },
+    {
+      "id": 89,
+      "name": "Кент",
+      "dff": "WFOST",
+      "txd": "WFOST"
+    },
+    {
+      "id": 90,
+      "name": "Солідний пан",
+      "dff": "WFYJG",
+      "txd": "WFYJG"
+    },
+    {
+      "id": 91,
+      "name": "Грабіжник",
+      "dff": "WFYRI",
+      "txd": "WFYRI"
+    },
+    {
+      "id": 92,
+      "name": "Дєцл",
+      "dff": "WFYRO",
+      "txd": "WFYRO"
+    },
+    {
+      "id": 93,
+      "name": "Майор ЗСУ",
+      "dff": "WFYST",
+      "txd": "WFYST"
+    },
+    {
+      "id": 94,
+      "name": "Маньяк",
+      "dff": "WMORI",
+      "txd": "WMORI"
+    },
+    {
+      "id": 95,
+      "name": "Мільйонер",
+      "dff": "WMOST",
+      "txd": "WMOST"
+    },
+    {
+      "id": 96,
+      "name": "Містер Біст",
+      "dff": "WMYJG",
+      "txd": "WMYJG"
+    },
+    {
+      "id": 97,
+      "name": "Лектор",
+      "dff": "WMYLG",
+      "txd": "WMYlG"
+    },
+    {
+      "id": 98,
+      "name": "Франклін",
+      "dff": "WMYRI",
+      "txd": "WMYRI"
+    },
+    {
+      "id": 99,
+      "name": "Офіціантка",
+      "dff": "WMYRO",
+      "txd": "WMYRO"
+    },
+    {
+      "id": 100,
+      "name": "Самурай",
+      "dff": "WMYCR",
+      "txd": "WMYCR"
+    },
+    {
+      "id": 101,
+      "name": "Капітан ЗСУ",
+      "dff": "WMYST",
+      "txd": "WMYST"
+    },
+    {
+      "id": 102,
+      "name": "Провідник",
+      "dff": "BALLAS1",
+      "txd": "BALLAS1"
+    },
+    {
+      "id": 103,
+      "name": "Байкер",
+      "dff": "BALLAS2",
+      "txd": "BALLAS2"
+    },
+    {
+      "id": 104,
+      "name": "Татуйований хлопець",
+      "dff": "BALLAS3",
+      "txd": "BALLAS3"
+    },
+    {
+      "id": 105,
+      "name": "Домінік Торетто",
+      "dff": "FAM1",
+      "txd": "FAM1"
+    },
+    {
+      "id": 106,
+      "name": "Сувора секретарка",
+      "dff": "FAM2",
+      "txd": "FAM2"
+    },
+    {
+      "id": 107,
+      "name": "Чоловік ДПСУ",
+      "dff": "FAM3",
+      "txd": "FAM3"
+    },
+    {
+      "id": 108,
+      "name": "Пілот ЗСУ",
+      "dff": "LSV1",
+      "txd": "LSV1"
+    },
+    {
+      "id": 109,
+      "name": "Спецпідрозділ НГУ",
+      "dff": "LSV2",
+      "txd": "LSV2"
+    },
+    {
+      "id": 110,
+      "name": "Бандюган",
+      "dff": "LSV3",
+      "txd": "LSV3"
+    },
+    {
+      "id": 111,
+      "name": "Блондинка",
+      "dff": "MAFFA",
+      "txd": "MAFFA"
+    },
+    {
+      "id": 112,
+      "name": "Хіпстер",
+      "dff": "MAFFB",
+      "txd": "MAFFB"
+    },
+    {
+      "id": 113,
+      "name": "Олександр Усик",
+      "dff": "MAFBOSS",
+      "txd": "MAFBOSS"
+    },
+    {
+      "id": 114,
+      "name": "Конор",
+      "dff": "VLA1",
+      "txd": "VLA1"
+    },
+    {
+      "id": 115,
+      "name": "Рекутер",
+      "dff": "VLA2",
+      "txd": "VLA2"
+    },
+    {
+      "id": 116,
+      "name": "Генерал-майор ДСНС",
+      "dff": "VLA3",
+      "txd": "VLA3"
+    },
+    {
+      "id": 117,
+      "name": "Молодняк",
+      "dff": "TRIADA",
+      "txd": "TRIADA"
+    },
+    {
+      "id": 118,
+      "name": "Інтелігент",
+      "dff": "TRIADB",
+      "txd": "TRIADB"
+    },
+    {
+      "id": 119,
+      "name": "Машиніст",
+      "dff": "LVPDM1",
+      "txd": "LVPDM1"
+    },
+    {
+      "id": 120,
+      "name": "Пацан",
+      "dff": "TRIBOSS",
+      "txd": "TRIBOSS"
+    },
+    {
+      "id": 121,
+      "name": "Ніжна дівчина",
+      "dff": "DNB1",
+      "txd": "DNB1"
+    },
+    {
+      "id": 122,
+      "name": "Санта Клаус",
+      "dff": "DNB2",
+      "txd": "DNB2"
+    },
+    {
+      "id": 123,
+      "name": "Дитина",
+      "dff": "DNB3",
+      "txd": "DNB3"
+    },
+    {
+      "id": 124,
+      "name": "Запальник",
+      "dff": "VMAFF1",
+      "txd": "VMAFF1"
+    },
+    {
+      "id": 125,
+      "name": "Величний скелет",
+      "dff": "VMAFF2",
+      "txd": "VMAFF2"
+    },
+    {
+      "id": 126,
+      "name": "Лейтенант ДСНС",
+      "dff": "VMAFF3",
+      "txd": "VMAFF3"
+    },
+    {
+      "id": 127,
+      "name": "Дуді",
+      "dff": "VMAFF4",
+      "txd": "VMAFF4"
+    },
+    {
+      "id": 128,
+      "name": "Сталевий чоловік",
+      "dff": "Gangmen",
+      "txd": "Gangmen"
+    },
+    {
+      "id": 129,
+      "name": "Шлюпка",
+      "dff": "DNFOLC1",
+      "txd": "DNFOLC1"
+    },
+    {
+      "id": 130,
+      "name": "Тусовщиця",
+      "dff": "DNFOLC2",
+      "txd": "DNFOLC2"
+    },
+    {
+      "id": 131,
+      "name": "Співачка",
+      "dff": "serduchka",
+      "txd": "serduchka"
+    },
+    {
+      "id": 132,
+      "name": "Молода бовтанка",
+      "dff": "DNMOLC1",
+      "txd": "DNMOLC1"
+    },
+    {
+      "id": 133,
+      "name": "Суворий головоріз",
+      "dff": "DNMOLC2",
+      "txd": "DNMOLC2"
+    },
+    {
+      "id": 134,
+      "name": "Стетхем",
+      "dff": "SBMOTR2",
+      "txd": "SBMOTR2"
+    },
+    {
+      "id": 135,
+      "name": "Мила дівчина",
+      "dff": "SWMOTR2",
+      "txd": "SWMOTR2"
+    },
+    {
+      "id": 136,
+      "name": "Джоді",
+      "dff": "SBMYTR3",
+      "txd": "SBMYTR3"
+    },
+    {
+      "id": 137,
+      "name": "Серхіо Рамос",
+      "dff": "SWMOTR3",
+      "txd": "SWMOTR3"
+    },
+    {
+      "id": 138,
+      "name": "Розпусниця",
+      "dff": "WFYBE",
+      "txd": "WFYBE"
+    },
+    {
+      "id": 139,
+      "name": "Запальничка",
+      "dff": "BFYBE",
+      "txd": "BFYBE"
+    },
+    {
+      "id": 140,
+      "name": "Хітман",
+      "dff": "HFYBE",
+      "txd": "HFYBE"
+    },
+    {
+      "id": 141,
+      "name": "Кокетка",
+      "dff": "SOFYBU",
+      "txd": "SOFYBU"
+    },
+    {
+      "id": 142,
+      "name": "Лілу",
+      "dff": "SBMYST",
+      "txd": "SBMYST"
+    },
+    {
+      "id": 143,
+      "name": "Східний Купець",
+      "dff": "indys",
+      "txd": "indys"
+    },
+    {
+      "id": 144,
+      "name": "Полковник ДСНС",
+      "dff": "BMYCG",
+      "txd": "bmycg"
+    },
+    {
+      "id": 145,
+      "name": "Байкерша",
+      "dff": "WFYCRK",
+      "txd": "Wfycrk"
+    },
+    {
+      "id": 146,
+      "name": "Хеліган",
+      "dff": "HMYCM",
+      "txd": "hmycm"
+    },
+    {
+      "id": 147,
+      "name": "Патріот",
+      "dff": "WMYBU",
+      "txd": "wmybu"
+    },
+    {
+      "id": 148,
+      "name": "Майкл Джексон",
+      "dff": "Jackson",
+      "txd": "Jackson"
+    },
+    {
+      "id": 150,
+      "name": "Відпочивальниця",
+      "dff": "WFYBU",
+      "txd": "wfybu"
+    },
+    {
+      "id": 151,
+      "name": "Біллі",
+      "dff": "DWFYLC1",
+      "txd": "Dwfylc1"
+    },
+    {
+      "id": 152,
+      "name": "Вогняний Рейсер",
+      "dff": "WFYPRO",
+      "txd": "WFYpro"
+    },
+    {
+      "id": 153,
+      "name": "Українка",
+      "dff": "WMYCONB",
+      "txd": "wmyconb"
+    },
+    {
+      "id": 154,
+      "name": "ДБР",
+      "dff": "DBR",
+      "txd": "DBR"
+    },
+    {
+      "id": 155,
+      "name": "Модник",
+      "dff": "WMYPIZZ",
+      "txd": "wmypizz"
+    },
+    {
+      "id": 156,
+      "name": "Пекельна леді",
+      "dff": "BMOBAR",
+      "txd": "bmobar"
+    },
+    {
+      "id": 157,
+      "name": "Цукерка",
+      "dff": "CWFYHB",
+      "txd": "cwfyhb"
+    },
+    {
+      "id": 158,
+      "name": "Новорічне оленятко",
+      "dff": "CWMOFR",
+      "txd": "cwmofr"
+    },
+    {
+      "id": 159,
+      "name": "Червона дама",
+      "dff": "CWMOHB1",
+      "txd": "cwmohb1"
+    },
+    {
+      "id": 160,
+      "name": "Акуратний",
+      "dff": "CWMOHB2",
+      "txd": "cwmohb2"
+    },
+    {
+      "id": 161,
+      "name": "Відважна лиходійка",
+      "dff": "CWMYFR",
+      "txd": "cwmyfr"
+    },
+    {
+      "id": 162,
+      "name": "Модна Злодійка",
+      "dff": "CWMYHB1",
+      "txd": "cwmyhb1"
+    },
+    {
+      "id": 163,
+      "name": "Диявол",
+      "dff": "BMYBOUN",
+      "txd": "bmyboun"
+    },
+    {
+      "id": 164,
+      "name": "Залізний",
+      "dff": "WMYBOUN",
+      "txd": "wmyboun"
+    },
+    {
+      "id": 165,
+      "name": "Кур'єр",
+      "dff": "WMOMIB",
+      "txd": "wmomib"
+    },
+    {
+      "id": 166,
+      "name": "Спортсмен",
+      "dff": "BMYMIB",
+      "txd": "bmymib"
+    },
+    {
+      "id": 167,
+      "name": "Директор ЗМІ",
+      "dff": "WMYBELL",
+      "txd": "wmybell"
+    },
+    {
+      "id": 168,
+      "name": "Міський",
+      "dff": "BMOCHIL",
+      "txd": "bmochil"
+    },
+    {
+      "id": 169,
+      "name": "Старший сержант НПУ",
+      "dff": "SOFYRI",
+      "txd": "sofyri"
+    },
+    {
+      "id": 170,
+      "name": "Копірайтер ЗМІ",
+      "dff": "SOMYST",
+      "txd": "somyst"
+    },
+    {
+      "id": 171,
+      "name": "Провідниця",
+      "dff": "VWMYBJD",
+      "txd": "VWMYBJD"
+    },
+    {
+      "id": 172,
+      "name": "Директорка ЗМІ",
+      "dff": "VWFYCRP",
+      "txd": "vwfycrp"
+    },
+    {
+      "id": 173,
+      "name": "Старший Лейтенант",
+      "dff": "SFR1",
+      "txd": "SFR1"
+    },
+    {
+      "id": 174,
+      "name": "Полковник НПУ",
+      "dff": "SFR2",
+      "txd": "SFR2"
+    },
+    {
+      "id": 175,
+      "name": "Сержант НПУ",
+      "dff": "SFR3",
+      "txd": "SFR3"
+    },
+    {
+      "id": 176,
+      "name": "Дизель",
+      "dff": "BMYBAR",
+      "txd": "BMYBAR"
+    },
+    {
+      "id": 177,
+      "name": "КОРД",
+      "dff": "KORD",
+      "txd": "KORD"
+    },
+    {
+      "id": 178,
+      "name": "Колишня вчителька",
+      "dff": "WFYSEX",
+      "txd": "WFYSEX"
+    },
+    {
+      "id": 179,
+      "name": "Молодший сержант НПУ",
+      "dff": "WMYAMMO",
+      "txd": "WMYAMMO"
+    },
+    {
+      "id": 180,
+      "name": "Підполковник НПУ",
+      "dff": "BMYTATT",
+      "txd": "BMYTATT"
+    },
+    {
+      "id": 181,
+      "name": "Майор НПУ",
+      "dff": "VWMYCR",
+      "txd": "VWMYCR"
+    },
+    {
+      "id": 182,
+      "name": "Боєць Спарти",
+      "dff": "VBMOCD",
+      "txd": "VBMOCD"
+    },
+    {
+      "id": 183,
+      "name": "Під'їзний",
+      "dff": "VBMYCR",
+      "txd": "VBMYCR"
+    },
+    {
+      "id": 184,
+      "name": "Дід мороз",
+      "dff": "VHMYCR",
+      "txd": "VHMYCR"
+    },
+    {
+      "id": 185,
+      "name": "Чортила",
+      "dff": "SBMYRI",
+      "txd": "SBMYRI"
+    },
+    {
+      "id": 186,
+      "name": "Репер",
+      "dff": "SOMYRI",
+      "txd": "SOMYRI"
+    },
+    {
+      "id": 187,
+      "name": "Майстер",
+      "dff": "SOMYBU",
+      "txd": "SOMYBU"
+    },
+    {
+      "id": 188,
+      "name": "Пенсіонер",
+      "dff": "SWMYST",
+      "txd": "SWMYST"
+    },
+    {
+      "id": 189,
+      "name": "Шкет",
+      "dff": "WMYVA",
+      "txd": "WMYVA"
+    },
+    {
+      "id": 190,
+      "name": "Мачо",
+      "dff": "COPGRL3",
+      "txd": "COPGRL3"
+    },
+    {
+      "id": 191,
+      "name": "Волтер",
+      "dff": "GUNGRL3",
+      "txd": "GUNGRL3"
+    },
+    {
+      "id": 192,
+      "name": "Джеймс Бонд",
+      "dff": "MECGRL3",
+      "txd": "MECGRL3"
+    },
+    {
+      "id": 193,
+      "name": "Джонні",
+      "dff": "NURGRL3",
+      "txd": "NURGRL3"
+    },
+    {
+      "id": 194,
+      "name": "Зеленський",
+      "dff": "CROGRL3",
+      "txd": "CROGRL3"
+    },
+    {
+      "id": 195,
+      "name": "Івангай",
+      "dff": "GANGRL3",
+      "txd": "GANGRL3"
+    },
+    {
+      "id": 196,
+      "name": "Мрійник",
+      "dff": "CWFOFR",
+      "txd": "CWFOFR"
+    },
+    {
+      "id": 197,
+      "name": "Захисник",
+      "dff": "CWFOHB",
+      "txd": "CWFOHB"
+    },
+    {
+      "id": 198,
+      "name": "Ніндзя",
+      "dff": "CWFYFR1",
+      "txd": "CWFYFR1"
+    },
+    {
+      "id": 199,
+      "name": "Тревор",
+      "dff": "CWFYFR2",
+      "txd": "CWFYFR2"
+    },
+    {
+      "id": 200,
+      "name": "Якудза",
+      "dff": "CWMYHB2",
+      "txd": "CWMYHB2"
+    },
+    {
+      "id": 201,
+      "name": "Сталкер",
+      "dff": "DWFYLC2",
+      "txd": "DWFYLC2"
+    },
+    {
+      "id": 202,
+      "name": "Скромник",
+      "dff": "DWMYLC2",
+      "txd": "DWMYLC2"
+    },
+    {
+      "id": 203,
+      "name": "Відпочивальник",
+      "dff": "OMYKARA",
+      "txd": "OMYKARA"
+    },
+    {
+      "id": 204,
+      "name": "Мікрочелік",
+      "dff": "WMYKARA",
+      "txd": "WMYKARA"
+    },
+    {
+      "id": 205,
+      "name": "Мессі",
+      "dff": "WFYBURG",
+      "txd": "WFYBURG"
+    },
+    {
+      "id": 206,
+      "name": "Капітан НПУ",
+      "dff": "VWMYCD",
+      "txd": "VWMYCD"
+    },
+    {
+      "id": 207,
+      "name": "Херсоньский",
+      "dff": "VHFYPRO",
+      "txd": "VHFYPRO"
+    },
+    {
+      "id": 209,
+      "name": "Художник",
+      "dff": "OMONOOD",
+      "txd": "OMONOOD"
+    },
+    {
+      "id": 210,
+      "name": "Стажер НПУ",
+      "dff": "OMOBOAT",
+      "txd": "OMOBOAT"
+    },
+    {
+      "id": 211,
+      "name": "Патруль НПУ",
+      "dff": "WFYCLOT",
+      "txd": "WFYCLOT"
+    },
+    {
+      "id": 212,
+      "name": "Найбільший",
+      "dff": "VWMOTR1",
+      "txd": "VWMOTR1"
+    },
+    {
+      "id": 213,
+      "name": "Череп",
+      "dff": "VWMOTR2",
+      "txd": "VWMOTR2"
+    },
+    {
+      "id": 214,
+      "name": "Тарас Шевченко",
+      "dff": "VWFYWAI",
+      "txd": "VWFYWAI"
+    },
+    {
+      "id": 215,
+      "name": "Помічниця Санти",
+      "dff": "SBFORI",
+      "txd": "SBFORI"
+    },
+    {
+      "id": 216,
+      "name": "Слідчий НПУ",
+      "dff": "SWFYRI",
+      "txd": "SWFYRI"
+    },
+    {
+      "id": 217,
+      "name": "Особистість",
+      "dff": "WMYCLOT",
+      "txd": "WMYCLOT"
+    },
+    {
+      "id": 218,
+      "name": "Зайчик",
+      "dff": "SBFOST",
+      "txd": "SBFOST"
+    },
+    {
+      "id": 219,
+      "name": "Фельдшер МОЗ",
+      "dff": "SBFYRI",
+      "txd": "SBFYRI"
+    },
+    {
+      "id": 220,
+      "name": "Псивков",
+      "dff": "SBMOCD",
+      "txd": "SBMOCD"
+    },
+    {
+      "id": 221,
+      "name": "Супер дівчинка",
+      "dff": "SBMORI",
+      "txd": "SBMORI"
+    },
+    {
+      "id": 222,
+      "name": "Головний лікар МОЗ",
+      "dff": "SBMOST",
+      "txd": "SBMOST"
+    },
+    {
+      "id": 223,
+      "name": "Стажер МОЗ",
+      "dff": "SHMYCR",
+      "txd": "SHMYCR"
+    },
+    {
+      "id": 224,
+      "name": "Дівчина-маніяк",
+      "dff": "SOFORI",
+      "txd": "SOFORI"
+    },
+    {
+      "id": 225,
+      "name": "Хірург МОЗ",
+      "dff": "SOFOST",
+      "txd": "SOFOST"
+    },
+    {
+      "id": 226,
+      "name": "Брутальний Санта",
+      "dff": "SOFYST",
+      "txd": "SOFYST"
+    },
+    {
+      "id": 227,
+      "name": "Лікар швидкої МОЗ",
+      "dff": "SOMOBU",
+      "txd": "SOMOBU"
+    },
+    {
+      "id": 228,
+      "name": "Головний лікар МОЗ",
+      "dff": "SOMORI",
+      "txd": "SOMORI"
+    },
+    {
+      "id": 229,
+      "name": "Підполковник ДКВС",
+      "dff": "SOMOST",
+      "txd": "SOMOST"
+    },
+    {
+      "id": 230,
+      "name": "Сором'язлива",
+      "dff": "SWMOTR5",
+      "txd": "SWMOTR5"
+    },
+    {
+      "id": 231,
+      "name": "Фармацевт МОЗ",
+      "dff": "SWFORI",
+      "txd": "SWFORI"
+    },
+    {
+      "id": 232,
+      "name": "Працівник ДКВС",
+      "dff": "SWFOST",
+      "txd": "SWFOST"
+    },
+    {
+      "id": 233,
+      "name": "Вампір",
+      "dff": "SWFYST",
+      "txd": "SWFYST"
+    },
+    {
+      "id": 234,
+      "name": "Джо Барбаро",
+      "dff": "SWMOCD",
+      "txd": "SWMOCD"
+    },
+    {
+      "id": 235,
+      "name": "Стажер МОЗ",
+      "dff": "SWMORI",
+      "txd": "SWMORI"
+    },
+    {
+      "id": 236,
+      "name": "Зеленський",
+      "dff": "SWMOST",
+      "txd": "SWMOST"
+    },
+    {
+      "id": 237,
+      "name": "Чужий",
+      "dff": "SHFYPRO",
+      "txd": "SHFYPRO"
+    },
+    {
+      "id": 238,
+      "name": "Сталкер",
+      "dff": "SBFYPRO",
+      "txd": "SBFYPRO"
+    },
+    {
+      "id": 239,
+      "name": "Мутант",
+      "dff": "SWMOTR4",
+      "txd": "SWMOTR4"
+    },
+    {
+      "id": 240,
+      "name": "Пляжник",
+      "dff": "SWMYRI",
+      "txd": "SWMYRI"
+    },
+    {
+      "id": 241,
+      "name": "Пляжниця",
+      "dff": "SMYST",
+      "txd": "SMYST"
+    },
+    {
+      "id": 242,
+      "name": "Олень",
+      "dff": "SMYST2",
+      "txd": "SMYST2"
+    },
+    {
+      "id": 243,
+      "name": "Семі",
+      "dff": "SFYPRO",
+      "txd": "SFYPRO"
+    },
+    {
+      "id": 244,
+      "name": "Кабан",
+      "dff": "VBFYST2",
+      "txd": "VBFYST2"
+    },
+    {
+      "id": 245,
+      "name": "Спортсменка",
+      "dff": "VBFYPRO",
+      "txd": "VBFYPRO"
+    },
+    {
+      "id": 246,
+      "name": "Святкова",
+      "dff": "VHFYST3",
+      "txd": "VHFYST3"
+    },
+    {
+      "id": 247,
+      "name": "Охоронець ВРУ",
+      "dff": "BIKERA",
+      "txd": "BIKERA"
+    },
+    {
+      "id": 248,
+      "name": "Модний Крадій",
+      "dff": "BIKERB",
+      "txd": "BIKERB"
+    },
+    {
+      "id": 249,
+      "name": "Фермерша",
+      "dff": "BMYPIMP",
+      "txd": "BMYPIMP"
+    },
+    {
+      "id": 250,
+      "name": "Гість із минулого",
+      "dff": "SWMYCR",
+      "txd": "SWMYCR"
+    },
+    {
+      "id": 251,
+      "name": "Пілотеса",
+      "dff": "WFYLG",
+      "txd": "WFYLG"
+    },
+    {
+      "id": 252,
+      "name": "Пілот",
+      "dff": "WMYVA2",
+      "txd": "WMYVA2"
+    },
+    {
+      "id": 253,
+      "name": "Володар пекла",
+      "dff": "BMOSEC",
+      "txd": "BMOSEC"
+    },
+    {
+      "id": 254,
+      "name": "Дівчина дайвер",
+      "dff": "BIKDRUG",
+      "txd": "BIKDRUG"
+    },
+    {
+      "id": 255,
+      "name": "Охоронець ВРУ",
+      "dff": "WMYCH",
+      "txd": "WMYCH"
+    },
+    {
+      "id": 256,
+      "name": "Агент",
+      "dff": "SBFYSTR",
+      "txd": "SBFYSTR"
+    },
+    {
+      "id": 257,
+      "name": "Мандрівниця",
+      "dff": "SWFYSTR",
+      "txd": "SWFYSTR"
+    },
+    {
+      "id": 258,
+      "name": "Рішала",
+      "dff": "HECK1",
+      "txd": "HECK1"
+    },
+    {
+      "id": 259,
+      "name": "Коллектор",
+      "dff": "HECK2",
+      "txd": "HECK2"
+    },
+    {
+      "id": 260,
+      "name": "Грабіжник",
+      "dff": "BMYCON",
+      "txd": "BMYCON"
+    },
+    {
+      "id": 261,
+      "name": "Працівник ДКВС",
+      "dff": "WMYCD1",
+      "txd": "WMYCD1"
+    },
+    {
+      "id": 262,
+      "name": "Арабський Магнат",
+      "dff": "BMOCD",
+      "txd": "BMOCD"
+    },
+    {
+      "id": 263,
+      "name": "На спорті",
+      "dff": "VWFYWA2",
+      "txd": "VWFYWA2"
+    },
+    {
+      "id": 264,
+      "name": "Весільний",
+      "dff": "WMOICE",
+      "txd": "WMOICE"
+    },
+    {
+      "id": 265,
+      "name": "Капітан ДКВС",
+      "dff": "TENPEN",
+      "txd": "TENPEN"
+    },
+    {
+      "id": 266,
+      "name": "Токсичний",
+      "dff": "PULASKI",
+      "txd": "PULASKI"
+    },
+    {
+      "id": 267,
+      "name": "Весільний",
+      "dff": "HERN",
+      "txd": "HERN"
+    },
+    {
+      "id": 268,
+      "name": "Підполковник ДКВС",
+      "dff": "DWAYNE",
+      "txd": "DWAYNE"
+    },
+    {
+      "id": 269,
+      "name": "Вуличний Бос",
+      "dff": "SMOKE",
+      "txd": "SMOKE"
+    },
+    {
+      "id": 270,
+      "name": "Аферист",
+      "dff": "SWEET",
+      "txd": "SWEET"
+    },
+    {
+      "id": 271,
+      "name": "Зухвалий",
+      "dff": "RYDER",
+      "txd": "RYDER"
+    },
+    {
+      "id": 272,
+      "name": "Авторитет району",
+      "dff": "FORELLI",
+      "txd": "FORELLI"
+    },
+    {
+      "id": 273,
+      "name": "Юна Красуня",
+      "dff": "MEDIATR",
+      "txd": "MEDIATR"
+    },
+    {
+      "id": 274,
+      "name": "Підполковник ДКВС",
+      "dff": "laemt1",
+      "txd": "laemt1"
+    },
+    {
+      "id": 275,
+      "name": "Священник",
+      "dff": "lvemt1",
+      "txd": "lvemt1"
+    },
+    {
+      "id": 276,
+      "name": "Серйозний спортсмен",
+      "dff": "sfemt1",
+      "txd": "sfemt1"
+    },
+    {
+      "id": 277,
+      "name": "Діловий гангстер",
+      "dff": "lafd1",
+      "txd": "lafd1"
+    },
+    {
+      "id": 278,
+      "name": "Атлетка",
+      "dff": "lvfd1",
+      "txd": "lvfd1"
+    },
+    {
+      "id": 279,
+      "name": "Дід",
+      "dff": "sffd1",
+      "txd": "sffd1"
+    },
+    {
+      "id": 280,
+      "name": "Гетто",
+      "dff": "lapd1",
+      "txd": "lapd1"
+    },
+    {
+      "id": 281,
+      "name": "Будівельник Ж",
+      "dff": "sfpd1",
+      "txd": "sfpd1"
+    },
+    {
+      "id": 282,
+      "name": "Михайло Лебіга",
+      "dff": "lvpd1",
+      "txd": "lvpd1"
+    },
+    {
+      "id": 283,
+      "name": "Будівельник Ч",
+      "dff": "csher",
+      "txd": "csher"
+    },
+    {
+      "id": 284,
+      "name": "Буданов",
+      "dff": "lapdm1",
+      "txd": "lapdm1"
+    },
+    {
+      "id": 285,
+      "name": "Бешкетник",
+      "dff": "swat",
+      "txd": "swat"
+    },
+    {
+      "id": 286,
+      "name": "Бешкетниця",
+      "dff": "fbi",
+      "txd": "fbi"
+    },
+    {
+      "id": 287,
+      "name": "Боксер",
+      "dff": "army",
+      "txd": "army"
+    },
+    {
+      "id": 288,
+      "name": "Панк",
+      "dff": "dsher",
+      "txd": "dsher"
+    },
+    {
+      "id": 290,
+      "name": "Правопорушник",
+      "dff": "ROSE",
+      "txd": "ROSE"
+    },
+    {
+      "id": 291,
+      "name": "Кавалер",
+      "dff": "PAUL",
+      "txd": "PAUL"
+    },
+    {
+      "id": 292,
+      "name": "Активістка",
+      "dff": "CESAR",
+      "txd": "CESAR"
+    },
+    {
+      "id": 293,
+      "name": "Чіка",
+      "dff": "OGLOC",
+      "txd": "OGLOC"
+    },
+    {
+      "id": 294,
+      "name": "Майкл",
+      "dff": "WUZIMU",
+      "txd": "WUZIMU"
+    },
+    {
+      "id": 295,
+      "name": "Джон Сіна",
+      "dff": "TORINO",
+      "txd": "TORINO"
+    },
+    {
+      "id": 296,
+      "name": "Трамп",
+      "dff": "JIZZY",
+      "txd": "JIZZY"
+    },
+    {
+      "id": 297,
+      "name": "Волтер Вайт",
+      "dff": "MADDOGG",
+      "txd": "MADDOGG"
+    },
+    {
+      "id": 298,
+      "name": "Рокерша",
+      "dff": "CAT",
+      "txd": "CAT"
+    },
+    {
+      "id": 299,
+      "name": "Новорічна дівчина",
+      "dff": "CLAUDE",
+      "txd": "CLAUDE"
+    },
+    {
+      "id": 300,
+      "name": "Ельф",
+      "dff": "RYDER2",
+      "txd": "RYDER2"
+    },
+    {
+      "id": 301,
+      "name": "Модель",
+      "dff": "RYDER3",
+      "txd": "RYDER3"
+    },
+    {
+      "id": 302,
+      "name": "Пляжна королева",
+      "dff": "EMMET",
+      "txd": "EMMET"
+    },
+    {
+      "id": 303,
+      "name": "Рокерша",
+      "dff": "ANDRE",
+      "txd": "ANDRE"
+    },
+    {
+      "id": 304,
+      "name": "Ковбойка",
+      "dff": "KENDL",
+      "txd": "KENDL"
+    },
+    {
+      "id": 305,
+      "name": "Червоний Крик",
+      "dff": "JETHRO",
+      "txd": "JETHRO"
+    },
+    {
+      "id": 306,
+      "name": "Харлі Квін",
+      "dff": "ZERO",
+      "txd": "ZERO"
+    },
+    {
+      "id": 307,
+      "name": "Танцівниця",
+      "dff": "TBONE",
+      "txd": "TBONE"
+    },
+    {
+      "id": 308,
+      "name": "Спокусниця",
+      "dff": "SINDACO",
+      "txd": "SINDACO"
+    },
+    {
+      "id": 309,
+      "name": "Досвідчена спокусниця",
+      "dff": "JANITOR",
+      "txd": "JANITOR"
+    },
+    {
+      "id": 310,
+      "name": "Стильовий дід",
+      "dff": "BBTHIN",
+      "txd": "BBTHIN"
+    },
+    {
+      "id": 311,
+      "name": "Демонічна краля",
+      "dff": "catskin",
+      "txd": "catskin"
+    },
+    {
+      "id": 312,
+      "name": "Задирака",
+      "dff": "tomas",
+      "txd": "tomas"
+    },
+    {
+      "id": 6712,
+      "name": "Загадкова",
+      "dff": "GONKA",
+      "txd": "GONKA"
+    },
+    {
+      "id": 6713,
+      "name": "Літи",
+      "dff": "CLASSIC",
+      "txd": "CLASSIC"
+    },
+    {
+      "id": 6714,
+      "name": "Дівчина Пандора",
+      "dff": "PANDORA",
+      "txd": "PANDORA"
+    },
+    {
+      "id": 6715,
+      "name": "Гангстер",
+      "dff": "GANSTA",
+      "txd": "GANSTA"
+    },
+    {
+      "id": 6716,
+      "name": "Літня",
+      "dff": "LITNY",
+      "txd": "LITNY"
+    },
+    {
+      "id": 6717,
+      "name": "Перегонник",
+      "dff": "GONSHIK",
+      "txd": "GONSHIK"
+    },
+    {
+      "id": 6718,
+      "name": "Кепарік",
+      "dff": "KEPARIK",
+      "txd": "KEPARIK"
+    },
+    {
+      "id": 6719,
+      "name": "Загадкова краля",
+      "dff": "KARL",
+      "txd": "KARL"
+    },
+    {
+      "id": 6720,
+      "name": "Спортивна леді",
+      "dff": "KVITKA",
+      "txd": "KVITKA"
+    },
+    {
+      "id": 6721,
+      "name": "Модний репер",
+      "dff": "TATYIR",
+      "txd": "TATYIR"
+    },
+    {
+      "id": 6722,
+      "name": "Футболіст",
+      "dff": "MESSI",
+      "txd": "MESSI"
+    },
+    {
+      "id": 6723,
+      "name": "Ангел",
+      "dff": "ANGEL",
+      "txd": "ANGEL"
+    },
+    {
+      "id": 6724,
+      "name": "Драйвова дівчина",
+      "dff": "TATY",
+      "txd": "TATY"
+    },
+    {
+      "id": 6725,
+      "name": "Загадковий",
+      "dff": "DBOY",
+      "txd": "DBOY"
+    },
+    {
+      "id": 6726,
+      "name": "Гордий мачо",
+      "dff": "DRED",
+      "txd": "DRED"
+    },
+    {
+      "id": 6727,
+      "name": "Півень",
+      "dff": "KURKA",
+      "txd": "KURKA"
+    },
+    {
+      "id": 6728,
+      "name": "Кислотний",
+      "dff": "MBOY",
+      "txd": "MBOY"
+    },
+    {
+      "id": 6729,
+      "name": "Спортивна",
+      "dff": "Rollersha",
+      "txd": "Rollersha"
+    },
+    {
+      "id": 6730,
+      "name": "Спортивний",
+      "dff": "Rollerskater",
+      "txd": "Rollerskater"
+    },
+    {
+      "id": 6731,
+      "name": "Молодий Магнат",
+      "dff": "PMstaff",
+      "txd": "PMstaff"
+    },
+    {
+      "id": 6732,
+      "name": "STAFF WOMAN",
+      "dff": "PFstaff",
+      "txd": "PFstaff"
+    },
+    {
+      "id": 6733,
+      "name": "Бойова леді",
+      "dff": "casegirl",
+      "txd": "casegirl"
+    },
+    {
+      "id": 6734,
+      "name": "Сильний мачо",
+      "dff": "armormen",
+      "txd": "armormen"
+    },
+    {
+      "id": 6735,
+      "name": "Витривала дівчина",
+      "dff": "armorwomen",
+      "txd": "armorwomen"
+    },
+    {
+      "id": 6736,
+      "name": "Супер Сус",
+      "dff": "supersus",
+      "txd": "supersus"
+    },
+    {
+      "id": 6737,
+      "name": "Чорнобильський",
+      "dff": "stalker",
+      "txd": "stalker"
+    },
+    {
+      "id": 6738,
+      "name": "Сталкер",
+      "dff": "stalker2",
+      "txd": "stalker2"
+    },
+    {
+      "id": 6739,
+      "name": "Кратос",
+      "dff": "blackcat",
+      "txd": "blackcat"
+    },
+    {
+      "id": 6740,
+      "name": "Рик",
+      "dff": "graycat",
+      "txd": "graycat"
+    },
+    {
+      "id": 6741,
+      "name": "Снеговик",
+      "dff": "redcat",
+      "txd": "redcat"
+    },
+    {
+      "id": 6742,
+      "name": "Сіамський кіт",
+      "dff": "Siamesecat",
+      "txd": "Siamesecat"
+    },
+    {
+      "id": 6743,
+      "name": "Англичанин",
+      "dff": "whitecat",
+      "txd": "whitecat"
+    },
+    {
+      "id": 6744,
+      "name": "Брэд",
+      "dff": "bullterrier",
+      "txd": "bullterrier"
+    },
+    {
+      "id": 6745,
+      "name": "Елла",
+      "dff": "dalmatian",
+      "txd": "dalmatian"
+    },
+    {
+      "id": 6746,
+      "name": "Иствуд",
+      "dff": "doberman",
+      "txd": "doberman"
+    },
+    {
+      "id": 6747,
+      "name": "Морнингстар",
+      "dff": "frenchdog",
+      "txd": "frenchdog"
+    },
+    {
+      "id": 6748,
+      "name": "Німецька вівчарка",
+      "dff": "Germandog",
+      "txd": "Germandog"
+    },
+    {
+      "id": 6749,
+      "name": "Хаскі",
+      "dff": "huskies",
+      "txd": "huskies"
+    },
+    {
+      "id": 6750,
+      "name": "Коммандос",
+      "dff": "rottweiler",
+      "txd": "rottweiler"
+    },
+    {
+      "id": 6751,
+      "name": "Мандалорец",
+      "dff": "capybara",
+      "txd": "capybara"
+    },
+    {
+      "id": 6752,
+      "name": "Старший Сержант ДКВС",
+      "dff": "heck3",
+      "txd": "heck3"
+    },
+    {
+      "id": 6753,
+      "name": "Відважна спокусниця",
+      "dff": "sarge",
+      "txd": "sarge"
+    },
+    {
+      "id": 6754,
+      "name": "Старший Сержант ДКВС",
+      "dff": "sarges",
+      "txd": "sarges"
+    },
+    {
+      "id": 6755,
+      "name": "Прапорщик ДКВС",
+      "dff": "Ensign",
+      "txd": "Ensign"
+    },
+    {
+      "id": 6756,
+      "name": "Старший прапорщик ДКВС",
+      "dff": "SEnsign",
+      "txd": "SEnsign"
+    },
+    {
+      "id": 6757,
+      "name": "Лейтенант ДКВС",
+      "dff": "Lieutenant",
+      "txd": "Lieutenant"
+    },
+    {
+      "id": 6758,
+      "name": "Генерал ДКВС",
+      "dff": "general",
+      "txd": "general"
+    },
+    {
+      "id": 6759,
+      "name": "НПУ Спецназ",
+      "dff": "specnap",
+      "txd": "specnap"
+    },
+    {
+      "id": 6760,
+      "name": "ДСНС Офісний",
+      "dff": "clanwomen",
+      "txd": "clanwomen"
+    },
+    {
+      "id": 6761,
+      "name": "Захистний костюм від радіації",
+      "dff": "clanwomen2",
+      "txd": "clanwomen2"
+    },
+    {
+      "id": 6762,
+      "name": "Енергійна",
+      "dff": "clanwomen3",
+      "txd": "clanwomen3"
+    },
+    {
+      "id": 6763,
+      "name": "Брутальний мачо",
+      "dff": "gangster",
+      "txd": "gangster"
+    },
+    {
+      "id": 6764,
+      "name": "Невідомий",
+      "dff": "gangsterold",
+      "txd": "gangsterold"
+    },
+    {
+      "id": 6765,
+      "name": "Невідомий",
+      "dff": "gangsterblack",
+      "txd": "gangsterblack"
+    },
+    {
+      "id": 6766,
+      "name": "Рятувальник",
+      "dff": "dsnsxz",
+      "txd": "dsnsxz"
+    },
+    {
+      "id": 6767,
+      "name": "Захистний костюм",
+      "dff": "dsnsalxim",
+      "txd": "dsnsalxim"
+    },
+    {
+      "id": 6768,
+      "name": "Рятувальниця",
+      "dff": "dsnsxz2",
+      "txd": "dsnsxz2"
+    },
+    {
+      "id": 6769,
+      "name": "Блондинка",
+      "dff": "dsnsofis",
+      "txd": "dsnsofis"
+    },
+    {
+      "id": 6770,
+      "name": "Офісний",
+      "dff": "dsnsofis2",
+      "txd": "dsnsofis2"
+    },
+    {
+      "id": 6771,
+      "name": "Розмінувальниця",
+      "dff": "dsnsbomb",
+      "txd": "dsnsbomb"
+    },
+    {
+      "id": 6772,
+      "name": "Розмінувальник",
+      "dff": "dsnsbomb2",
+      "txd": "dsnsbomb2"
+    },
+    {
+      "id": 6773,
+      "name": "Стиляга",
+      "dff": "greenguy",
+      "txd": "greenguy"
+    },
+    {
+      "id": 6774,
+      "name": "Рокер",
+      "dff": "fashion",
+      "txd": "fashion"
+    },
+    {
+      "id": 6775,
+      "name": "Небезпечний меломан",
+      "dff": "ladyspot",
+      "txd": "ladyspot"
+    },
+    {
+      "id": 6776,
+      "name": "Стильова дівчина",
+      "dff": "girlgreen",
+      "txd": "girlgreen"
+    },
+    {
+      "id": 6777,
+      "name": "Дівчина з тату",
+      "dff": "womanblack",
+      "txd": "womanblack"
+    },
+    {
+      "id": 6778,
+      "name": "Тендітна",
+      "dff": "blackgirl2",
+      "txd": "blackgirl2"
+    },
+    {
+      "id": 6779,
+      "name": "Школярка",
+      "dff": "school",
+      "txd": "school"
+    },
+    {
+      "id": 6780,
+      "name": "Школяр",
+      "dff": "school2",
+      "txd": "school2"
+    },
+    {
+      "id": 6781,
+      "name": "Ділова",
+      "dff": "bizneswoman",
+      "txd": "bizneswoman"
+    },
+    {
+      "id": 6782,
+      "name": "Меломан",
+      "dff": "bizneswoman2",
+      "txd": "bizneswoman2"
+    },
+    {
+      "id": 6783,
+      "name": "Модна краля",
+      "dff": "blacklioness",
+      "txd": "blacklioness"
+    },
+    {
+      "id": 6784,
+      "name": "Стильний мачо",
+      "dff": "blacklman",
+      "txd": "blacklman"
+    },
+    {
+      "id": 6785,
+      "name": "Флексер",
+      "dff": "sanitar1",
+      "txd": "sanitar1"
+    },
+    {
+      "id": 6786,
+      "name": "Фармацефт",
+      "dff": "sanitar2",
+      "txd": "sanitar2"
+    },
+    {
+      "id": 6787,
+      "name": "Рокова Жінка",
+      "dff": "darkledi",
+      "txd": "darkledi"
+    },
+    {
+      "id": 6788,
+      "name": "Рекрут",
+      "dff": "zhenskizsy",
+      "txd": "zhenskizsy"
+    },
+    {
+      "id": 6789,
+      "name": "Діловий",
+      "dff": "zhenskizsy2",
+      "txd": "zhenskizsy2"
+    },
+    {
+      "id": 6790,
+      "name": "Старший солдат",
+      "dff": "zhenskizsy3",
+      "txd": "zhenskizsy3"
+    },
+    {
+      "id": 6791,
+      "name": "Володарка пекла",
+      "dff": "ugta_topik",
+      "txd": "ugta_topik"
+    },
+    {
+      "id": 6792,
+      "name": "Помічник Санти",
+      "dff": "snowman",
+      "txd": "snowman"
+    },
+    {
+      "id": 6793,
+      "name": "Гламурна пані",
+      "dff": "snowbin",
+      "txd": "snowbin"
+    },
+    {
+      "id": 6794,
+      "name": "Таємна мстителька",
+      "dff": "snowcat",
+      "txd": "snowcat"
+    },
+    {
+      "id": 6795,
+      "name": "Солодкий пряник",
+      "dff": "snowbad",
+      "txd": "snowbad"
+    },
+    {
+      "id": 6796,
+      "name": "Таємний",
+      "dff": "snowlen",
+      "txd": "snowlen"
+    },
+    {
+      "id": 6797,
+      "name": "Онучка Санти",
+      "dff": "snowmid",
+      "txd": "snowmid"
+    },
+    {
+      "id": 6798,
+      "name": "Неформальна",
+      "dff": "snowkil",
+      "txd": "snowkil"
+    },
+    {
+      "id": 6799,
+      "name": "Інь-янь",
+      "dff": "snowhit",
+      "txd": "snowhit"
+    },
+    {
+      "id": 6800,
+      "name": "Величний",
+      "dff": "snowtkt",
+      "txd": "snowtkt"
+    },
+    {
+      "id": 6801,
+      "name": "Білий танцівник",
+      "dff": "witeman",
+      "txd": "witeman"
+    },
+    {
+      "id": 6802,
+      "name": "Моторна дівчинка",
+      "dff": "dublemod",
+      "txd": "dublemod"
+    },
+    {
+      "id": 6803,
+      "name": "Енергійний хлопчина",
+      "dff": "blondinkca",
+      "txd": "blondinkca"
+    },
+    {
+      "id": 6804,
+      "name": "Розкішний чоловік",
+      "dff": "boydead",
+      "txd": "boydead"
+    },
+    {
+      "id": 6805,
+      "name": "Вишукана пані",
+      "dff": "pandora2lki",
+      "txd": "pandora2lki"
+    },
+    {
+      "id": 6806,
+      "name": "Прикордонник Румунії",
+      "dff": "menboy",
+      "txd": "menboy"
+    },
+    {
+      "id": 6807,
+      "name": "Стильний хлопець",
+      "dff": "staileman",
+      "txd": "staileman"
+    },
+    {
+      "id": 6808,
+      "name": "Дівчина квітка",
+      "dff": "hairedgirl",
+      "txd": "hairedgirl"
+    },
+    {
+      "id": 6809,
+      "name": "Моторний хлопець",
+      "dff": "Jeansguy",
+      "txd": "Jeansguy"
+    },
+    {
+      "id": 6810,
+      "name": "Атлетичний чоловік",
+      "dff": "argentina",
+      "txd": "argentina"
+    },
+    {
+      "id": 6811,
+      "name": "Вулична королева",
+      "dff": "womanclear",
+      "txd": "womanclear"
+    },
+    {
+      "id": 6812,
+      "name": "Милесенька дівчинка",
+      "dff": "ragewoman",
+      "txd": "ragewoman"
+    },
+    {
+      "id": 6813,
+      "name": "Металістка",
+      "dff": "tatomaster",
+      "txd": "tatomaster"
+    },
+    {
+      "id": 6814,
+      "name": "Татуйована дівчина",
+      "dff": "argwomen",
+      "txd": "argwomen"
+    },
+    {
+      "id": 6815,
+      "name": "Хлопець аматор",
+      "dff": "moushen",
+      "txd": "moushen"
+    },
+    {
+      "id": 6816,
+      "name": "Майстерний футболіст",
+      "dff": "oanacosa",
+      "txd": "oanacosa"
+    },
+    {
+      "id": 6817,
+      "name": "Стильна дівчина",
+      "dff": "roxopoin",
+      "txd": "roxopoin"
+    },
+    {
+      "id": 6818,
+      "name": "Атлетка",
+      "dff": "onepoint",
+      "txd": "onepoint"
+    },
+    {
+      "id": 6819,
+      "name": "Невідомий злодій",
+      "dff": "menjilk",
+      "txd": "menjilk"
+    },
+    {
+      "id": 6820,
+      "name": "Сталева ЛЕДІ",
+      "dff": "Gangwom",
+      "txd": "Gangwom"
+    },
+    {
+      "id": 6821,
+      "name": "Енергійний спортсмен",
+      "dff": "womenkid",
+      "txd": "womenkid"
+    },
+    {
+      "id": 6822,
+      "name": "Активний чоловік",
+      "dff": "basketmen",
+      "txd": "basketmen"
+    },
+    {
+      "id": 6823,
+      "name": "Вуличний король",
+      "dff": "lacosta",
+      "txd": "lacosta"
+    },
+    {
+      "id": 6824,
+      "name": "Вогняний",
+      "dff": "wednesdayuni",
+      "txd": "wednesdayuni"
+    },
+    {
+      "id": 6825,
+      "name": "Крижана Королева",
+      "dff": "kilione",
+      "txd": "kilione"
+    },
+    {
+      "id": 6826,
+      "name": "Біла Сирена",
+      "dff": "kiliofir",
+      "txd": "kiliofir"
+    },
+    {
+      "id": 6827,
+      "name": "Пекельний Фанат",
+      "dff": "readflag",
+      "txd": "readflag"
+    },
+    {
+      "id": 6828,
+      "name": "Тіньовий Скейтер",
+      "dff": "menpeti",
+      "txd": "menpeti"
+    },
+    {
+      "id": 6829,
+      "name": "Paul Walker",
+      "dff": "Walker",
+      "txd": "Walker"
+    },
+    {
+      "id": 6830,
+      "name": "Спортяга",
+      "dff": "schoolivent",
+      "txd": "schoolivent"
+    },
+    {
+      "id": 6831,
+      "name": "Заряджена",
+      "dff": "womanbatl",
+      "txd": "womanbatl"
+    },
+    {
+      "id": 6832,
+      "name": "Офісник",
+      "dff": "manbatll",
+      "txd": "manbatll"
+    },
+    {
+      "id": 6833,
+      "name": "Справжня",
+      "dff": "womangg",
+      "txd": "womangg"
+    },
+    {
+      "id": 6834,
+      "name": "Витончена",
+      "dff": "womanivent",
+      "txd": "womanivent"
+    },
+    {
+      "id": 6835,
+      "name": "Жінка ДПСУ",
+      "dff": "dpsu",
+      "txd": "dpsu"
+    },
+    {
+      "id": 6836,
+      "name": "Кривавий кролик",
+      "dff": "rubik",
+      "txd": "rubik"
+    },
+    {
+      "id": 6837,
+      "name": "Спортивний Бандюган",
+      "dff": "nironot",
+      "txd": "nironot"
+    },
+    {
+      "id": 6838,
+      "name": "Стильна спокусниця",
+      "dff": "girlhola",
+      "txd": "girlhola"
+    },
+    {
+      "id": 6839,
+      "name": "Червоний лорд",
+      "dff": "manread",
+      "txd": "manread"
+    },
+    {
+      "id": 6840,
+      "name": "Примарне лице",
+      "dff": "pilowat",
+      "txd": "pilowat"
+    },
+    {
+      "id": 6841,
+      "name": "Новорічна дівчинка",
+      "dff": "keatbp",
+      "txd": "keatbp"
+    },
+    {
+      "id": 6842,
+      "name": "Новорічний модник",
+      "dff": "newyear2",
+      "txd": "newyear2"
+    },
+    {
+      "id": 6843,
+      "name": "Піжама динозавра",
+      "dff": "dinozawr",
+      "txd": "dinozawr"
+    },
+    {
+      "id": 6844,
+      "name": "Піжама хом'як",
+      "dff": "krolik",
+      "txd": "krolik"
+    },
+    {
+      "id": 6845,
+      "name": "Молода дівчина",
+      "dff": "bbwolki",
+      "txd": "bbwolki"
+    },
+    {
+      "id": 6846,
+      "name": "Молодий чоловік",
+      "dff": "bbmenki",
+      "txd": "bbmenki"
+    },
+    {
+      "id": 6847,
+      "name": "Швидка зірка",
+      "dff": "kristiwom",
+      "txd": "kristiwom"
+    },
+    {
+      "id": 6848,
+      "name": "Мовчазний титан",
+      "dff": "gettoman",
+      "txd": "gettoman"
+    },
+    {
+      "id": 6849,
+      "name": "Стильовий хлопець",
+      "dff": "readman",
+      "txd": "readman"
+    },
+    {
+      "id": 6850,
+      "name": "Сонячна Блондинка",
+      "dff": "blackgirl",
+      "txd": "blackgirl"
+    },
+    {
+      "id": 6851,
+      "name": "Вуличний Бунтар",
+      "dff": "solidman",
+      "txd": "solidman"
+    },
+    {
+      "id": 6852,
+      "name": "Аристократ",
+      "dff": "daylove",
+      "txd": "daylove"
+    },
+    {
+      "id": 6853,
+      "name": "Романтична Фурія",
+      "dff": "womandailove",
+      "txd": "womandailove"
+    },
+    {
+      "id": 6854,
+      "name": "Небезпечний Агент",
+      "dff": "stepanblack",
+      "txd": "stepanblack"
+    },
+    {
+      "id": 6855,
+      "name": "Рожева Леді",
+      "dff": "yelowwomen",
+      "txd": "yelowwomen"
+    },
+    {
+      "id": 6856,
+      "name": "Данієль Мораліс",
+      "dff": "taxiskin",
+      "txd": "taxiskin"
+    },
+    {
+      "id": 6857,
+      "name": "Втілення краси",
+      "dff": "batpasgirl",
+      "txd": "batpasgirl"
+    },
+    {
+      "id": 6858,
+      "name": "Справжній мачо",
+      "dff": "menbatpas",
+      "txd": "menbatpas"
+    },
+    {
+      "id": 6859,
+      "name": "Стильовий романтик",
+      "dff": "testwoman",
+      "txd": "testwoman"
+    },
+    {
+      "id": 6860,
+      "name": "Молода дівчина",
+      "dff": "womenivent",
+      "txd": "womenivent"
+    },
+    {
+      "id": 6861,
+      "name": "Лідер угруповання",
+      "dff": "menstile",
+      "txd": "menstile"
+    },
+    {
+      "id": 6862,
+      "name": "Краса угруповання",
+      "dff": "kristinawom",
+      "txd": "kristinawom"
+    },
+    {
+      "id": 6863,
+      "name": "Вишукана леді",
+      "dff": "eggswoman",
+      "txd": "eggswoman"
+    },
+    {
+      "id": 6864,
+      "name": "Вуличний стиль",
+      "dff": "frick",
+      "txd": "frick"
+    },
+    {
+      "id": 6865,
+      "name": "Великий бізнесмен",
+      "dff": "eggmeniven",
+      "txd": "eggmeniven"
+    }
+  ]
+}
