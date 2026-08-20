@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 $source = Split-Path -Parent $MyInvocation.MyCommand.Path
 $workspace = Split-Path -Parent $source
 if (-not $PublicRepository) {
-    $PublicRepository = Join-Path $workspace "UG MOD HUB OPEN SOURCE 0.1.3"
+    $PublicRepository = Join-Path $workspace "UG MOD HUB OPEN SOURCE 0.1.4"
 }
 
 $source = [System.IO.Path]::GetFullPath($source)
