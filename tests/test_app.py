@@ -1,6 +1,6 @@
 import unittest
 
-from app import format_account_date, mod_catalog_status, mod_matches_search
+from app import available_server_choices, format_account_date, mod_catalog_status, mod_matches_search
 from core import Mod
 
 
@@ -35,6 +35,15 @@ class SearchTests(unittest.TestCase):
         self.assertEqual(mod_catalog_status(paused), "paused")
         self.assertEqual(mod_catalog_status(development), "development")
         self.assertEqual(mod_catalog_status(self.mod), "available")
+
+    def test_server_picker_keeps_all_default_servers_and_current_choice(self):
+        choices = available_server_choices("", "custom.example", 22100)
+        endpoints = {(item["host"], item["port"]) for item in choices}
+        self.assertGreaterEqual(len(choices), 8)
+        self.assertEqual(len(choices), len(endpoints))
+        self.assertIn(("s1.ukraine-gta.com.ua", 22003), endpoints)
+        self.assertIn(("s7.ukraine-gta.com.ua", 22003), endpoints)
+        self.assertIn(("custom.example", 22100), endpoints)
 
 
 if __name__ == "__main__":

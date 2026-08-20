@@ -90,16 +90,28 @@ from core import (
 )
 
 
-BG = "#080b10"
-PANEL = "#0e131b"
-PANEL_2 = "#131a24"
-LINE = "#222b38"
-TEXT = "#f5f8fb"
-MUTED = "#8f9aab"
-ACCENT = "#00baa9"
-ACCENT_HOVER = "#12d2bd"
-RED = "#ef5f76"
+BG = "#07090d"
+PANEL = "#10141b"
+PANEL_2 = "#171d26"
+LINE = "#28313d"
+TEXT = "#f2f4f7"
+MUTED = "#858d98"
+ACCENT = "#ffad3f"
+ACCENT_HOVER = "#ffc35d"
+RED = "#f06b7d"
+BLUE = "#66c7ff"
+GREEN = "#57df83"
+RAIL_BG = "#0a0d12"
 CATEGORIES = ["Кров + звук влучання", "Небо", "Ефекти", "Анімації", "Звуки пострілів", "Приціл", "HUD", "Скіни", "Аксесуари", "Заміна зброї", "Інше"]
+DEFAULT_SERVER_CHOICES = [
+    {"name": "#01 Центральна Україна", "host": "s1.ukraine-gta.com.ua", "port": 22003},
+    {"name": "#02 Західна Україна", "host": "s2.ukraine-gta.com.ua", "port": 22003},
+    {"name": "#03 Східна Україна", "host": "s3.ukraine-gta.com.ua", "port": 22003},
+    {"name": "#04 Північна Україна", "host": "s4.ukraine-gta.com.ua", "port": 22003},
+    {"name": "#05 Південна Україна", "host": "s5.ukraine-gta.com.ua", "port": 22003},
+    {"name": "#06 Подільський Край", "host": "s6.ukraine-gta.com.ua", "port": 22003},
+    {"name": "#07 Чорноморський край", "host": "s7.ukraine-gta.com.ua", "port": 22003},
+]
 CATEGORY_COVER_FILES = {
     "Кров + звук влучання": "blood_hit.png",
     "Небо": "sky.png",
@@ -177,6 +189,37 @@ def format_account_date(value: str) -> str:
         return value
 
 
+def available_server_choices(game_root: str, current_host: str = "", current_port: int = 22003) -> list[dict]:
+    """Return every known UKRAINE GTA server, enriched with the local MTA cache."""
+    choices = {(item["host"], int(item["port"])): dict(item) for item in DEFAULT_SERVER_CHOICES}
+    try:
+        cached = load_mta_servers(game_root)
+    except (ModError, OSError, ValueError):
+        cached = []
+    for item in cached:
+        host = str(item.get("host", "")).strip()
+        name = str(item.get("name") or host)
+        try:
+            port = int(item.get("port", 22003))
+        except (TypeError, ValueError):
+            continue
+        official = "ukraine-gta" in host.casefold() or "ukraine gta" in name.casefold()
+        if host and official:
+            choices[(host, port)] = {"name": name, "host": host, "port": port}
+    try:
+        normalized_current_port = int(current_port)
+    except (TypeError, ValueError):
+        normalized_current_port = 22003
+    if current_host:
+        key = (str(current_host), normalized_current_port)
+        choices.setdefault(key, {"name": "Останній вибраний сервер", "host": key[0], "port": key[1]})
+    known_order = {(item["host"], int(item["port"])): index for index, item in enumerate(DEFAULT_SERVER_CHOICES)}
+    return sorted(
+        choices.values(),
+        key=lambda item: (known_order.get((item["host"], int(item["port"])), 999), item["name"].casefold()),
+    )
+
+
 def rounded_rectangle(canvas: tk.Canvas, x1, y1, x2, y2, radius=18, **kwargs):
     points = [
         x1 + radius, y1, x2 - radius, y1, x2, y1, x2, y1 + radius,
@@ -224,23 +267,23 @@ class StartupSplash:
         canvas.pack(fill="both", expand=True)
         self.background_photo = self._make_background(width, height)
         canvas.create_image(0, 0, image=self.background_photo, anchor="nw")
-        rounded_rectangle(canvas, 2, 2, 678, 438, 30, fill="", outline="#1b3944", width=2)
-        rounded_rectangle(canvas, 10, 10, 670, 430, 26, fill="", outline="#0c2029", width=1)
+        rounded_rectangle(canvas, 2, 2, 678, 438, 30, fill="", outline="#314254", width=2)
+        rounded_rectangle(canvas, 10, 10, 670, 430, 26, fill="", outline="#202a36", width=1)
 
         # Technical corner brackets and animated scanner.
         for points in (((25, 58), (25, 25), (58, 25)), ((622, 25), (655, 25), (655, 58)),
                        ((25, 382), (25, 415), (58, 415)), ((622, 415), (655, 415), (655, 382))):
-            canvas.create_line(*sum(([x, y] for x, y in points), []), fill="#22707a", width=2)
-        self.scan_line = canvas.create_rectangle(34, 32, 646, 33, fill="#00baa9", outline="", stipple="gray50")
+            canvas.create_line(*sum(([x, y] for x, y in points), []), fill="#476884", width=2)
+        self.scan_line = canvas.create_rectangle(34, 32, 646, 33, fill=BLUE, outline="", stipple="gray50")
 
         # Layered reactor around the app icon.
-        self.glow_outer = canvas.create_oval(177, 39, 503, 365, fill="#07151b", outline="")
-        self.glow_inner = canvas.create_oval(220, 82, 460, 322, fill="#071015", outline="#103039", width=1)
-        self.ring_far = canvas.create_arc(184, 46, 496, 358, start=12, extent=122, style="arc", outline="#163e50", width=1)
-        self.ring_soft = canvas.create_arc(196, 58, 484, 346, start=222, extent=74, style="arc", outline="#3967a8", width=2)
+        self.glow_outer = canvas.create_oval(177, 39, 503, 365, fill="#0b121b", outline="")
+        self.glow_inner = canvas.create_oval(220, 82, 460, 322, fill="#0b1017", outline="#26394b", width=1)
+        self.ring_far = canvas.create_arc(184, 46, 496, 358, start=12, extent=122, style="arc", outline="#31485d", width=1)
+        self.ring_soft = canvas.create_arc(196, 58, 484, 346, start=222, extent=74, style="arc", outline=BLUE, width=2)
         self.ring = canvas.create_arc(210, 72, 470, 332, start=90, extent=96, style="arc", outline=ACCENT, width=4)
-        self.ring_inner = canvas.create_arc(231, 93, 449, 311, start=292, extent=54, style="arc", outline="#64f2db", width=2)
-        self.orbit_nodes = [canvas.create_oval(0, 0, 7, 7, fill=ACCENT, outline="#9affee") for _ in range(4)]
+        self.ring_inner = canvas.create_arc(231, 93, 449, 311, start=292, extent=54, style="arc", outline="#c6e9ff", width=2)
+        self.orbit_nodes = [canvas.create_oval(0, 0, 7, 7, fill=ACCENT, outline="#ffe0aa") for _ in range(4)]
         self.logo_item = canvas.create_image(340, 199)
 
         mode = getattr(app, "animation_mode", "Повні")
@@ -250,19 +293,19 @@ class StartupSplash:
             py = 32 + ((index * 47) % 350)
             radius = 1 + (index % 3 == 0)
             item = canvas.create_oval(px - radius, py - radius, px + radius, py + radius,
-                                      fill="#36dfcd" if index % 3 else "#7664e8", outline="")
+                                      fill=BLUE if index % 3 else ACCENT, outline="")
             self.particles.append((item, px, py, .35 + (index % 5) * .11, index * .7))
 
         canvas.create_text(340, 334, text="UG MOD HUB", fill=TEXT, font=("Segoe UI Black", 25))
-        canvas.create_text(340, 359, text="SECURE MOD ECOSYSTEM", fill="#4e7e8a", font=("Consolas", 8))
+        canvas.create_text(340, 359, text="NIGHTLINE MOD ECOSYSTEM", fill="#71879a", font=("Consolas", 8))
         self.status_item = canvas.create_text(340, 382, text="ПІДГОТОВКА ЗАСТОСУНКУ", fill="#93a5b7", font=("Segoe UI Semibold", 9))
         # Regular rectangles keep the animated width mathematically stable.
-        self.progress_track = canvas.create_rectangle(93, 403, 587, 409, fill="#14242d", outline="")
+        self.progress_track = canvas.create_rectangle(93, 403, 587, 409, fill="#202a35", outline="")
         self.progress_item = canvas.create_rectangle(93, 403, 96, 409, fill=ACCENT, outline="")
-        self.progress_glow = canvas.create_oval(90, 399, 99, 413, fill="#69f6df", outline="")
-        self.percent_item = canvas.create_text(612, 406, text="00%", fill="#71a9ae", font=("Consolas", 8))
+        self.progress_glow = canvas.create_oval(90, 399, 99, 413, fill="#ffd08a", outline="")
+        self.percent_item = canvas.create_text(612, 406, text="00%", fill="#89a9c2", font=("Consolas", 8))
         for index in range(19):
-            bar = canvas.create_rectangle(281 + index * 6, 420, 284 + index * 6, 422, fill="#17434a", outline="")
+            bar = canvas.create_rectangle(281 + index * 6, 420, 284 + index * 6, 422, fill="#273a4b", outline="")
             self.equalizer.append(bar)
 
         self.retry_box = rounded_rectangle(canvas, 190, 394, 330, 424, 10, fill="#123733", outline=ACCENT, width=1, state="hidden")
@@ -295,17 +338,18 @@ class StartupSplash:
         for radius in range(round(width * .54), 20, -12):
             alpha = max(1, round(8 * (1 - radius / (width * .54))))
             cx, cy = width * .5, height * .42
-            draw.ellipse((cx - radius, cy - radius, cx + radius, cy + radius), fill=(0, 195, 181, alpha))
+            draw.ellipse((cx - radius, cy - radius, cx + radius, cy + radius), fill=(49, 139, 204, alpha))
         grid = max(22, round(34 * width / self.BASE_WIDTH))
         for x in range(0, width, grid):
-            draw.line((x, 0, x, height), fill=(20, 80, 91, 18))
+            draw.line((x, 0, x, height), fill=(78, 126, 163, 18))
         for y in range(0, height, grid):
-            draw.line((0, y, width, y), fill=(20, 80, 91, 16))
+            draw.line((0, y, width, y), fill=(78, 126, 163, 16))
         draw.polygon(((0, height), (0, height * .76), (width * .5, height * .45), (width, height * .76), (width, height)), fill=(4, 8, 14, 145))
         return ImageTk.PhotoImage(image)
 
     def _prepare_frames(self):
         candidates = [
+            RESOURCE_DIR / "assets" / "nightline" / "ug-logo.png",
             RESOURCE_DIR / "assets" / "ukraine_gta_app_icon.ico",
             RESOURCE_DIR / "assets" / "app_icon.png",
         ]
@@ -322,7 +366,7 @@ class StartupSplash:
                 resized = logo.resize((size, size), Image.Resampling.LANCZOS)
                 frame = Image.new("RGBA", (frame_side, frame_side), (0, 0, 0, 0))
                 alpha = resized.getchannel("A")
-                glow = Image.new("RGBA", resized.size, (0, 220, 199, 0))
+                glow = Image.new("RGBA", resized.size, (68, 164, 229, 0))
                 glow.putalpha(alpha.point(lambda value, strength=round(70 + wave * 55): value * strength // 255))
                 glow = glow.filter(ImageFilter.GaussianBlur(max(7, round((12 + wave * 7) * self.scale))))
                 offset = ((frame_side - size) // 2, (frame_side - size) // 2)
@@ -426,8 +470,8 @@ class StartupSplash:
                 frame_index = int(self.phase * 9) % len(self.frames)
                 self.canvas.itemconfigure(self.logo_item, image=self.frames[frame_index])
             pulse = (math.sin(self.phase * 2.1) + 1) / 2
-            self.canvas.itemconfigure(self.glow_outer, fill=blend("#061117", "#09242a", pulse * .72))
-            self.canvas.itemconfigure(self.glow_inner, outline=blend("#103039", "#1c625e", pulse * .7))
+            self.canvas.itemconfigure(self.glow_outer, fill=blend("#091019", "#132536", pulse * .72))
+            self.canvas.itemconfigure(self.glow_inner, outline=blend("#26394b", "#6a4827", pulse * .7))
             scan_y = 34 + ((self.phase * 42) % 365)
             self.canvas.coords(self.scan_line, 34 * self.scale, scan_y * self.scale, 646 * self.scale, (scan_y + 1) * self.scale)
             for index, node in enumerate(self.orbit_nodes):
@@ -456,7 +500,7 @@ class StartupSplash:
             for index, bar in enumerate(self.equalizer):
                 amplitude = 2 + (math.sin(self.phase * 3.2 + index * .72) + 1) * 4
                 self.canvas.coords(bar, (281 + index*6)*scale, (422-amplitude)*scale, (284 + index*6)*scale, 422*scale)
-                self.canvas.itemconfigure(bar, fill=blend("#17434a", ACCENT, min(1, amplitude / 9)))
+                self.canvas.itemconfigure(bar, fill=blend("#273a4b", ACCENT, min(1, amplitude / 9)))
             if self.ready and elapsed >= 2.35:
                 self._fade_out()
                 return
@@ -512,7 +556,7 @@ class ScrollFrame(tk.Frame):
 
 class AnimatedAccentBar(tk.Canvas):
     def __init__(self, parent, app):
-        super().__init__(parent, height=3, bg="#071016", highlightthickness=0, bd=0)
+        super().__init__(parent, height=2, bg="#0a0d12", highlightthickness=0, bd=0)
         self.app = app
         self.phase = 0.0
         self.bind("<Configure>", lambda _event: self._draw())
@@ -525,8 +569,8 @@ class AnimatedAccentBar(tk.Canvas):
         block_width = width / blocks
         for index in range(blocks):
             wave = (math.sin(index * .32 + self.phase) + 1) / 2
-            color = blend("#0b1b24", ACCENT, max(0, wave - .45) * 1.3)
-            self.create_rectangle(index * block_width, 0, (index + 1) * block_width + 1, 3, fill=color, outline="")
+            color = blend("#17202a", BLUE if index % 5 else ACCENT, max(0, wave - .45) * 1.3)
+            self.create_rectangle(index * block_width, 0, (index + 1) * block_width + 1, 2, fill=color, outline="")
 
     def _animate(self):
         try:
@@ -552,12 +596,12 @@ class AnimatedHero(tk.Canvas):
         self.phase = 0.0
         self.image = app.hero_image()
         self.image_item = self.create_image(0, 0, image=self.image, anchor="nw")
-        self.beams = [self.create_line(0, 0, 0, 0, fill="#0d605f", width=1) for _ in range(14)]
-        self.dots = [self.create_oval(0, 0, 3, 3, fill=ACCENT if i % 3 else "#8068f2", outline="") for i in range(24)]
+        self.beams = [self.create_line(0, 0, 0, 0, fill="#234967", width=1) for _ in range(14)]
+        self.dots = [self.create_oval(0, 0, 3, 3, fill=BLUE if i % 3 else ACCENT, outline="") for i in range(24)]
         self.rings = [self.create_arc(0, 0, 0, 0, start=i * 74, extent=72 - i * 7, style="arc", outline=color, width=max(1, 3-i))
-                      for i, color in enumerate(("#12d8c1", "#246a76", "#5f52a8"))]
-        self.core = self.create_oval(0, 0, 0, 0, fill="#07191d", outline="#2b817e", width=1)
-        self.core_text = self.create_text(0, 0, text="UG", fill="#55ecda", font=("Segoe UI Black", 20))
+                      for i, color in enumerate((ACCENT, BLUE, "#526b85"))]
+        self.core = self.create_oval(0, 0, 0, 0, fill="#101820", outline="#47718d", width=1)
+        self.core_text = self.create_text(0, 0, text="UG", fill=BLUE, font=("Segoe UI Black", 20))
         self.bind("<Configure>", self._layout)
         self.after(40, self._animate)
 
@@ -583,12 +627,12 @@ class AnimatedHero(tk.Canvas):
             pulse = (math.sin(self.phase * 2.4) + 1) / 2
             radius = 35 + pulse * 5
             self.coords(self.core, cx-radius, cy-radius, cx+radius, cy+radius)
-            self.itemconfigure(self.core, outline=blend("#1e4f59", "#5ef5df", pulse))
+            self.itemconfigure(self.core, outline=blend("#31516b", ACCENT, pulse))
             for index, beam in enumerate(self.beams):
                 x = ((index * 127 + self.phase * (54 + index * 2)) % (width + 180)) - 90
                 y = 24 + ((index * 43) % max(40, height - 48))
                 self.coords(beam, x-65, height+8, x+90, y)
-                self.itemconfigure(beam, fill=blend("#102631", "#118f89", (math.sin(self.phase + index) + 1) * .25))
+                self.itemconfigure(beam, fill=blend("#152735", BLUE, (math.sin(self.phase + index) + 1) * .18))
             for index, dot in enumerate(self.dots):
                 angle = self.phase * (.45 + (index % 4) * .08) + index * .83
                 orbit = 74 + (index % 6) * 14
@@ -864,6 +908,88 @@ class AccountDialog(tk.Toplevel):
             self.app.close_app()
         else:
             self.destroy()
+
+
+class ServerSelectDialog(tk.Toplevel):
+    """Compact Nightline server picker shown before file verification."""
+
+    def __init__(self, app, choices, selected_host, selected_port, on_select):
+        super().__init__(app)
+        self.app = app
+        self.on_select = on_select
+        self.configure(bg="#080b10")
+        self.overrideredirect(True)
+        self.transient(app)
+        self.grab_set()
+        self.bind("<Escape>", lambda _event: self.destroy())
+
+        shell = tk.Frame(self, bg="#0d1219", padx=18, pady=16, highlightbackground="#34404d", highlightthickness=1)
+        shell.pack(fill="both", expand=True)
+        header = tk.Frame(shell, bg="#0d1219")
+        header.pack(fill="x", pady=(0, 12))
+        tk.Label(header, text="ОБЕРІТЬ СЕРВЕР", bg="#0d1219", fg=TEXT, font=("Segoe UI Semibold", 11)).pack(side="left")
+        close = tk.Label(header, text="×", bg="#171d26", fg=MUTED, width=3, pady=4, cursor="hand2", font=("Segoe UI", 11))
+        close.pack(side="right")
+        close.bind("<Button-1>", lambda _event: self.destroy())
+        tk.Label(
+            shell,
+            text="Після вибору UG MOD HUB перевірить установлені файли та запустить UKRAINE GTA.",
+            bg="#0d1219", fg=MUTED, justify="left", wraplength=390, font=("Segoe UI", 9),
+        ).pack(fill="x", pady=(0, 10))
+
+        selected_key = (str(selected_host), int(selected_port))
+        for index, item in enumerate(choices):
+            key = (str(item["host"]), int(item["port"]))
+            active = key == selected_key
+            row = tk.Frame(
+                shell,
+                bg="#19212b" if active else "#121820",
+                padx=10,
+                pady=6,
+                cursor="hand2",
+                highlightbackground=ACCENT if active else "#232c37",
+                highlightthickness=1,
+            )
+            row.pack(fill="x", pady=2)
+            badge = tk.Label(
+                row,
+                text=f"{index + 1:02d}",
+                width=4,
+                height=1,
+                bg=ACCENT if active else "#233249",
+                fg="#171008" if active else BLUE,
+                font=("Segoe UI Semibold", 8),
+            )
+            badge.pack(side="left")
+            copy = tk.Frame(row, bg=row.cget("bg"))
+            copy.pack(side="left", fill="x", expand=True, padx=10)
+            name = tk.Label(copy, text=item["name"], bg=row.cget("bg"), fg=TEXT, anchor="w", font=("Segoe UI Semibold", 9))
+            name.pack(fill="x")
+            address = tk.Label(copy, text=f"{item['host']}:{item['port']}", bg=row.cget("bg"), fg="#697482", anchor="w", font=("Consolas", 7))
+            address.pack(fill="x", pady=(2, 0))
+            online = tk.Label(row, text="●", bg=row.cget("bg"), fg=GREEN, font=("Segoe UI", 9))
+            online.pack(side="right")
+
+            def choose(_event=None, value=dict(item)):
+                self.destroy()
+                self.on_select(value)
+
+            for widget in (row, badge, copy, name, address, online):
+                widget.bind("<Button-1>", choose)
+        self.after_idle(self._center)
+
+    def _center(self):
+        try:
+            self.update_idletasks()
+            width = min(470, max(410, self.app.winfo_width() - 80))
+            height = min(max(430, self.winfo_reqheight()), max(430, self.app.winfo_height() - 48))
+            x = self.app.winfo_rootx() + (self.app.winfo_width() - width) // 2
+            y = self.app.winfo_rooty() + (self.app.winfo_height() - height) // 2
+            self.geometry(f"{width}x{height}+{max(0, x)}+{max(0, y)}")
+            self.lift()
+            self.focus_force()
+        except tk.TclError:
+            pass
 
 
 class TransferDialog(tk.Toplevel):
@@ -1237,7 +1363,7 @@ class ModCard(tk.Frame):
             self.accent_rail.coords(self.rail_fill, 0, 0, fill_width, 4)
             self.accent_rail.itemconfigure(
                 self.rail_fill,
-                fill=blend(self.mod.accent, "#8affea", self.hover_amount * .48),
+                fill=blend(self.mod.accent, ACCENT, self.hover_amount * .42),
             )
         except tk.TclError:
             pass
@@ -1307,7 +1433,7 @@ class ModCard(tk.Frame):
         installed = self.mod.id in load_state().get("installed", {})
         available = mod_payload_available(self.mod.id)
         if installed:
-            self.status.config(text="● ВСТАНОВЛЕНО", fg=ACCENT)
+            self.status.config(text="● ВСТАНОВЛЕНО", fg=GREEN)
             self.button.text = "Видалити"
             self.button.primary = False
             self.button.danger = True
@@ -1347,6 +1473,7 @@ class ModHub(tk.Tk):
         self.account_user = dict(self.settings.get("account_user") or {})
         self.account_url = str(self.settings.get("account_url") or DEFAULT_ACCOUNT_URL)
         self.account_dialog = None
+        self.server_dialog = None
         self.animation_mode = self.settings.get("animation_mode", "Повні")
         self.admin_mode = is_admin()
         self.active_category = "Головна"
@@ -1419,40 +1546,40 @@ class ModHub(tk.Tk):
         return 0, 0, self.winfo_screenwidth(), self.winfo_screenheight()
 
     def _build_titlebar(self):
-        bar = tk.Frame(self, bg="#070a0f", height=36, highlightbackground=LINE, highlightthickness=0)
+        bar = tk.Frame(self, bg="#05070b", height=34, highlightbackground=LINE, highlightthickness=0)
         bar.pack(fill="x")
         bar.pack_propagate(False)
 
-        identity = tk.Frame(bar, bg="#070a0f")
+        identity = tk.Frame(bar, bg="#05070b")
         identity.pack(side="left", fill="y", padx=(12, 0))
-        icon_path = RESOURCE_DIR / "assets" / "ukraine_gta_app_icon.ico"
+        icon_path = RESOURCE_DIR / "assets" / "nightline" / "ug-logo.png"
         if icon_path.is_file():
             try:
                 self.titlebar_icon = ImageTk.PhotoImage(
                     Image.open(icon_path).convert("RGBA").resize((20, 20), Image.Resampling.LANCZOS)
                 )
-                tk.Label(identity, image=self.titlebar_icon, bg="#070a0f", bd=0).pack(side="left", pady=8)
+                tk.Label(identity, image=self.titlebar_icon, bg="#05070b", bd=0).pack(side="left", pady=7)
             except (OSError, tk.TclError):
                 self.titlebar_icon = None
         title = tk.Label(
             identity,
             text="UG MOD HUB",
-            bg="#070a0f", fg="#a8b5c4", font=("Segoe UI Semibold", 9),
+            bg="#05070b", fg="#9ca5b1", font=("Segoe UI Semibold", 9),
         )
         title.pack(side="left", padx=(8, 0), fill="y")
 
-        controls = tk.Frame(bar, bg="#070a0f")
+        controls = tk.Frame(bar, bg="#05070b")
         controls.pack(side="right", fill="y")
 
         def control(text, command, hover="#18222d", width=48):
             label = tk.Label(
-                controls, text=text, bg="#070a0f", fg="#b8c3cf",
+                controls, text=text, bg="#05070b", fg="#aeb6c0",
                 width=width // 8, cursor="hand2", font=("Segoe UI Symbol", 11),
             )
             label.pack(side="left", fill="y")
             label.bind("<Button-1>", lambda _event: command())
             label.bind("<Enter>", lambda _event: label.configure(bg=hover, fg=TEXT))
-            label.bind("<Leave>", lambda _event: label.configure(bg="#070a0f", fg="#b8c3cf"))
+            label.bind("<Leave>", lambda _event: label.configure(bg="#05070b", fg="#aeb6c0"))
             return label
 
         self.minimize_button = control("—", self._minimize_window)
@@ -1791,30 +1918,44 @@ class ModHub(tk.Tk):
 
     def _build_shell(self):
         self._build_titlebar()
-        self.top = tk.Frame(self, bg=BG, height=70, padx=26, pady=14)
+        self.top = tk.Frame(self, bg="#0a0d12", height=66, padx=18, pady=10)
         self.top.pack(fill="x")
         self.top.pack_propagate(False)
-        self.brand = tk.Frame(self.top, bg=BG)
+        self.brand = tk.Frame(self.top, bg="#0a0d12")
         self.brand.pack(side="left")
-        self.logo = tk.Canvas(self.brand, width=42, height=42, bg=BG, highlightthickness=0)
-        self.logo_shape = rounded_rectangle(self.logo, 1, 1, 41, 41, 12, fill=ACCENT, outline=ACCENT)
-        self.logo.create_text(21, 21, text="UG", fill="#04110f", font=("Segoe UI Black", 11))
+        self.logo = tk.Canvas(self.brand, width=44, height=44, bg="#0a0d12", highlightthickness=0)
+        self.logo_shape = rounded_rectangle(self.logo, 1, 1, 43, 43, 13, fill="#111720", outline="#253443")
+        logo_path = RESOURCE_DIR / "assets" / "nightline" / "ug-logo.png"
+        if logo_path.is_file():
+            try:
+                self.nightline_logo = ImageTk.PhotoImage(Image.open(logo_path).convert("RGBA").resize((36, 36), Image.Resampling.LANCZOS))
+                self.logo.create_image(22, 22, image=self.nightline_logo)
+            except (OSError, tk.TclError):
+                self.logo.create_text(22, 22, text="UG", fill=BLUE, font=("Segoe UI Black", 11))
+        else:
+            self.logo.create_text(22, 22, text="UG", fill=BLUE, font=("Segoe UI Black", 11))
         self.logo.pack(side="left")
-        self.brand_name = tk.Label(self.brand, text="UG MOD", fg=TEXT, bg=BG, font=("Segoe UI Black", 18))
+        self.brand_name = tk.Label(self.brand, text="UG MOD", fg=TEXT, bg="#0a0d12", font=("Segoe UI Semibold", 17))
         self.brand_name.pack(side="left", padx=(12, 0))
-        self.brand_hub = tk.Label(self.brand, text="HUB", fg=ACCENT, bg=BG, font=("Segoe UI Black", 18))
+        self.brand_hub = tk.Label(self.brand, text="HUB", fg=BLUE, bg="#0a0d12", font=("Segoe UI Semibold", 17))
         self.brand_hub.pack(side="left", padx=(5, 0))
 
-        self.top_actions = tk.Frame(self.top, bg=BG)
+        self.search_var = tk.StringVar()
+        self.search_box = tk.Frame(self.top, bg="#111720", padx=12, pady=7, highlightbackground="#27313d", highlightthickness=1)
+        self.search_box.pack(side="left", padx=(38, 12))
+        tk.Label(self.search_box, text="⌕", bg="#111720", fg="#65707e", font=("Segoe UI Symbol", 12)).pack(side="left")
+        self.search_entry = tk.Entry(self.search_box, textvariable=self.search_var, width=25, bg="#111720", fg=TEXT, insertbackground=TEXT, relief="flat", borderwidth=0, font=("Segoe UI", 9))
+        self.search_entry.pack(side="left", padx=(8, 0), ipady=2)
+        self.search_entry.bind("<KeyRelease>", self.on_search)
+        self.search_entry.bind("<Escape>", lambda _event: self.clear_search())
+
+        self.top_actions = tk.Frame(self.top, bg="#0a0d12")
         self.top_actions.pack(side="right")
-        self.root_status = tk.Label(self.top_actions, text="Гру не знайдено", fg=MUTED, bg=BG, font=("Segoe UI", 9))
-        self.guard_button = PillButton(self.top_actions, "Захист: LIVE", self.toggle_resource_guard, width=135, height=42, primary=True)
+        self.guard_button = PillButton(self.top_actions, "Захист: LIVE", self.toggle_resource_guard, width=126, height=42, primary=False)
         self.guard_button.pack(side="left", padx=(0, 10))
-        self.quick_button = PillButton(self.top_actions, "Швидке встановлення", self.quick_apply, width=175, height=42, primary=False)
+        self.quick_button = PillButton(self.top_actions, "Швидке встановлення", self.quick_apply, width=165, height=42, primary=False)
         self.quick_button.pack(side="left", padx=(0, 10))
-        self.play_button = PillButton(self.top_actions, "▶  Автопідключення", self.start_game, width=200, height=42)
-        self.play_button.pack(side="left", padx=(0, 10))
-        self.account_button = PillButton(self.top_actions, "Профіль", self.open_account_dialog, width=135, height=42, primary=False)
+        self.account_button = PillButton(self.top_actions, "Профіль", self.open_account_dialog, width=125, height=42, primary=False)
         self.account_button.pack(side="left")
 
         self.accent_bar = AnimatedAccentBar(self, self)
@@ -1822,7 +1963,7 @@ class ModHub(tk.Tk):
 
         main = tk.Frame(self, bg=BG)
         main.pack(fill="both", expand=True)
-        self.sidebar = tk.Frame(main, bg="#0a0e14", width=218, padx=14, pady=20)
+        self.sidebar = tk.Frame(main, bg=RAIL_BG, width=86, padx=8, pady=14)
         self.sidebar.pack(side="left", fill="y")
         self.sidebar.pack_propagate(False)
         self.content_host = tk.Frame(main, bg=BG)
@@ -1830,12 +1971,18 @@ class ModHub(tk.Tk):
         self._build_navigation()
         self.show_home()
 
-        self.statusbar = tk.Frame(self, bg="#090d13", height=42, padx=20)
+        self.statusbar = tk.Frame(self, bg="#0a0d12", height=58, padx=18, highlightbackground="#1b222c", highlightthickness=1)
         self.statusbar.pack(fill="x", side="bottom")
         self.statusbar.pack_propagate(False)
-        self.status_text = tk.Label(self.statusbar, text="", bg="#090d13", fg=MUTED, font=("Segoe UI", 9))
-        self.status_text.pack(side="left", pady=11)
+        status_group = tk.Frame(self.statusbar, bg="#0a0d12")
+        status_group.pack(side="left", fill="y")
+        self.root_status = tk.Label(status_group, text="Гру не знайдено", fg=MUTED, bg="#0a0d12", font=("Segoe UI Semibold", 8))
+        self.root_status.pack(anchor="w", pady=(10, 0))
+        self.status_text = tk.Label(status_group, text="", bg="#0a0d12", fg=MUTED, font=("Segoe UI", 8))
+        self.status_text.pack(anchor="w", pady=(1, 7))
         self.progress = ttk.Progressbar(self.statusbar, length=220, mode="determinate")
+        self.play_button = PillButton(self.statusbar, "▶  Грати в UKRAINE GTA", self.open_server_selector, width=230, height=42)
+        self.play_button.pack(side="right", pady=7)
         self.update_root_status()
         self.refresh_guard_button()
         self._build_resize_handles()
@@ -1843,45 +1990,42 @@ class ModHub(tk.Tk):
         self.after_idle(self._apply_responsive_layout)
 
     def _build_navigation(self):
-        self.library_heading = tk.Label(self.sidebar, text="БІБЛІОТЕКА", bg="#0a0e14", fg="#596475", font=("Segoe UI Semibold", 8))
-        self.library_heading.pack(anchor="w", padx=12, pady=(0, 10))
-        self.search_heading = tk.Label(self.sidebar, text="ПОШУК МОДІВ", bg="#0a0e14", fg="#596475", font=("Segoe UI Semibold", 8))
-        self.search_heading.pack(anchor="w", padx=12, pady=(0, 5))
-        self.search_var = tk.StringVar()
-        self.search_entry = tk.Entry(self.sidebar, textvariable=self.search_var, bg="#101722", fg=TEXT, insertbackground=TEXT, relief="flat", font=("Segoe UI", 10))
-        self.search_entry.pack(fill="x", padx=4, pady=(0, 10), ipady=8)
-        self.search_entry.bind("<KeyRelease>", self.on_search)
-        self.search_entry.bind("<Escape>", lambda _event: self.clear_search())
         items = [
-            ("Головна", "⌂"), ("Обране", "★"),
-            ("Кров + звук влучання", "✦"), ("Небо", "◒"),
-            ("Ефекти", "ϟ"), ("Анімації", "◆"), ("Звуки пострілів", "♪"),
-            ("Приціл", "◎"), ("HUD", "▣"), ("Скіни", "♙"), ("Аксесуари", "◇"), ("Заміна зброї", "⌁"), ("Інше", "⋯"), ("Встановлено", "✓"),
-            ("Історія", "↺"),
+            ("Головна", "⌂", "Головна"),
+            ("Усі моди", "▦", "Каталог"),
+            ("Обране", "♡", "Обране"),
+            ("Встановлено", "✓", "Мої моди"),
+            ("Історія", "↺", "Історія"),
         ]
         self.nav_buttons = {}
         self.nav_icons = {}
-        for text, icon in items:
-            button = tk.Label(self.sidebar, text=f"  {icon}    {text}", bg="#0a0e14", fg=MUTED, anchor="w", padx=10, pady=5, cursor="hand2", font=("Segoe UI Semibold", 10))
-            button.pack(fill="x", pady=1)
+        self.nav_short_labels = {}
+        for text, icon, short_label in items:
+            button = tk.Label(self.sidebar, text=f"{icon}\n{short_label}", bg=RAIL_BG, fg=MUTED, justify="center", padx=3, pady=7, cursor="hand2", font=("Segoe UI Semibold", 8))
+            button.pack(fill="x", pady=2)
             button.bind("<Button-1>", lambda _e, name=text: self.navigate(name))
-            button.bind("<Enter>", lambda _e, widget=button: widget.configure(bg=PANEL_2) if widget.cget("fg") != TEXT else None)
-            button.bind("<Leave>", lambda _e, widget=button: widget.configure(bg="#0a0e14") if widget.cget("fg") != TEXT else None)
+            button.bind("<Enter>", lambda _e, widget=button: widget.configure(bg=PANEL_2) if widget.cget("fg") not in (TEXT, ACCENT) else None)
+            button.bind("<Leave>", lambda _e, widget=button: widget.configure(bg=RAIL_BG) if widget.cget("fg") not in (TEXT, ACCENT) else None)
             self.nav_buttons[text] = button
             self.nav_icons[text] = icon
+            self.nav_short_labels[text] = short_label
         self.nav_separator = tk.Frame(self.sidebar, bg=LINE, height=1)
-        self.nav_separator.pack(fill="x", pady=14)
+        self.nav_separator.pack(fill="x", side="bottom", pady=8)
+        settings = tk.Label(self.sidebar, text="⚙\nНалашт.", bg=RAIL_BG, fg=MUTED, justify="center", padx=3, pady=7, cursor="hand2", font=("Segoe UI Semibold", 8))
+        settings.pack(fill="x", side="bottom", pady=2)
+        settings.bind("<Button-1>", lambda _e: self.show_settings())
+        settings.bind("<Enter>", lambda _e: settings.configure(bg=PANEL_2) if settings.cget("fg") not in (TEXT, ACCENT) else None)
+        settings.bind("<Leave>", lambda _e: settings.configure(bg=RAIL_BG) if settings.cget("fg") not in (TEXT, ACCENT) else None)
+        self.nav_buttons["Налаштування"] = settings
+        self.nav_icons["Налаштування"] = "⚙"
+        self.nav_short_labels["Налаштування"] = "Налашт."
         if self.dev_mode:
-            dev = tk.Label(self.sidebar, text="  ◈    DEV", bg="#0a0e14", fg="#c28cff", anchor="w", padx=10, pady=6, cursor="hand2", font=("Segoe UI Semibold", 10))
-            dev.pack(fill="x")
+            dev = tk.Label(self.sidebar, text="◈\nDEV", bg=RAIL_BG, fg="#c28cff", justify="center", padx=3, pady=7, cursor="hand2", font=("Segoe UI Semibold", 8))
+            dev.pack(fill="x", side="bottom", pady=2)
             dev.bind("<Button-1>", lambda _e: self.show_dev())
             self.nav_buttons["DEV"] = dev
             self.nav_icons["DEV"] = "◈"
-        settings = tk.Label(self.sidebar, text="  ⚙    Налаштування", bg="#0a0e14", fg=MUTED, anchor="w", padx=10, pady=6, cursor="hand2", font=("Segoe UI Semibold", 10))
-        settings.pack(fill="x")
-        settings.bind("<Button-1>", lambda _e: self.show_settings())
-        self.nav_buttons["Налаштування"] = settings
-        self.nav_icons["Налаштування"] = "⚙"
+            self.nav_short_labels["DEV"] = "DEV"
 
     def _schedule_responsive_layout(self, event):
         if event.widget is not self:
@@ -1905,64 +2049,57 @@ class ModHub(tk.Tk):
         mode = "tiny" if width < 900 else ("compact" if width < 1220 else "full")
         short = height < 800
 
-        top_height = 54 if short or mode == "tiny" else 70
-        self.top.configure(height=top_height, padx=14 if mode != "full" else 26, pady=6 if top_height == 54 else 14)
-        self.statusbar.configure(height=34 if short else 42, padx=12 if mode == "tiny" else 20)
-        self.status_text.pack_configure(pady=7 if short else 11)
+        top_height = 58 if short or mode == "tiny" else 66
+        self.top.configure(height=top_height, padx=10 if mode == "tiny" else 18, pady=7 if top_height == 58 else 10)
+        self.statusbar.configure(height=52 if short else 58, padx=12 if mode == "tiny" else 18)
+        self.sidebar.configure(width=70 if mode == "tiny" else 86, padx=5 if mode == "tiny" else 8, pady=8 if short else 14)
 
         if mode == "full":
-            self.sidebar.configure(width=218, padx=14)
             if not self.brand_name.winfo_manager():
                 self.brand_name.pack(side="left", padx=(12, 0))
                 self.brand_hub.pack(side="left", padx=(5, 0))
-            self.guard_button.set_layout("Захист: LIVE" if self.guard_enabled else "Захист: ВИМК", 135, 42)
-            self.quick_button.set_layout("Швидке встановлення", 175, 42)
-            self.play_button.set_layout("▶  Автопідключення", 200, 42)
-            self.account_button.set_layout(self.account_button_text(), 135, 42)
+            if not self.search_box.winfo_manager():
+                self.search_box.pack(side="left", padx=(38, 12), after=self.brand)
+            if not self.quick_button.winfo_manager():
+                self.quick_button.pack(side="left", padx=(0, 10), before=self.account_button)
+            if not self.guard_button.winfo_manager():
+                self.guard_button.pack(side="left", padx=(0, 10), before=self.quick_button)
+            self.guard_button.set_layout("Захист: LIVE" if self.guard_enabled else "Захист: ВИМК", 126, 42)
+            self.quick_button.set_layout("Швидке встановлення", 165, 42)
+            self.account_button.set_layout(self.account_button_text(), 125, 42)
+            self.play_button.set_layout("▶  Грати в UKRAINE GTA", 230, 42)
         elif mode == "compact":
-            self.sidebar.configure(width=190, padx=14)
             if not self.brand_name.winfo_manager():
                 self.brand_name.pack(side="left", padx=(10, 0))
                 self.brand_hub.pack(side="left", padx=(4, 0))
-            self.root_status.pack_forget()
-            self.guard_button.set_layout("Захист", 104, 42)
-            self.quick_button.set_layout("Швидко", 105, 42)
-            self.play_button.set_layout("▶  Сервер", 155, 42)
-            self.account_button.set_layout(self.account_button_text(compact=True), 110, 42)
+            self.search_box.pack_forget()
+            self.guard_button.pack_forget()
+            if not self.quick_button.winfo_manager():
+                self.quick_button.pack(side="left", padx=(0, 8), before=self.account_button)
+            self.quick_button.set_layout("Швидко", 96, 40)
+            self.account_button.set_layout(self.account_button_text(compact=True), 108, 40)
+            self.play_button.set_layout("▶  Грати в UKRAINE GTA", 210, 40)
         else:
-            self.sidebar.configure(width=72, padx=7)
             self.brand_name.pack_forget()
             self.brand_hub.pack_forget()
-            self.root_status.pack_forget()
-            self.guard_button.set_layout("LIVE", 68, 40)
-            self.quick_button.set_layout("Моди", 72, 40)
-            self.play_button.set_layout("▶ Сервер", 92, 40)
+            self.search_box.pack_forget()
+            self.guard_button.pack_forget()
+            self.quick_button.pack_forget()
             self.account_button.set_layout("●", 42, 40)
+            self.play_button.set_layout("▶  Грати", 120, 40)
 
-        self.sidebar.configure(pady=8 if short else 20)
-        if mode == "tiny":
-            self.library_heading.pack_forget()
-            self.search_heading.pack_forget()
-            self.search_entry.pack_forget()
-        else:
-            if not self.library_heading.winfo_manager():
-                self.library_heading.pack(anchor="w", padx=12, pady=(0, 6), before=self.nav_buttons["Головна"])
-                self.search_heading.pack(anchor="w", padx=12, pady=(0, 4), before=self.nav_buttons["Головна"])
-                self.search_entry.pack(fill="x", padx=4, pady=(0, 7), ipady=6, before=self.nav_buttons["Головна"])
-
-        nav_pady = 2 if short else 5
-        nav_font = 9 if short or mode == "tiny" else 10
         for name, button in self.nav_buttons.items():
             icon = self.nav_icons.get(name, "•")
+            label = self.nav_short_labels.get(name, name)
             button.configure(
-                text=f"  {icon}" if mode == "tiny" else f"  {icon}    {name}",
-                pady=nav_pady,
-                padx=4 if mode == "tiny" else 10,
-                font=("Segoe UI Semibold", nav_font),
-                anchor="center" if mode == "tiny" else "w",
+                text=icon if mode == "tiny" else f"{icon}\n{label}",
+                pady=5 if short else 7,
+                font=("Segoe UI Semibold", 8),
+                justify="center",
+                anchor="center",
             )
-            button.pack_configure(pady=0 if short else 1)
-        self.nav_separator.pack_configure(pady=7 if short else 14)
+            button.pack_configure(pady=1 if short else 2)
+        self.nav_separator.pack_configure(pady=5 if short else 8)
         self._layout_mode = mode
 
     def page_padding(self):
@@ -1978,7 +2115,7 @@ class ModHub(tk.Tk):
         self.active_category = name
         for key, widget in self.nav_buttons.items():
             active = key == name
-            widget.configure(bg=PANEL_2 if active else "#0a0e14", fg=TEXT if active else MUTED)
+            widget.configure(bg="#1a2330" if active else RAIL_BG, fg=ACCENT if active else MUTED)
 
     def navigate(self, name):
         self.search_var.set("")
@@ -2163,6 +2300,9 @@ class ModHub(tk.Tk):
     def mod_image(self, mod: Mod, size=(328, 166)):
         custom = cover_path(mod)
         source = custom
+        if source is None and mod.category == "Кров + звук влучання":
+            nightline_cover = RESOURCE_DIR / "assets" / "nightline" / "hit-confirm.webp"
+            source = nightline_cover if nightline_cover.is_file() else None
         if source is None:
             filename = CATEGORY_COVER_FILES.get(mod.category, CATEGORY_COVER_FILES["Інше"])
             candidate = RESOURCE_DIR / "assets" / "category_covers" / filename
@@ -2188,28 +2328,43 @@ class ModHub(tk.Tk):
         if key in self._images:
             return self._images[key]
         width, height = size
-        image = Image.new("RGB", size, "#071016")
+        image = Image.new("RGBA", size, "#0b1017")
         draw = ImageDraw.Draw(image, "RGBA")
-        for radius in range(520, 20, -10):
-            alpha = max(1, int(7 * (1 - radius / 520)))
-            draw.ellipse((width * .72 - radius, height * .38 - radius, width * .72 + radius, height * .38 + radius), fill=(0, 220, 187, alpha))
-        for i in range(110):
-            x = (i * 97) % width
-            y = 65 + (i * 43) % max(1, height - 50)
-            color = (0, 202, 184, 22) if i % 2 else (111, 74, 255, 20)
-            draw.line((x, height + 10, x + 110, y), fill=color, width=2)
-        for layer in range(4):
-            points = []
-            base = height * (.55 + layer * .11)
-            for x in range(-20, width + 30, 14):
-                y = base + math.sin((x + layer * 71) / (55 + layer * 9)) * (18 + layer * 5)
-                points.append((x, y))
-            points.extend([(width + 30, height + 10), (-20, height + 10)])
-            draw.polygon(points, fill=(4 + layer * 2, 9 + layer * 3, 15 + layer * 4, 115 + layer * 25))
-        for y in range(height):
-            alpha = int(190 * y / height)
-            draw.line((0, y, width, y), fill=(6, 9, 14, alpha))
-        photo = ImageTk.PhotoImage(image)
+        for x in range(width):
+            ratio = x / max(1, width - 1)
+            draw.line((x, 0, x, height), fill=(12 + int(8 * ratio), 17 + int(12 * ratio), 25 + int(18 * ratio), 255))
+        for x in range(0, width, 44):
+            draw.line((x, 0, x, height), fill=(102, 199, 255, 13), width=1)
+        for y in range(0, height, 44):
+            draw.line((0, y, width, y), fill=(102, 199, 255, 10), width=1)
+
+        tram_path = RESOURCE_DIR / "assets" / "nightline" / "tram-decor.webp"
+        if tram_path.is_file():
+            try:
+                tram = Image.open(tram_path).convert("RGBA")
+                tram.thumbnail((round(width * .62), round(height * 1.45)), Image.Resampling.LANCZOS)
+                tram.putalpha(tram.getchannel("A").point(lambda value: min(255, round(value * 2.4))))
+                image.alpha_composite(tram, (width - tram.width - 30, (height - tram.height) // 2))
+            except OSError:
+                pass
+        character_path = RESOURCE_DIR / "assets" / "nightline" / "character.webp"
+        if character_path.is_file():
+            try:
+                character = Image.open(character_path).convert("RGBA")
+                character.thumbnail((round(width * .28), round(height * 1.45)), Image.Resampling.LANCZOS)
+                image.alpha_composite(character, (round(width * .72), height - character.height + 30))
+            except OSError:
+                pass
+
+        shade = Image.new("RGBA", size, (0, 0, 0, 0))
+        shade_draw = ImageDraw.Draw(shade, "RGBA")
+        for x in range(width):
+            ratio = x / max(1, width - 1)
+            alpha = max(0, round(224 * (1 - min(1, ratio / .72))))
+            shade_draw.line((x, 0, x, height), fill=(5, 8, 12, alpha))
+        shade_draw.rectangle((0, height - 78, width, height), fill=(5, 8, 12, 82))
+        image = Image.alpha_composite(image, shade)
+        photo = ImageTk.PhotoImage(image.convert("RGB"))
         self._images[key] = photo
         return photo
 
@@ -2219,30 +2374,50 @@ class ModHub(tk.Tk):
         scroll = ScrollFrame(self.content_host)
         scroll.pack(fill="both", expand=True)
         body = scroll.inner
-        hero = tk.Frame(body, bg=PANEL, height=270, highlightbackground="#1d3440", highlightthickness=1)
+        hero = tk.Frame(body, bg=PANEL, height=318, highlightbackground="#283747", highlightthickness=1)
         page_pad = self.page_padding()
-        hero.pack(fill="x", padx=page_pad, pady=(22 if page_pad < 30 else 28, 22))
+        hero.pack(fill="x", padx=page_pad, pady=(20 if page_pad < 30 else 26, 14))
         hero.pack_propagate(False)
         visual = AnimatedHero(hero, self)
         visual.place(relx=0, rely=0, relwidth=1, relheight=1)
-        copy = tk.Frame(hero, bg="#081117", highlightbackground="#12303a", highlightthickness=1)
-        copy.place(x=38, y=30, width=590, height=210)
-        hero.bind("<Configure>", lambda event: copy.place_configure(width=max(300, min(590, event.width - 76))))
-        tk.Label(copy, text="UG MOD HUB", bg="#081117", fg=ACCENT, font=("Segoe UI Semibold", 10)).pack(anchor="w")
-        tk.Label(copy, text="Твоя MTA. Твої правила.", bg="#081117", fg=TEXT, font=("Segoe UI Black", 29)).pack(anchor="w", pady=(5, 0))
-        tk.Label(copy, text="Моди UKRAINE GTA в одному атмосферному хабі.\nВстановлення, резервна копія та відновлення — в один клік.", bg="#081117", fg="#b7c1cf", font=("Segoe UI", 11), justify="left").pack(anchor="w", pady=(10, 18))
-        action_row = tk.Frame(copy, bg="#081117")
+        copy = tk.Frame(hero, bg="#0c1219", padx=27, pady=22, highlightbackground="#293744", highlightthickness=1)
+        copy.place(x=28, y=24, width=620, height=270)
+        hero.bind("<Configure>", lambda event: copy.place_configure(width=max(320, min(620, event.width - 56))))
+        tk.Label(copy, text="КОЛЕКЦІЯ  ·  DARK CITY", bg="#0c1219", fg=BLUE, font=("Segoe UI Semibold", 8)).pack(anchor="w")
+        tk.Label(copy, text="ЗМІНЮЙ ГРУ.", bg="#0c1219", fg=TEXT, font=("Segoe UI Semibold", 27)).pack(anchor="w", pady=(8, 0))
+        tk.Label(copy, text="ЗБЕРІГАЙ СТИЛЬ.", bg="#0c1219", fg=ACCENT, font=("Segoe UI Semibold", 27)).pack(anchor="w")
+        tk.Label(copy, text="Перевірені модифікації для UKRAINE GTA з автоматичними\nрезервними копіями та безпечним відновленням.", bg="#0c1219", fg="#a2aab5", font=("Segoe UI", 10), justify="left").pack(anchor="w", pady=(8, 13))
+        action_row = tk.Frame(copy, bg="#0c1219")
         action_row.pack(fill="x", anchor="w")
-        PillButton(action_row, "Відкрити бібліотеку  →", lambda: self.show_library("Усі моди"), width=200, height=43).pack(side="left")
-        tk.Label(action_row, text="  SHA-256  •  LIVE  •  AUTO UPDATE", bg="#081117", fg="#5b8991", font=("Consolas", 8)).pack(side="left", padx=(12, 0))
+        PillButton(action_row, "Відкрити каталог  →", lambda: self.show_library("Усі моди"), width=185, height=40, primary=False).pack(side="left")
+        tk.Label(action_row, text=f"  {len(self.mods)} модів доступно", bg="#0c1219", fg="#6f7884", font=("Segoe UI", 8)).pack(side="left", padx=(10, 0))
+
+        installed_count = len(load_state().get("installed", {}))
+        status_strip = tk.Frame(body, bg=BG)
+        status_strip.pack(fill="x", padx=page_pad, pady=(0, 20))
+        status_items = [
+            ("ВСТАНОВЛЕНО", str(installed_count), "активні моди", ACCENT),
+            ("ДОСТУПНО", str(len([mod for mod in self.mods if mod.category != "Оптимізація"])), "у каталозі", BLUE),
+            ("ЗАХИСТ", "LIVE" if self.guard_enabled else "ВИМК", "файли під контролем", GREEN if self.guard_enabled else MUTED),
+        ]
+        for index, (label, value, detail, color) in enumerate(status_items):
+            card = tk.Frame(status_strip, bg=PANEL, padx=16, pady=11, highlightbackground=LINE, highlightthickness=1)
+            card.grid(row=0, column=index, sticky="ew", padx=(0, 10 if index < 2 else 0))
+            status_strip.grid_columnconfigure(index, weight=1)
+            tk.Label(card, text=label, bg=PANEL, fg="#6f7782", font=("Segoe UI Semibold", 7)).pack(anchor="w")
+            line = tk.Frame(card, bg=PANEL)
+            line.pack(fill="x", pady=(4, 0))
+            tk.Label(line, text=value, bg=PANEL, fg=color, font=("Segoe UI Semibold", 15)).pack(side="left")
+            tk.Label(line, text=detail, bg=PANEL, fg=MUTED, font=("Segoe UI", 8)).pack(side="right", pady=(5, 0))
 
         section = tk.Frame(body, bg=BG)
         section.pack(fill="x", padx=page_pad)
-        tk.Label(section, text="Популярні моди", bg=BG, fg=TEXT, font=("Segoe UI Semibold", 18)).pack(side="left")
-        tk.Label(section, text="Показати всі  →", bg=BG, fg=ACCENT, cursor="hand2", font=("Segoe UI Semibold", 10)).pack(side="right")
+        tk.Label(section, text="Популярні моди", bg=BG, fg=TEXT, font=("Segoe UI Semibold", 17)).pack(side="left")
+        all_mods = tk.Label(section, text="Показати всі  →", bg=BG, fg=ACCENT, cursor="hand2", font=("Segoe UI Semibold", 9))
+        all_mods.pack(side="right")
+        all_mods.bind("<Button-1>", lambda _event: self.show_library("Усі моди"))
         grid = ResponsiveCardGrid(body)
         grid.pack(fill="x", padx=page_pad, pady=(15, 30))
-        installed = load_state().get("installed", {})
         available = [mod for mod in self.mods if mod.category != "Оптимізація"]
         for index, mod in enumerate(available[:4]):
             card = ModCard(grid, self, mod)
@@ -2252,7 +2427,8 @@ class ModHub(tk.Tk):
 
     def show_library(self, category="Усі моди", search_query=""):
         self._clear_content()
-        self._set_active(category)
+        self._set_active(category if category in self.nav_buttons else "Усі моди")
+        self.active_category = category
         scroll = ScrollFrame(self.content_host)
         scroll.pack(fill="both", expand=True)
         body = scroll.inner
@@ -2269,16 +2445,38 @@ class ModHub(tk.Tk):
             mods = installed_mod_entries(self.mods)
         else:
             mods = [mod for mod in available if mod.category == category]
-        header = tk.Frame(body, bg="#0d131c", padx=24, pady=20, highlightbackground="#202b39", highlightthickness=1)
+        header = tk.Frame(body, bg=PANEL, padx=24, pady=20, highlightbackground=LINE, highlightthickness=1)
         page_pad = self.page_padding()
         header.pack(fill="x", padx=page_pad, pady=(22 if page_pad < 30 else 28, 18))
-        header_copy = tk.Frame(header, bg="#0d131c")
+        header_copy = tk.Frame(header, bg=PANEL)
         header_copy.pack(side="left", fill="x", expand=True)
         heading = f"Пошук: {search_query}" if search_query.strip() else ("Пошук модів" if category == "Пошук" else category)
-        tk.Label(header_copy, text=heading, bg="#0d131c", fg=TEXT, font=("Segoe UI Semibold", 25)).pack(anchor="w")
-        tk.Label(header_copy, text="Пошук за назвою, описом або розділом." if category == "Пошук" else "Обирай мод — оригінальні файли буде збережено перед встановленням.", bg="#0d131c", fg=MUTED, font=("Segoe UI", 10)).pack(anchor="w", pady=(4, 0))
-        count = tk.Label(header, text=f"{len(mods)}  МОДІВ", bg="#14252a", fg=ACCENT, padx=15, pady=8, font=("Segoe UI Semibold", 9))
+        tk.Label(header_copy, text=heading, bg=PANEL, fg=TEXT, font=("Segoe UI Semibold", 24)).pack(anchor="w")
+        tk.Label(header_copy, text="Пошук за назвою, описом або розділом." if category == "Пошук" else "Обирай мод — оригінальні файли буде збережено перед встановленням.", bg=PANEL, fg=MUTED, font=("Segoe UI", 9)).pack(anchor="w", pady=(4, 0))
+        count = tk.Label(header, text=f"{len(mods)}  МОДІВ", bg="#20232b", fg=ACCENT, padx=15, pady=8, font=("Segoe UI Semibold", 8))
         count.pack(side="right")
+        if category not in {"Пошук", "Обране", "Встановлено"}:
+            filters = tk.Frame(body, bg=BG)
+            filters.pack(fill="x", padx=page_pad, pady=(0, 14))
+            filter_items = [("Усі моди", "Усі")] + [(item, item) for item in CATEGORIES]
+            columns = 4 if self.winfo_width() < 1160 else 6
+            for index, (value, label) in enumerate(filter_items):
+                active_filter = value == category
+                chip = tk.Label(
+                    filters,
+                    text=label,
+                    bg="#242831" if active_filter else PANEL,
+                    fg=ACCENT if active_filter else MUTED,
+                    padx=10,
+                    pady=7,
+                    cursor="hand2",
+                    font=("Segoe UI Semibold", 8),
+                    highlightbackground=ACCENT if active_filter else LINE,
+                    highlightthickness=1,
+                )
+                chip.grid(row=index // columns, column=index % columns, sticky="ew", padx=(0, 6), pady=(0, 6))
+                filters.grid_columnconfigure(index % columns, weight=1)
+                chip.bind("<Button-1>", lambda _event, selected=value: self.show_library(selected))
         if not mods:
             empty = tk.Frame(body, bg=PANEL, padx=30, pady=50, highlightbackground=LINE, highlightthickness=1)
             empty.pack(fill="x", padx=page_pad, pady=10)
@@ -2708,13 +2906,16 @@ class ModHub(tk.Tk):
         server_card.pack(fill="x", pady=(0, 18))
         tk.Label(server_card, text="Автопідключення до сервера", bg=PANEL, fg=TEXT, font=("Segoe UI Semibold", 12)).pack(anchor="w")
         tk.Label(server_card, text="Запускається офіційний UKRAINE GTA.exe, після чого MTA підключається до вибраного сервера.", bg=PANEL, fg=MUTED, font=("Segoe UI", 9)).pack(anchor="w", pady=(3, 10))
-        servers = load_mta_servers(self.game_root_var.get())
+        current_host = str(self.settings.get("server_host", ""))
+        try:
+            current_port = int(self.settings.get("server_port", 22003))
+        except (TypeError, ValueError):
+            current_port = 22003
+        servers = available_server_choices(self.game_root_var.get(), current_host, current_port)
         self.server_choice_map = {
             f"{item['name']}  —  {item['host']}:{item['port']}": (item["host"], item["port"])
             for item in servers
         }
-        current_host = self.settings.get("server_host", "")
-        current_port = int(self.settings.get("server_port", 22003))
         selected_label = ""
         for label, address in self.server_choice_map.items():
             if address == (current_host, current_port):
@@ -2833,7 +3034,7 @@ class ModHub(tk.Tk):
     def update_root_status(self):
         ok, message = validate_game_root(self.settings.get("game_root", ""))
         self._game_root_ok = ok
-        self.root_status.configure(text="● Гру знайдено" if ok else "○ Гру не налаштовано", fg=ACCENT if ok else MUTED)
+        self.root_status.configure(text="● UKRAINE GTA готова" if ok else "○ Гру не налаштовано", fg=GREEN if ok else MUTED)
         self.play_button.set_enabled(ok)
         self.quick_button.set_enabled(ok)
 
@@ -2857,20 +3058,20 @@ class ModHub(tk.Tk):
             return
         if self.animation_mode != "Повні":
             try:
-                self.logo.itemconfigure(self.logo_shape, fill=ACCENT, outline=ACCENT)
+                self.logo.itemconfigure(self.logo_shape, fill="#111720", outline="#253443")
                 self.after(500, self.animate_ambient)
             except tk.TclError:
                 pass
             return
         self.animation_phase += 0.12
         amount = (math.sin(self.animation_phase) + 1) / 2
-        glow = blend(ACCENT, "#42ead7", amount * 0.65)
+        glow = blend(BLUE, ACCENT, amount * 0.42)
         try:
-            self.logo.itemconfigure(self.logo_shape, fill=glow, outline=glow)
-            self.brand_hub.configure(fg=blend(ACCENT, "#76f8e6", amount * .42))
+            self.logo.itemconfigure(self.logo_shape, fill="#111720", outline=glow)
+            self.brand_hub.configure(fg=blend(BLUE, ACCENT, amount * .28))
             if getattr(self, "_game_root_ok", False):
-                self.root_status.configure(fg=blend(ACCENT, "#9bfff1", amount * .55))
-            self.status_text.configure(fg=blend(MUTED, "#b7d7dc", amount * .28))
+                self.root_status.configure(fg=blend(GREEN, "#b6ffcb", amount * .35))
+            self.status_text.configure(fg=blend(MUTED, "#c0c9d4", amount * .22))
             self.after(80, self.animate_ambient)
         except tk.TclError:
             return
@@ -3373,7 +3574,43 @@ class ModHub(tk.Tk):
             on_done=done,
         )
 
-    def start_game(self):
+    def open_server_selector(self):
+        if self.busy:
+            return
+        ok, message = validate_game_root(self.settings.get("game_root", ""))
+        if not ok:
+            messagebox.showerror("UKRAINE GTA", message)
+            return
+        try:
+            if self.server_dialog is not None and self.server_dialog.winfo_exists():
+                self.server_dialog.lift()
+                self.server_dialog.focus_force()
+                return
+        except tk.TclError:
+            self.server_dialog = None
+        current_host = str(self.settings.get("server_host") or "s5.ukraine-gta.com.ua")
+        try:
+            current_port = int(self.settings.get("server_port", 22003))
+        except (TypeError, ValueError):
+            current_port = 22003
+        choices = available_server_choices(self.settings.get("game_root", ""), current_host, current_port)
+        self.server_dialog = ServerSelectDialog(
+            self,
+            choices,
+            current_host,
+            current_port,
+            self._server_selected_for_launch,
+        )
+
+    def _server_selected_for_launch(self, server):
+        self.server_dialog = None
+        self.settings["server_host"] = str(server["host"])
+        self.settings["server_port"] = int(server["port"])
+        save_settings(self.settings)
+        self.set_status(f"Обрано сервер: {server['name']}")
+        self.start_game(server)
+
+    def start_game(self, server=None):
         try:
             installed = load_state().get("installed", {})
             selected = [mod for mod in self.mods if mod.id in installed]
@@ -3382,20 +3619,24 @@ class ModHub(tk.Tk):
                 self._show_preflight(issues, "Гру не запущено")
                 return
             root = self.settings.get("game_root", "")
+            host = str((server or {}).get("host") or self.settings.get("server_host") or "s5.ukraine-gta.com.ua")
+            try:
+                port = int((server or {}).get("port") or self.settings.get("server_port", 22003))
+            except (TypeError, ValueError):
+                port = 22003
+            server_name = str((server or {}).get("name") or f"{host}:{port}")
 
             def launch_after_check(result):
                 try:
-                    host = self.settings.get("server_host", "s5.ukraine-gta.com.ua")
-                    port = int(self.settings.get("server_port", 22003))
                     launch_game(root, self.settings.get("game_exe", ""), host, port)
                     self.set_status(
-                        f"Перевірено {result['checked']}, відновлено {result['repaired']} • підключення {host}:{port}"
+                        f"Перевірено {result['checked']}, відновлено {result['repaired']} • запуск: {server_name}"
                     )
                 except ModError as exc:
                     messagebox.showerror("Запуск гри", str(exc))
 
             self._run_job(
-                "Перевірка всіх встановлених файлів…",
+                f"Перевірка файлів перед запуском · {server_name}",
                 lambda progress, cancel: verify_installed_files(root, self.mods, progress, cancel),
                 "Усі файли перевірено",
                 on_done=launch_after_check,
