@@ -279,6 +279,7 @@ class Mod:
     user_defined: bool = False
     cover: str | None = None
     mod_type: str = "files"
+    status: str = "available"
 
     @classmethod
     def from_dict(cls, raw: dict) -> "Mod":

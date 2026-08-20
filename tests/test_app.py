@@ -1,6 +1,6 @@
 import unittest
 
-from app import format_account_date, mod_matches_search
+from app import format_account_date, mod_catalog_status, mod_matches_search
 from core import Mod
 
 
@@ -28,6 +28,13 @@ class SearchTests(unittest.TestCase):
     def test_account_registration_date_is_human_readable(self):
         self.assertEqual(format_account_date("2026-08-07 14:25:00"), "07.08.2026 о 14:25")
         self.assertEqual(format_account_date(""), "дата не вказана")
+
+    def test_mod_catalog_status_supports_paused_and_development_aliases(self):
+        paused = Mod("paused", "Paused", "Інше", "", "game", status="призупинено")
+        development = Mod("dev", "Dev", "Інше", "", "game", status="in_development")
+        self.assertEqual(mod_catalog_status(paused), "paused")
+        self.assertEqual(mod_catalog_status(development), "development")
+        self.assertEqual(mod_catalog_status(self.mod), "available")
 
 
 if __name__ == "__main__":

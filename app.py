@@ -40,7 +40,6 @@ from core import (
     detect_game_candidates,
     download_application_update,
     ensure_editable_payload,
-    ensure_optimization_payloads,
     export_locked_release,
     install_mod,
     find_accessory_template,
@@ -100,7 +99,7 @@ MUTED = "#8f9aab"
 ACCENT = "#00baa9"
 ACCENT_HOVER = "#12d2bd"
 RED = "#ef5f76"
-CATEGORIES = ["Кров + звук влучання", "Небо", "Ефекти", "Анімації", "Звуки пострілів", "Приціл", "HUD", "Скіни", "Аксесуари", "Заміна зброї", "Оптимізація", "Інше"]
+CATEGORIES = ["Кров + звук влучання", "Небо", "Ефекти", "Анімації", "Звуки пострілів", "Приціл", "HUD", "Скіни", "Аксесуари", "Заміна зброї", "Інше"]
 CATEGORY_COVER_FILES = {
     "Кров + звук влучання": "blood_hit.png",
     "Небо": "sky.png",
@@ -112,9 +111,22 @@ CATEGORY_COVER_FILES = {
     "Скіни": "other.png",
     "Аксесуари": "other.png",
     "Заміна зброї": "other.png",
-    "Оптимізація": "optimization.png",
     "Інше": "other.png",
 }
+
+MOD_STATUS_ALIASES = {
+    "paused": "paused",
+    "suspended": "paused",
+    "призупинено": "paused",
+    "development": "development",
+    "in_development": "development",
+    "in-development": "development",
+    "у розробці": "development",
+}
+
+
+def mod_catalog_status(mod: Mod) -> str:
+    return MOD_STATUS_ALIASES.get(str(mod.status or "").strip().lower(), "available")
 
 
 def enable_dpi_awareness():
@@ -1295,19 +1307,33 @@ class ModCard(tk.Frame):
         installed = self.mod.id in load_state().get("installed", {})
         available = mod_payload_available(self.mod.id)
         if installed:
-            self.status.config(text="● ВСТАНОВЛЕНО")
+            self.status.config(text="● ВСТАНОВЛЕНО", fg=ACCENT)
             self.button.text = "Видалити"
             self.button.primary = False
             self.button.danger = True
             self.button.command = lambda: self.app.remove(self.mod)
             self.button.set_enabled(True)
         else:
-            self.status.config(text="ГОТОВО" if available else "НЕМАЄ ФАЙЛІВ", fg=ACCENT if available else MUTED)
-            self.button.text = "Встановити"
-            self.button.primary = True
-            self.button.danger = False
-            self.button.command = lambda: self.app.install(self.mod)
-            self.button.set_enabled(available)
+            catalog_status = mod_catalog_status(self.mod)
+            if catalog_status == "paused":
+                self.status.config(text="● ПРИЗУПИНЕНО", fg=RED)
+                self.button.text = "Мод призупинено"
+                self.button.primary = False
+                self.button.danger = False
+                self.button.set_enabled(False)
+            elif catalog_status == "development" or not available:
+                self.status.config(text="● У РОЗРОБЦІ", fg="#e4a853")
+                self.button.text = "Мод у розробці"
+                self.button.primary = False
+                self.button.danger = False
+                self.button.set_enabled(False)
+            else:
+                self.status.config(text="ДОСТУПНО", fg=ACCENT)
+                self.button.text = "Встановити"
+                self.button.primary = True
+                self.button.danger = False
+                self.button.command = lambda: self.app.install(self.mod)
+                self.button.set_enabled(True)
 
 
 class ModHub(tk.Tk):
@@ -1348,7 +1374,7 @@ class ModHub(tk.Tk):
         self._catalog_retry_pending = False
         self._window_minimized = False
 
-        self.title(f"{self.catalog.get('app_name', 'UG MOD HUB')}  •  {self.catalog.get('version', '')}")
+        self.title(self.catalog.get("app_name", "UG MOD HUB"))
         icon_path = RESOURCE_DIR / "assets" / "ukraine_gta_app_icon.ico"
         if not icon_path.exists():
             icon_path = RESOURCE_DIR / "assets" / "app_icon.png"
@@ -1410,7 +1436,7 @@ class ModHub(tk.Tk):
                 self.titlebar_icon = None
         title = tk.Label(
             identity,
-            text=f"UG MOD HUB  •  {self.catalog.get('version', '')}",
+            text="UG MOD HUB",
             bg="#070a0f", fg="#a8b5c4", font=("Segoe UI Semibold", 9),
         )
         title.pack(side="left", padx=(8, 0), fill="y")
@@ -1782,12 +1808,11 @@ class ModHub(tk.Tk):
         self.top_actions = tk.Frame(self.top, bg=BG)
         self.top_actions.pack(side="right")
         self.root_status = tk.Label(self.top_actions, text="Гру не знайдено", fg=MUTED, bg=BG, font=("Segoe UI", 9))
-        self.root_status.pack(side="left", padx=16)
         self.guard_button = PillButton(self.top_actions, "Захист: LIVE", self.toggle_resource_guard, width=135, height=42, primary=True)
         self.guard_button.pack(side="left", padx=(0, 10))
         self.quick_button = PillButton(self.top_actions, "Швидке встановлення", self.quick_apply, width=175, height=42, primary=False)
         self.quick_button.pack(side="left", padx=(0, 10))
-        self.play_button = PillButton(self.top_actions, "▶  Автопідключення • АДМІН", self.start_game, width=200, height=42)
+        self.play_button = PillButton(self.top_actions, "▶  Автопідключення", self.start_game, width=200, height=42)
         self.play_button.pack(side="left", padx=(0, 10))
         self.account_button = PillButton(self.top_actions, "Профіль", self.open_account_dialog, width=135, height=42, primary=False)
         self.account_button.pack(side="left")
@@ -1808,11 +1833,9 @@ class ModHub(tk.Tk):
         self.statusbar = tk.Frame(self, bg="#090d13", height=42, padx=20)
         self.statusbar.pack(fill="x", side="bottom")
         self.statusbar.pack_propagate(False)
-        self.status_text = tk.Label(self.statusbar, text="Готово", bg="#090d13", fg=MUTED, font=("Segoe UI", 9))
+        self.status_text = tk.Label(self.statusbar, text="", bg="#090d13", fg=MUTED, font=("Segoe UI", 9))
         self.status_text.pack(side="left", pady=11)
         self.progress = ttk.Progressbar(self.statusbar, length=220, mode="determinate")
-        self.admin_label = tk.Label(self.statusbar, text="● Адміністратор" if self.admin_mode else "○ Звичайний режим", bg="#090d13", fg=ACCENT if self.admin_mode else MUTED, font=("Segoe UI", 9))
-        self.admin_label.pack(side="right", pady=11)
         self.update_root_status()
         self.refresh_guard_button()
         self._build_resize_handles()
@@ -1833,7 +1856,7 @@ class ModHub(tk.Tk):
             ("Головна", "⌂"), ("Обране", "★"),
             ("Кров + звук влучання", "✦"), ("Небо", "◒"),
             ("Ефекти", "ϟ"), ("Анімації", "◆"), ("Звуки пострілів", "♪"),
-            ("Приціл", "◎"), ("HUD", "▣"), ("Скіни", "♙"), ("Аксесуари", "◇"), ("Заміна зброї", "⌁"), ("Оптимізація", "⚡"), ("Інше", "⋯"), ("Встановлено", "✓"),
+            ("Приціл", "◎"), ("HUD", "▣"), ("Скіни", "♙"), ("Аксесуари", "◇"), ("Заміна зброї", "⌁"), ("Інше", "⋯"), ("Встановлено", "✓"),
             ("Історія", "↺"),
         ]
         self.nav_buttons = {}
@@ -1859,8 +1882,6 @@ class ModHub(tk.Tk):
         settings.bind("<Button-1>", lambda _e: self.show_settings())
         self.nav_buttons["Налаштування"] = settings
         self.nav_icons["Налаштування"] = "⚙"
-        self.sidebar_version = tk.Label(self.sidebar, text=f"v{self.catalog.get('version', '0.1.0')}  •  локальна версія", bg="#0a0e14", fg="#4d5868", font=("Segoe UI", 8))
-        self.sidebar_version.pack(side="bottom", anchor="w", padx=12)
 
     def _schedule_responsive_layout(self, event):
         if event.widget is not self:
@@ -1888,18 +1909,15 @@ class ModHub(tk.Tk):
         self.top.configure(height=top_height, padx=14 if mode != "full" else 26, pady=6 if top_height == 54 else 14)
         self.statusbar.configure(height=34 if short else 42, padx=12 if mode == "tiny" else 20)
         self.status_text.pack_configure(pady=7 if short else 11)
-        self.admin_label.pack_configure(pady=7 if short else 11)
 
         if mode == "full":
             self.sidebar.configure(width=218, padx=14)
             if not self.brand_name.winfo_manager():
                 self.brand_name.pack(side="left", padx=(12, 0))
                 self.brand_hub.pack(side="left", padx=(5, 0))
-            if not self.root_status.winfo_manager():
-                self.root_status.pack(side="left", padx=16, before=self.guard_button)
             self.guard_button.set_layout("Захист: LIVE" if self.guard_enabled else "Захист: ВИМК", 135, 42)
             self.quick_button.set_layout("Швидке встановлення", 175, 42)
-            self.play_button.set_layout("▶  Автопідключення • АДМІН", 200, 42)
+            self.play_button.set_layout("▶  Автопідключення", 200, 42)
             self.account_button.set_layout(self.account_button_text(), 135, 42)
         elif mode == "compact":
             self.sidebar.configure(width=190, padx=14)
@@ -1909,7 +1927,7 @@ class ModHub(tk.Tk):
             self.root_status.pack_forget()
             self.guard_button.set_layout("Захист", 104, 42)
             self.quick_button.set_layout("Швидко", 105, 42)
-            self.play_button.set_layout("▶  Сервер • АДМІН", 155, 42)
+            self.play_button.set_layout("▶  Сервер", 155, 42)
             self.account_button.set_layout(self.account_button_text(compact=True), 110, 42)
         else:
             self.sidebar.configure(width=72, padx=7)
@@ -1945,10 +1963,6 @@ class ModHub(tk.Tk):
             )
             button.pack_configure(pady=0 if short else 1)
         self.nav_separator.pack_configure(pady=7 if short else 14)
-        if short or mode == "tiny":
-            self.sidebar_version.pack_forget()
-        elif not self.sidebar_version.winfo_manager():
-            self.sidebar_version.pack(side="bottom", anchor="w", padx=12)
         self._layout_mode = mode
 
     def page_padding(self):
@@ -2102,8 +2116,6 @@ class ModHub(tk.Tk):
         ok, _ = validate_game_root(self.settings.get("game_root", ""))
         if ok:
             try:
-                ensure_optimization_payloads(self.settings["game_root"])
-                self.catalog, self.mods = load_catalog()
                 self.show_home()
             except (ModError, OSError):
                 pass
@@ -2231,7 +2243,7 @@ class ModHub(tk.Tk):
         grid = ResponsiveCardGrid(body)
         grid.pack(fill="x", padx=page_pad, pady=(15, 30))
         installed = load_state().get("installed", {})
-        available = [mod for mod in self.mods if mod_payload_available(mod.id) or mod.id in installed]
+        available = [mod for mod in self.mods if mod.category != "Оптимізація"]
         for index, mod in enumerate(available[:4]):
             card = ModCard(grid, self, mod)
             grid.add(card)
@@ -2245,7 +2257,7 @@ class ModHub(tk.Tk):
         scroll.pack(fill="both", expand=True)
         body = scroll.inner
         installed = load_state().get("installed", {})
-        available = [mod for mod in self.mods if mod_payload_available(mod.id) or mod.id in installed]
+        available = [mod for mod in self.mods if mod.category != "Оптимізація"]
         if category == "Пошук":
             mods = [mod for mod in available if mod_matches_search(mod, search_query)]
         elif category == "Усі моди":
@@ -2664,6 +2676,10 @@ class ModHub(tk.Tk):
         body.pack(fill="both", expand=True)
         tk.Label(body, text="Налаштування", bg=BG, fg=TEXT, font=("Segoe UI Semibold", 24)).pack(anchor="w")
         tk.Label(body, text="Папка гри та параметри запуску", bg=BG, fg=MUTED, font=("Segoe UI", 10)).pack(anchor="w", pady=(3, 25))
+        version_card = tk.Frame(body, bg=PANEL, padx=24, pady=18, highlightbackground=LINE, highlightthickness=1)
+        version_card.pack(fill="x", pady=(0, 18))
+        tk.Label(version_card, text="Версія програми", bg=PANEL, fg=TEXT, font=("Segoe UI Semibold", 12)).pack(anchor="w")
+        tk.Label(version_card, text=str(self.catalog.get("version", "—")), bg=PANEL, fg=ACCENT, font=("Segoe UI Semibold", 11)).pack(anchor="w", pady=(5, 0))
         card = tk.Frame(body, bg=PANEL, padx=24, pady=22, highlightbackground=LINE, highlightthickness=1)
         card.pack(fill="x")
         tk.Label(card, text="Папка UKRAINEGTA", bg=PANEL, fg=TEXT, font=("Segoe UI Semibold", 12)).pack(anchor="w")
@@ -2762,18 +2778,12 @@ class ModHub(tk.Tk):
 
         online_card = tk.Frame(body, bg=PANEL, padx=24, pady=18, highlightbackground=LINE, highlightthickness=1)
         online_card.pack(fill="x", pady=(0, 18))
-        tk.Label(online_card, text="Підписаний онлайн-каталог", bg=PANEL, fg=TEXT, font=("Segoe UI Semibold", 12)).pack(anchor="w")
-        tk.Label(online_card, text="Файли завантажуються окремо без ZIP, перевіряються SHA-256 та цифровим підписом RSA/Ed25519.", bg=PANEL, fg=MUTED, font=("Segoe UI", 9)).pack(anchor="w", pady=(3, 10))
-        self.catalog_url_var = tk.StringVar(value=self.settings.get("catalog_url", ""))
-        self.catalog_key_var = tk.StringVar(value=self.settings.get("catalog_public_key", ""))
-        tk.Entry(online_card, textvariable=self.catalog_url_var, bg="#090d13", fg=TEXT, insertbackground=TEXT, relief="flat", font=("Segoe UI", 10)).pack(fill="x", ipady=10, pady=(0, 8))
-        self.update_url_var = tk.StringVar(value=self.settings.get("update_url", ""))
-        tk.Entry(online_card, textvariable=self.update_url_var, bg="#090d13", fg=TEXT, insertbackground=TEXT, relief="flat", font=("Segoe UI", 10)).pack(fill="x", ipady=10, pady=(0, 8))
+        tk.Label(online_card, text="Оновлення", bg=PANEL, fg=TEXT, font=("Segoe UI Semibold", 12)).pack(anchor="w")
+        tk.Label(online_card, text="Каталог і програма перевіряються автоматично. Службові адреси та ключі заховано.", bg=PANEL, fg=MUTED, font=("Segoe UI", 9)).pack(anchor="w", pady=(3, 10))
         key_row = tk.Frame(online_card, bg=PANEL)
         key_row.pack(fill="x")
-        tk.Entry(key_row, textvariable=self.catalog_key_var, bg="#090d13", fg=TEXT, insertbackground=TEXT, relief="flat", font=("Segoe UI", 9)).pack(side="left", fill="x", expand=True, ipady=10, padx=(0, 10))
-        PillButton(key_row, "Оновити каталог", self.update_catalog, width=165, height=42).pack(side="right")
-        PillButton(online_card, "Перевірити програму", lambda: self.check_for_application_update(force=True), width=190, height=40, primary=False).pack(anchor="w", pady=(10, 0))
+        PillButton(key_row, "Оновити каталог", self.update_catalog, width=165, height=42).pack(side="left")
+        PillButton(key_row, "Перевірити програму", lambda: self.check_for_application_update(force=True), width=190, height=42, primary=False).pack(side="left", padx=(10, 0))
 
         actions = tk.Frame(body, bg=BG)
         actions.pack(fill="x")
@@ -2813,15 +2823,7 @@ class ModHub(tk.Tk):
         self.settings["animation_mode"] = self.animation_mode
         self.fps_counter_enabled = bool(self.fps_counter_var.get())
         self.settings["fps_counter"] = self.fps_counter_enabled
-        self.settings["catalog_url"] = self.catalog_url_var.get().strip()
-        self.settings["catalog_public_key"] = self.catalog_key_var.get().strip()
-        self.settings["update_url"] = self.update_url_var.get().strip()
         save_settings(self.settings)
-        try:
-            ensure_optimization_payloads(self.settings["game_root"])
-            self.catalog, self.mods = load_catalog()
-        except (ModError, OSError):
-            pass
         self.update_root_status()
         self.refresh_guard_button()
         self.fps_overlay.set_enabled(self.fps_counter_enabled)
@@ -2869,8 +2871,6 @@ class ModHub(tk.Tk):
             if getattr(self, "_game_root_ok", False):
                 self.root_status.configure(fg=blend(ACCENT, "#9bfff1", amount * .55))
             self.status_text.configure(fg=blend(MUTED, "#b7d7dc", amount * .28))
-            if self.admin_mode:
-                self.admin_label.configure(fg=blend(ACCENT, "#8ff7e8", amount * 0.55))
             self.after(80, self.animate_ambient)
         except tk.TclError:
             return
@@ -3320,11 +3320,6 @@ class ModHub(tk.Tk):
         )
 
     def update_catalog(self):
-        url = self.catalog_url_var.get().strip()
-        key = self.catalog_key_var.get().strip()
-        self.settings["catalog_url"] = url
-        self.settings["catalog_public_key"] = key
-        save_settings(self.settings)
         self._start_catalog_sync(True)
 
     def check_for_application_update(self, force=False):
@@ -3335,7 +3330,7 @@ class ModHub(tk.Tk):
         key = self.settings.get("catalog_public_key", "").strip()
         if not url or not key:
             if force:
-                messagebox.showinfo("Оновлення", "Вкажіть URL оновлень і публічний ключ у налаштуваннях.")
+                messagebox.showinfo("Оновлення", "Сервіс оновлень ще не налаштований.")
             return
 
         def worker():

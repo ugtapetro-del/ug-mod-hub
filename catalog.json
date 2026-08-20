@@ -75,30 +75,6 @@
       "accent": "#f0c45a",
       "repeat_before_launch": true,
       "hash_guard": true
-    },
-    {
-      "id": "optimization_no_grass",
-      "title": "Без трави",
-      "category": "Оптимізація",
-      "description": "Вимикає рослинний покрив для зменшення навантаження на слабкі відеокарти.",
-      "destination": "game/bin/data",
-      "accent": "#34d399"
-    },
-    {
-      "id": "optimization_low_effects",
-      "title": "Спрощені ефекти",
-      "category": "Оптимізація",
-      "description": "Вимикає radiosity та зменшує кількість фонових машин у стримінгу.",
-      "destination": "game/bin",
-      "accent": "#38bdf8"
-    },
-    {
-      "id": "optimization_low_map",
-      "title": "Низька деталізація карти",
-      "category": "Оптимізація",
-      "description": "Вмикає штатний gta_low.dat для меншої деталізації об’єктів карти.",
-      "destination": "game/bin/data",
-      "accent": "#f59e0b"
     }
   ]
 }
