@@ -2368,12 +2368,73 @@ class ModHub(tk.Tk):
         self._images[key] = photo
         return photo
 
+    def content_wallpaper(self, size):
+        """Render the tram artwork as a dark full-page Nightline backdrop."""
+        width, height = size
+        key = f"content-wallpaper:{width}:{height}"
+        if key in self._images:
+            return self._images[key]
+        image = Image.new("RGBA", size, BG)
+        draw = ImageDraw.Draw(image, "RGBA")
+        for y in range(height):
+            ratio = y / max(1, height - 1)
+            draw.line((0, y, width, y), fill=(7 + round(5 * ratio), 10 + round(8 * ratio), 15 + round(12 * ratio), 255))
+        for x in range(0, width, 54):
+            draw.line((x, 0, x, height), fill=(102, 199, 255, 9))
+        for y in range(0, height, 54):
+            draw.line((0, y, width, y), fill=(102, 199, 255, 7))
+
+        source = RESOURCE_DIR / "assets" / "nightline" / "tram-wallpaper@2x.webp"
+        if not source.is_file():
+            source = RESOURCE_DIR / "assets" / "nightline" / "tram-decor.webp"
+        if source.is_file():
+            try:
+                tram = Image.open(source).convert("RGBA")
+                target_width = round(width * 1.08)
+                target_height = round(height * 1.02)
+                tram.thumbnail((target_width, target_height), Image.Resampling.LANCZOS)
+                alpha = tram.getchannel("A").point(lambda value: min(255, round(value * 4.25)))
+                tram.putalpha(alpha)
+                x = (width - tram.width) // 2
+                y = max(-40, (height - tram.height) // 2)
+                image.alpha_composite(tram, (x, y))
+            except OSError:
+                pass
+
+        shade = Image.new("RGBA", size, (0, 0, 0, 0))
+        shade_draw = ImageDraw.Draw(shade, "RGBA")
+        shade_draw.rectangle((0, 0, width, height), fill=(3, 6, 10, 58))
+        shade_draw.rectangle((0, 0, width, 120), fill=(3, 6, 10, 54))
+        image = Image.alpha_composite(image, shade)
+        photo = ImageTk.PhotoImage(image.convert("RGB"))
+        self._images[key] = photo
+        return photo
+
+    def _add_wallpaper_underlay(self, container, body, wallpaper):
+        """Keep one wallpaper visually aligned beneath opaque content panels."""
+        layer = tk.Label(container, image=wallpaper, bg=BG, borderwidth=0, highlightthickness=0)
+
+        def align(_event=None):
+            try:
+                x = container.winfo_rootx() - body.winfo_rootx()
+                y = container.winfo_rooty() - body.winfo_rooty()
+                layer.place(x=-x, y=-y, anchor="nw")
+                layer.lower()
+            except tk.TclError:
+                pass
+
+        container.bind("<Configure>", align, add="+")
+        self.after_idle(align)
+        return layer
+
     def show_home(self):
         self._clear_content()
         self._set_active("Головна")
         scroll = ScrollFrame(self.content_host)
         scroll.pack(fill="both", expand=True)
         body = scroll.inner
+        wallpaper = self.content_wallpaper((max(960, self.content_host.winfo_width()), max(1100, self.content_host.winfo_height() + 320)))
+        self._add_wallpaper_underlay(body, body, wallpaper)
         hero = tk.Frame(body, bg=PANEL, height=318, highlightbackground="#283747", highlightthickness=1)
         page_pad = self.page_padding()
         hero.pack(fill="x", padx=page_pad, pady=(20 if page_pad < 30 else 26, 14))
@@ -2395,6 +2456,7 @@ class ModHub(tk.Tk):
         installed_count = len(load_state().get("installed", {}))
         status_strip = tk.Frame(body, bg=BG)
         status_strip.pack(fill="x", padx=page_pad, pady=(0, 20))
+        self._add_wallpaper_underlay(status_strip, body, wallpaper)
         status_items = [
             ("ВСТАНОВЛЕНО", str(installed_count), "активні моди", ACCENT),
             ("ДОСТУПНО", str(len([mod for mod in self.mods if mod.category != "Оптимізація"])), "у каталозі", BLUE),
@@ -2412,12 +2474,14 @@ class ModHub(tk.Tk):
 
         section = tk.Frame(body, bg=BG)
         section.pack(fill="x", padx=page_pad)
+        self._add_wallpaper_underlay(section, body, wallpaper)
         tk.Label(section, text="Популярні моди", bg=BG, fg=TEXT, font=("Segoe UI Semibold", 17)).pack(side="left")
         all_mods = tk.Label(section, text="Показати всі  →", bg=BG, fg=ACCENT, cursor="hand2", font=("Segoe UI Semibold", 9))
         all_mods.pack(side="right")
         all_mods.bind("<Button-1>", lambda _event: self.show_library("Усі моди"))
         grid = ResponsiveCardGrid(body)
         grid.pack(fill="x", padx=page_pad, pady=(15, 30))
+        self._add_wallpaper_underlay(grid, body, wallpaper)
         available = [mod for mod in self.mods if mod.category != "Оптимізація"]
         for index, mod in enumerate(available[:4]):
             card = ModCard(grid, self, mod)
