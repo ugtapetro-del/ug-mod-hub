@@ -3349,7 +3349,7 @@ class ModHub(tk.Tk):
                 messagebox.showinfo("Оновлення", "Установлено актуальну версію UG MOD HUB.")
             return
         notes = str(payload.get("notes", "")).strip()
-        message = f"Доступна версія {payload['version']}."
+        message = "Доступне оновлення UG MOD HUB."
         if notes:
             message += f"\n\n{notes}"
         mandatory = bool(payload.get("mandatory"))
@@ -3367,7 +3367,7 @@ class ModHub(tk.Tk):
                 messagebox.showerror("Оновлення", str(exc))
 
         self._run_job(
-            f"Завантаження UG MOD HUB {payload['version']}",
+            "Завантаження оновлення UG MOD HUB",
             lambda progress, cancel: download_application_update(payload, progress, cancel),
             "Оновлення завантажено",
             on_done=done,
