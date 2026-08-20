@@ -2347,12 +2347,12 @@ class ModHub(tk.Tk):
                 image.alpha_composite(tram, (width - tram.width - 30, (height - tram.height) // 2))
             except OSError:
                 pass
-        character_path = RESOURCE_DIR / "assets" / "nightline" / "character.webp"
-        if character_path.is_file():
+        cast_path = RESOURCE_DIR / "assets" / "nightline" / "main-cast.webp"
+        if cast_path.is_file():
             try:
-                character = Image.open(character_path).convert("RGBA")
-                character.thumbnail((round(width * .28), round(height * 1.45)), Image.Resampling.LANCZOS)
-                image.alpha_composite(character, (round(width * .72), height - character.height + 30))
+                cast = Image.open(cast_path).convert("RGBA")
+                cast.thumbnail((round(width * .58), round(height * 1.38)), Image.Resampling.LANCZOS)
+                image.alpha_composite(cast, (width - cast.width - 18, height - cast.height + 26))
             except OSError:
                 pass
 
@@ -2367,6 +2367,80 @@ class ModHub(tk.Tk):
         photo = ImageTk.PhotoImage(image.convert("RGB"))
         self._images[key] = photo
         return photo
+
+    def promo_image(self, size=(1500, 160)):
+        key = f"nightline-promo:{size[0]}:{size[1]}"
+        if key in self._images:
+            return self._images[key]
+        source = RESOURCE_DIR / "assets" / "nightline" / "cars-banner.webp"
+        if not source.is_file():
+            return self.card_image("#f1a33b", "UKRAINE GTA", size)
+        try:
+            image = ImageOps.fit(Image.open(source).convert("RGB"), size, method=Image.Resampling.LANCZOS).convert("RGBA")
+            shade = Image.new("RGBA", size, (0, 0, 0, 0))
+            shade_draw = ImageDraw.Draw(shade, "RGBA")
+            for x in range(size[0]):
+                ratio = x / max(1, size[0] - 1)
+                shade_draw.line((x, 0, x, size[1]), fill=(4, 7, 11, max(35, round(220 * (1 - ratio)))))
+            shade_draw.rectangle((0, size[1] - 34, size[0], size[1]), fill=(4, 7, 11, 76))
+            image = Image.alpha_composite(image, shade)
+            photo = ImageTk.PhotoImage(image.convert("RGB"))
+            self._images[key] = photo
+            return photo
+        except OSError:
+            return self.card_image("#f1a33b", "UKRAINE GTA", size)
+
+    def nightline_art_card(self, filename, size=(350, 188), accent="#66c7ff"):
+        key = f"nightline-art:{filename}:{size[0]}:{size[1]}:{accent}"
+        if key in self._images:
+            return self._images[key]
+        image = Image.new("RGBA", size, "#0d1219")
+        draw = ImageDraw.Draw(image, "RGBA")
+        accent_rgb = tuple(int(accent[index:index + 2], 16) for index in (1, 3, 5))
+        for y in range(size[1]):
+            ratio = y / max(1, size[1] - 1)
+            draw.line((0, y, size[0], y), fill=(10 + round(9 * ratio), 15 + round(9 * ratio), 22 + round(13 * ratio), 255))
+        glow = Image.new("RGBA", size, (0, 0, 0, 0))
+        ImageDraw.Draw(glow, "RGBA").ellipse(
+            (size[0] * .22, -size[1] * .7, size[0] * 1.25, size[1] * 1.45),
+            fill=(*accent_rgb, 34),
+        )
+        image = Image.alpha_composite(image, glow)
+        source = RESOURCE_DIR / "assets" / "nightline" / filename
+        if source.is_file():
+            try:
+                art = Image.open(source).convert("RGBA")
+                alpha = art.getchannel("A")
+                if alpha.getextrema()[1] < 80:
+                    art.putalpha(alpha.point(lambda value: min(255, value * 12)))
+                art.thumbnail((round(size[0] * .92), round(size[1] * 1.08)), Image.Resampling.LANCZOS)
+                image.alpha_composite(art, ((size[0] - art.width) // 2, size[1] - art.height + 4))
+            except OSError:
+                pass
+        overlay = Image.new("RGBA", size, (0, 0, 0, 0))
+        ImageDraw.Draw(overlay, "RGBA").rectangle((0, size[1] - 42, size[0], size[1]), fill=(4, 7, 11, 76))
+        image = Image.alpha_composite(image, overlay)
+        photo = ImageTk.PhotoImage(image.convert("RGB"))
+        self._images[key] = photo
+        return photo
+
+    def nightline_asset(self, filename, size):
+        key = f"nightline-asset:{filename}:{size[0]}:{size[1]}"
+        if key in self._images:
+            return self._images[key]
+        source = RESOURCE_DIR / "assets" / "nightline" / filename
+        if not source.is_file():
+            return None
+        try:
+            art = Image.open(source).convert("RGBA")
+            art.thumbnail(size, Image.Resampling.LANCZOS)
+            frame = Image.new("RGBA", size, (0, 0, 0, 0))
+            frame.alpha_composite(art, ((size[0] - art.width) // 2, size[1] - art.height))
+            photo = ImageTk.PhotoImage(frame)
+            self._images[key] = photo
+            return photo
+        except OSError:
+            return None
 
     def content_wallpaper(self, size):
         """Render the tram artwork as a dark full-page Nightline backdrop."""
@@ -2433,7 +2507,7 @@ class ModHub(tk.Tk):
         scroll = ScrollFrame(self.content_host)
         scroll.pack(fill="both", expand=True)
         body = scroll.inner
-        wallpaper = self.content_wallpaper((max(960, self.content_host.winfo_width()), max(1100, self.content_host.winfo_height() + 320)))
+        wallpaper = self.content_wallpaper((max(960, self.content_host.winfo_width()), max(1600, self.content_host.winfo_height() + 760)))
         self._add_wallpaper_underlay(body, body, wallpaper)
         hero = tk.Frame(body, bg=PANEL, height=318, highlightbackground="#283747", highlightthickness=1)
         page_pad = self.page_padding()
@@ -2472,6 +2546,17 @@ class ModHub(tk.Tk):
             tk.Label(line, text=value, bg=PANEL, fg=color, font=("Segoe UI Semibold", 15)).pack(side="left")
             tk.Label(line, text=detail, bg=PANEL, fg=MUTED, font=("Segoe UI", 8)).pack(side="right", pady=(5, 0))
 
+        promo = tk.Canvas(body, height=154, bg=PANEL, highlightbackground=LINE, highlightthickness=1, bd=0, cursor="hand2")
+        promo.pack(fill="x", padx=page_pad, pady=(0, 20))
+        promo.pack_propagate(False)
+        promo_photo = self.promo_image((1500, 154))
+        promo.create_image(0, 0, image=promo_photo, anchor="nw")
+        promo.create_text(28, 35, text="NIGHTLINE DRIVE", fill=ACCENT, anchor="w", font=("Segoe UI Semibold", 8))
+        promo.create_text(28, 69, text="ЗБЕРИ СВОЮ ГРУ", fill=TEXT, anchor="w", font=("Segoe UI Semibold", 21))
+        promo.create_text(28, 102, text="Нові образи, транспорт і атмосфера — в одному каталозі.", fill="#b0b7c0", anchor="w", font=("Segoe UI", 9))
+        promo.create_text(28, 129, text="ВІДКРИТИ КАТАЛОГ  →", fill=BLUE, anchor="w", font=("Segoe UI Semibold", 8))
+        promo.bind("<Button-1>", lambda _event: self.show_library("Усі моди"))
+
         section = tk.Frame(body, bg=BG)
         section.pack(fill="x", padx=page_pad)
         self._add_wallpaper_underlay(section, body, wallpaper)
@@ -2488,6 +2573,42 @@ class ModHub(tk.Tk):
             grid.add(card)
             card.animate_intro(index * 70)
             self.cards.append(card)
+
+        gallery_header = tk.Frame(body, bg=BG, height=92)
+        gallery_header.pack(fill="x", padx=page_pad, pady=(2, 10))
+        gallery_header.pack_propagate(False)
+        self._add_wallpaper_underlay(gallery_header, body, wallpaper)
+        gallery_copy = tk.Frame(gallery_header, bg="#0b1017", padx=18, pady=13, highlightbackground=LINE, highlightthickness=1)
+        gallery_copy.pack(side="left", fill="y")
+        accent_icon = self.nightline_asset("news-accent.webp", (18, 18))
+        if accent_icon:
+            tk.Label(gallery_copy, image=accent_icon, bg="#0b1017").pack(side="left", padx=(0, 10))
+        copy_text = tk.Frame(gallery_copy, bg="#0b1017")
+        copy_text.pack(side="left")
+        tk.Label(copy_text, text="СВІТ UKRAINE GTA", bg="#0b1017", fg=TEXT, font=("Segoe UI Semibold", 15)).pack(anchor="w")
+        tk.Label(copy_text, text="Міські історії, персонажі та атмосфера проєкту.", bg="#0b1017", fg=MUTED, font=("Segoe UI", 8)).pack(anchor="w", pady=(3, 0))
+        gallery_character = self.nightline_asset("gallery-character.webp", (78, 90))
+        if gallery_character:
+            tk.Label(gallery_header, image=gallery_character, bg=BG, borderwidth=0).pack(side="right", padx=(0, 18))
+
+        art_grid = ResponsiveCardGrid(body, card_width=350, gap=14, max_columns=3)
+        art_grid.pack(fill="x", padx=page_pad, pady=(0, 34))
+        self._add_wallpaper_underlay(art_grid, body, wallpaper)
+        art_items = [
+            ("character.webp", "Твій стиль", "Збирай власний образ", ACCENT),
+            ("police-character.webp", "Місто живе", "Історії по обидва боки закону", GREEN),
+            ("history-illustration.webp", "Українські міста", "Впізнавані місця та нова атмосфера", BLUE),
+        ]
+        for filename, title, subtitle, color in art_items:
+            card = tk.Frame(art_grid, bg=PANEL, width=350, height=252, highlightbackground=LINE, highlightthickness=1)
+            card.grid_propagate(False)
+            image_label = tk.Label(card, image=self.nightline_art_card(filename, accent=color), bg=PANEL, borderwidth=0)
+            image_label.pack(fill="x")
+            copy_row = tk.Frame(card, bg=PANEL, padx=15, pady=10)
+            copy_row.pack(fill="both", expand=True)
+            tk.Label(copy_row, text=title, bg=PANEL, fg=TEXT, font=("Segoe UI Semibold", 11)).pack(anchor="w")
+            tk.Label(copy_row, text=subtitle, bg=PANEL, fg=MUTED, font=("Segoe UI", 8)).pack(anchor="w", pady=(3, 0))
+            art_grid.add(card)
 
     def show_library(self, category="Усі моди", search_query=""):
         self._clear_content()
