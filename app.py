@@ -595,6 +595,7 @@ class AnimatedHero(tk.Canvas):
         self.app = app
         self.phase = 0.0
         self.image = app.hero_image()
+        self.image_size = (1500, 270)
         self.image_item = self.create_image(0, 0, image=self.image, anchor="nw")
         self.beams = [self.create_line(0, 0, 0, 0, fill="#234967", width=1) for _ in range(14)]
         self.dots = [self.create_oval(0, 0, 3, 3, fill=BLUE if i % 3 else ACCENT, outline="") for i in range(24)]
@@ -607,6 +608,11 @@ class AnimatedHero(tk.Canvas):
 
     def _layout(self, _event=None):
         width, height = max(1, self.winfo_width()), max(1, self.winfo_height())
+        image_size = (width, height)
+        if width > 80 and height > 60 and image_size != self.image_size:
+            self.image = self.app.hero_image(image_size)
+            self.image_size = image_size
+            self.itemconfigure(self.image_item, image=self.image)
         cx, cy = width * .79, height * .5
         for index, ring in enumerate(self.rings):
             radius = 52 + index * 25
@@ -667,14 +673,44 @@ class ResponsiveCardGrid(tk.Frame):
         self.columns = columns
         for card in self.cards:
             card.grid_forget()
+        for column in range(self.max_columns):
+            self.grid_columnconfigure(column, weight=0, uniform="")
+        for column in range(columns):
+            self.grid_columnconfigure(column, weight=1, uniform="nightline-cards")
         for index, card in enumerate(self.cards):
             card.grid(
                 row=index // columns,
                 column=index % columns,
-                padx=(0, self.gap),
+                padx=(self.gap // 2, self.gap // 2),
                 pady=(0, self.gap),
-                sticky="nw",
+                sticky="n",
             )
+
+
+class ResponsivePromo(tk.Canvas):
+    def __init__(self, parent, app, command):
+        super().__init__(parent, height=154, bg=PANEL, highlightbackground=LINE, highlightthickness=1, bd=0, cursor="hand2")
+        self.app = app
+        self.command = command
+        self.photo = None
+        self.photo_size = None
+        self.image_item = self.create_image(0, 0, anchor="nw")
+        self.eyebrow = self.create_text(28, 35, text="NIGHTLINE DRIVE", fill=ACCENT, anchor="w", font=("Segoe UI Semibold", 8))
+        self.title_item = self.create_text(28, 69, text="ЗБЕРИ СВОЮ ГРУ", fill=TEXT, anchor="w", font=("Segoe UI Semibold", 21))
+        self.subtitle = self.create_text(28, 102, text="Нові образи, транспорт і атмосфера — в одному каталозі.", fill="#b0b7c0", anchor="w", font=("Segoe UI", 9))
+        self.action = self.create_text(28, 129, text="ВІДКРИТИ КАТАЛОГ  →", fill=BLUE, anchor="w", font=("Segoe UI Semibold", 8))
+        self.bind("<Configure>", self._layout)
+        self.bind("<Button-1>", lambda _event: self.command())
+
+    def _layout(self, _event=None):
+        width, height = max(1, self.winfo_width()), max(1, self.winfo_height())
+        size = (width, height)
+        if width > 80 and size != self.photo_size:
+            self.photo = self.app.promo_image(size)
+            self.photo_size = size
+            self.itemconfigure(self.image_item, image=self.photo)
+        compact = width < 760
+        self.itemconfigure(self.subtitle, state="hidden" if compact else "normal")
 
 
 class PillButton(tk.Canvas):
@@ -2546,22 +2582,14 @@ class ModHub(tk.Tk):
             tk.Label(line, text=value, bg=PANEL, fg=color, font=("Segoe UI Semibold", 15)).pack(side="left")
             tk.Label(line, text=detail, bg=PANEL, fg=MUTED, font=("Segoe UI", 8)).pack(side="right", pady=(5, 0))
 
-        promo = tk.Canvas(body, height=154, bg=PANEL, highlightbackground=LINE, highlightthickness=1, bd=0, cursor="hand2")
+        promo = ResponsivePromo(body, self, lambda: self.show_library("Усі моди"))
         promo.pack(fill="x", padx=page_pad, pady=(0, 20))
         promo.pack_propagate(False)
-        promo_photo = self.promo_image((1500, 154))
-        promo.create_image(0, 0, image=promo_photo, anchor="nw")
-        promo.create_text(28, 35, text="NIGHTLINE DRIVE", fill=ACCENT, anchor="w", font=("Segoe UI Semibold", 8))
-        promo.create_text(28, 69, text="ЗБЕРИ СВОЮ ГРУ", fill=TEXT, anchor="w", font=("Segoe UI Semibold", 21))
-        promo.create_text(28, 102, text="Нові образи, транспорт і атмосфера — в одному каталозі.", fill="#b0b7c0", anchor="w", font=("Segoe UI", 9))
-        promo.create_text(28, 129, text="ВІДКРИТИ КАТАЛОГ  →", fill=BLUE, anchor="w", font=("Segoe UI Semibold", 8))
-        promo.bind("<Button-1>", lambda _event: self.show_library("Усі моди"))
 
-        section = tk.Frame(body, bg=BG)
+        section = tk.Frame(body, bg=PANEL, padx=14, pady=10, highlightbackground=LINE, highlightthickness=1)
         section.pack(fill="x", padx=page_pad)
-        self._add_wallpaper_underlay(section, body, wallpaper)
-        tk.Label(section, text="Популярні моди", bg=BG, fg=TEXT, font=("Segoe UI Semibold", 17)).pack(side="left")
-        all_mods = tk.Label(section, text="Показати всі  →", bg=BG, fg=ACCENT, cursor="hand2", font=("Segoe UI Semibold", 9))
+        tk.Label(section, text="Популярні моди", bg=PANEL, fg=TEXT, font=("Segoe UI Semibold", 17)).pack(side="left")
+        all_mods = tk.Label(section, text="Показати всі  →", bg=PANEL, fg=ACCENT, cursor="hand2", font=("Segoe UI Semibold", 9))
         all_mods.pack(side="right")
         all_mods.bind("<Button-1>", lambda _event: self.show_library("Усі моди"))
         grid = ResponsiveCardGrid(body)
@@ -2574,12 +2602,11 @@ class ModHub(tk.Tk):
             card.animate_intro(index * 70)
             self.cards.append(card)
 
-        gallery_header = tk.Frame(body, bg=BG, height=92)
+        gallery_header = tk.Frame(body, bg="#0b1017", height=92, padx=18, pady=12, highlightbackground=LINE, highlightthickness=1)
         gallery_header.pack(fill="x", padx=page_pad, pady=(2, 10))
         gallery_header.pack_propagate(False)
-        self._add_wallpaper_underlay(gallery_header, body, wallpaper)
-        gallery_copy = tk.Frame(gallery_header, bg="#0b1017", padx=18, pady=13, highlightbackground=LINE, highlightthickness=1)
-        gallery_copy.pack(side="left", fill="y")
+        gallery_copy = tk.Frame(gallery_header, bg="#0b1017")
+        gallery_copy.pack(side="left", fill="both", expand=True)
         accent_icon = self.nightline_asset("news-accent.webp", (18, 18))
         if accent_icon:
             tk.Label(gallery_copy, image=accent_icon, bg="#0b1017").pack(side="left", padx=(0, 10))
@@ -2589,7 +2616,7 @@ class ModHub(tk.Tk):
         tk.Label(copy_text, text="Міські історії, персонажі та атмосфера проєкту.", bg="#0b1017", fg=MUTED, font=("Segoe UI", 8)).pack(anchor="w", pady=(3, 0))
         gallery_character = self.nightline_asset("gallery-character.webp", (78, 90))
         if gallery_character:
-            tk.Label(gallery_header, image=gallery_character, bg=BG, borderwidth=0).pack(side="right", padx=(0, 18))
+            tk.Label(gallery_header, image=gallery_character, bg="#0b1017", borderwidth=0).pack(side="right", padx=(18, 2))
 
         art_grid = ResponsiveCardGrid(body, card_width=350, gap=14, max_columns=3)
         art_grid.pack(fill="x", padx=page_pad, pady=(0, 34))
